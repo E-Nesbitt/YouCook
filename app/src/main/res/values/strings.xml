@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">YouCook</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="shopping_list">Shopping List</string>
+    <string name="action_add">Add</string>
+    <string name="action_clear_all">Clear All Items</string>
+    <string name="search_menu">Search</string>
+    <string name="search_menu_desc">Search for a recipe by entering ingredients</string>
+    <string name="shopping_list_menu">Shopping List</string>
+    <string name="shopping_list_menu_desc">Create a shopping list for ingredients you need</string>
+    <string name="recipe_menu">Recipes</string>
+    <string name="recipe_menu_desc">Create and Store your own recipes for later</string>
+    <string name="timer_menu">Timer</string>
+    <string name="timer_menu_desc">Set a timer so you don\'t burn the all important meal</string>
+    <string name="converter_menu">Converter</string>
+    <string name="converter_menu_desc">Convert the measures to suit your scales</string>
+</resources>

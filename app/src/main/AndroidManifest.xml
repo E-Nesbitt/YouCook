@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ethannesbitt.youcook">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/youcookic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/YouCookV1">
+
+        <!-- Splash Activity -->
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/SplashScreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Main Activity -->
+        <activity android:name=".MainActivity" />
+
+        <!-- Shopping List Activity -->
+        <activity
+            android:name=".ShoppingList"
+            android:label="@string/shopping_list" />
+        <activity android:name=".Search" />
+        <activity android:name=".Recipes" />
+        <activity android:name=".Timer" />
+        <activity android:name=".Converter"></activity>
+    </application>
+
+</manifest>
