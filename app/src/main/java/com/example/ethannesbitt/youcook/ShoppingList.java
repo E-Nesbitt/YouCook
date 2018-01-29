@@ -71,9 +71,9 @@ public class ShoppingList extends AppCompatActivity
 
         if(id == R.id.action_add)
         {
-            //code needed to add an item to the array list here**
             final EditText newItem = new EditText(this);
 
+            //creating an alert prompt for user to enter the name of the item
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Add New Item");
             builder.setView(newItem);
@@ -103,6 +103,7 @@ public class ShoppingList extends AppCompatActivity
 
         if(id == R.id.action_clear_all)
         {
+            //creating an alert prompt to ask user if shopping list can be cleared or not
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Clear Shopping List?");
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
@@ -113,6 +114,8 @@ public class ShoppingList extends AppCompatActivity
                     ingredientList.clear();
                     storeIngredientsList(ingredientList, getApplicationContext());
                     lView.setAdapter(aAdapter);
+                    Toast.makeText(getApplicationContext(), "Shopping List has been cleared!", Toast.LENGTH_LONG).show();
+
                 }
             });
 
@@ -131,17 +134,19 @@ public class ShoppingList extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public void deleteItem(String activeItem, final int position)
+    public void deleteItem(final String activeItem, final int position)
     {
+        //Creating an alert prompt to ask user if item has been got
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete " + activeItem + "?");
+        builder.setTitle("Have you got " + activeItem + "?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
             {
-                //rather than removing the item from the list i want to add a strikethrough version of the text
+                //Removes the item and re-adds it with a tick beside it to show its been got
                 ingredientList.remove(position);
+                ingredientList.add(activeItem + " \u2714");
                 storeIngredientsList(ingredientList, getApplicationContext());
                 lView.setAdapter(aAdapter);
             }
@@ -158,6 +163,7 @@ public class ShoppingList extends AppCompatActivity
         builder.show();
     }
 
+    //stores the shopping list in shared preferences so it can be accessed when app is reopened
     public static void storeIngredientsList(ArrayList currentList, Context context)
     {
         Set writeList = new HashSet(currentList);
@@ -167,6 +173,7 @@ public class ShoppingList extends AppCompatActivity
         preferenceEditor.commit();
     }
 
+    //opens the shopping list stored in shared preferences when app is opened
     public static ArrayList getIngredientsList(Context stored)
     {
         SharedPreferences getPreferences = stored.getSharedPreferences("theArrayValues", Activity.MODE_PRIVATE);
@@ -175,6 +182,7 @@ public class ShoppingList extends AppCompatActivity
         return new ArrayList<>(temporarySet);
     }
 
+    //setting a standard case to all items put into the shopping list, i.e. capital first letter
     public static String standardCase(String input)
     {
         if(input.isEmpty())
