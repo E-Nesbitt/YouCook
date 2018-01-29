@@ -31,7 +31,7 @@
         <activity android:name=".Search" />
         <activity android:name=".Recipes" />
         <activity android:name=".Timer" />
-        <activity android:name=".Converter"></activity>
+        <activity android:name=".Converter" />
     </application>
 
 </manifest>

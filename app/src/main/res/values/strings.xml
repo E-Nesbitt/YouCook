@@ -14,4 +14,5 @@
     <string name="timer_menu_desc">Set a timer so you don\'t burn the all important meal</string>
     <string name="converter_menu">Converter</string>
     <string name="converter_menu_desc">Convert the measures to suit your scales</string>
+    <string name="drawer_menu_text">Select a Menu Option from the list below</string>
 </resources>
