@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.ethannesbitt.youcook.Converter"
-    android:id="@+id/activity_drawer">
+    android:id="@+id/converter">
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"

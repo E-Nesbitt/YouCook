@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,6 +26,8 @@ import java.util.Set;
 
 public class ShoppingList extends AppCompatActivity
 {
+    private DrawerLayout drawerMenu;
+    private ActionBarDrawerToggle menuToggle;
 
     ArrayList<String> ingredientList = null;
     ArrayAdapter<String> aAdapter = null;
@@ -34,6 +38,12 @@ public class ShoppingList extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list);
+
+        drawerMenu = (DrawerLayout) findViewById(R.id.shoppinglist);
+        menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
+        drawerMenu.addDrawerListener(menuToggle);
+        menuToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ingredientList = getIngredientsList(getApplicationContext());
         aAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, ingredientList);
@@ -67,6 +77,11 @@ public class ShoppingList extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        if(menuToggle.onOptionsItemSelected(item))
+        {
+            return true;
+        }
+
         int id = item.getItemId();
 
         if(id == R.id.action_add)

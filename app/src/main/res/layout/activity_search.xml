@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.ethannesbitt.youcook.Search"
-    android:id="@+id/activity_drawer">
+    android:id="@+id/search">
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
