@@ -1,6 +1,7 @@
 package com.example.ethannesbitt.youcook;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +15,8 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
 
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
+    private Handler timeHandler;
+    private long time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -21,6 +24,7 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
+        //Drawer Navigation Menu set up
         drawerMenu = (DrawerLayout) findViewById(R.id.timer);
         menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
         drawerMenu.addDrawerListener(menuToggle);
@@ -28,9 +32,28 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = (NavigationView) findViewById(R.id.timerdnav);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //setting up the time
+        timeHandler = new Handler();
+
+        final Runnable timerTask = new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                time = time - 1000;
+
+                if(time > 0)
+                {
+                    timeHandler.postDelayed(this, 1000);
+                }
+            }
+        };
+
+        timeHandler.postDelayed(timerTask, 1000);
     }
 
-    @Override
+    @Override //needed to toggle the drawer menu
     public boolean onOptionsItemSelected(MenuItem item)
     {
         if (menuToggle.onOptionsItemSelected(item)) {
@@ -40,7 +63,7 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+    @Override //on clicks for the different items in the drawer menu
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
         Intent mOptions;
@@ -76,4 +99,6 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         }
         return false;
     }
+
+
 }

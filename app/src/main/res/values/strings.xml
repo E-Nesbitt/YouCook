@@ -12,6 +12,10 @@
     <string name="recipe_menu_desc">Create and Store your own recipes for later</string>
     <string name="timer_menu">Timer</string>
     <string name="timer_menu_desc">Set a timer so you don\'t burn the meal</string>
+    <string name="time">0:00</string>
+    <string name="time_start">Start</string>
+    <string name="time_stop">Stop</string>
+    <string name="time_input_button">Click Here to Enter Time</string>
     <string name="converter_menu">Converter</string>
     <string name="converter_menu_desc">Convert measures to suit your scales</string>
     <string name="open">Open</string>

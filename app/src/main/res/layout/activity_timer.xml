@@ -8,11 +8,38 @@
     tools:context="com.example.ethannesbitt.youcook.Timer"
     android:id="@+id/timer">
 
-    <android.support.constraint.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/timecount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="100sp"
+            android:textColor="@color/darkgrey"
+            android:text="@string/time"
+            android:gravity="center"
+            android:layout_margin="100dp"/>
+
+        <ToggleButton
+            android:id="@+id/startstop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="@string/time_stop"
+            android:textOn="@string/time_start"
+            android:layout_below="@+id/timecount"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/startstop"
+            android:layout_centerHorizontal="true"
+            android:text="@string/time_input_button" />
+
+    </RelativeLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/timerdnav"
