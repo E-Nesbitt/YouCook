@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">YouCook</string>
+    <string name="dashboard">YouCook - Home</string>
     <string name="title_activity_login">Sign in</string>
-    <string name="shopping_list">Shopping List</string>
     <string name="action_add">Add</string>
     <string name="action_clear_all">Clear All Items</string>
     <string name="search_menu">Search</string>

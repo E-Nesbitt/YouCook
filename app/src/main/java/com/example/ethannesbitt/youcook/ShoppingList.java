@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +27,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ShoppingList extends AppCompatActivity
+public class ShoppingList extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
@@ -44,6 +47,8 @@ public class ShoppingList extends AppCompatActivity
         drawerMenu.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.shoppinglistdnav);
+        navigationView.setNavigationItemSelectedListener(this);
 
         ingredientList = getIngredientsList(getApplicationContext());
         aAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, ingredientList);
@@ -147,6 +152,43 @@ public class ShoppingList extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item)
+    {
+        Intent mOptions;
+
+        switch (item.getItemId())
+        {
+            case R.id.home : mOptions = new Intent(this, MainActivity.class);
+                startActivity(mOptions);
+                break;
+
+            case R.id.search : mOptions = new Intent(this, Search.class);
+                startActivity(mOptions);
+                break;
+
+            case R.id.shoppinglist : mOptions = new Intent(this, ShoppingList.class);
+                startActivity(mOptions);
+                break;
+
+            case R.id.recipes : mOptions = new Intent(this, Recipes.class);
+                startActivity(mOptions);
+                break;
+
+            case R.id.timer : mOptions = new Intent(this, Timer.class);
+                startActivity(mOptions);
+                break;
+
+            case R.id.converter : mOptions = new Intent(this, Converter.class);
+                startActivity(mOptions);
+                break;
+
+            default:
+                break;
+        }
+        return false;
     }
 
     public void deleteItem(final String activeItem, final int position)

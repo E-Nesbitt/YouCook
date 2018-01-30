@@ -22,16 +22,21 @@
         </activity>
 
         <!-- Main Activity -->
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:label="@string/dashboard"/>
 
         <!-- Shopping List Activity -->
         <activity
             android:name=".ShoppingList"
-            android:label="@string/shopping_list" />
-        <activity android:name=".Search" />
-        <activity android:name=".Recipes" />
-        <activity android:name=".Timer" />
-        <activity android:name=".Converter" />
+            android:label="@string/shopping_list_menu" />
+        <activity android:name=".Search"
+            android:label="@string/search_menu"/>
+        <activity android:name=".Recipes"
+            android:label="@string/recipe_menu"/>
+        <activity android:name=".Timer"
+            android:label="@string/timer_menu"/>
+        <activity android:name=".Converter"
+            android:label="@string/converter_menu"/>
     </application>
 
 </manifest>
