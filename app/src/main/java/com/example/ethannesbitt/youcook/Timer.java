@@ -10,11 +10,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -25,6 +28,7 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
     private ActionBarDrawerToggle menuToggle;
     private Handler timeHandler;
     private long time;
+    private TextView countDownTime;
     private ToggleButton startStopToggle;
     private Button userInputButton;
 
@@ -43,6 +47,9 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         NavigationView navigationView = (NavigationView) findViewById(R.id.timerdnav);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //setting countdown time
+        countDownTime = (TextView) findViewById(R.id.timecount);
+
         //setting toggle button to have onclick
         startStopToggle = (ToggleButton) findViewById(R.id.startstop);
         startStopToggle.setOnCheckedChangeListener(this);
@@ -58,9 +65,10 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
             public void onClick(View view)
             {
                 final EditText userInput = new EditText(view.getContext());
+                userInput.setInputType(InputType.TYPE_CLASS_NUMBER);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setTitle("Enter the time to count down from");
+                builder.setTitle("Enter the time to count down from in minutes");
                 builder.setView(userInput);
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
                 {
@@ -68,7 +76,10 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                     public void onClick(DialogInterface dialogInterface, int i)
                     {
                         time = Long.valueOf(userInput.getText().toString());
-                        Toast.makeText(getApplicationContext(), "Value Set to " + time + "!", Toast.LENGTH_SHORT).show();
+                        //setting minutes entered and converting it to milliseconds
+                        time = time * 60 * 1000;
+                        countDownTime.setText(Long.valueOf(time / 1000).toString());
+                        Toast.makeText(getApplicationContext(), "Value Set to " + time / 60 / 1000 + " minutes", Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -84,23 +95,6 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                 builder.show();
             }
         });
-
-        //timer task to reduce time entered by 1 second each second and stop once it reaches 0
-        final Runnable timerTask = new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                time = time - 1000;
-
-                if(time > 0)
-                {
-                    timeHandler.postDelayed(this, 1000);
-                }
-            }
-        };
-
-        timeHandler.postDelayed(timerTask, 1000);
     }
 
     @Override //needed to toggle the drawer menu
@@ -157,12 +151,45 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         if(checked)
         {
             //if user has input a time take user input and start the running of the task
+            if(time > 0)
+            {
+                //timer task to reduce time entered by 1 second each second and stop once it reaches 0
+                final Runnable timerTask = new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        time = time - 1000;
+                        Long diplayTimeValue = time / 1000;
+                        String displayTime = Long.valueOf(diplayTimeValue).toString();
 
-            Toast.makeText(getApplicationContext(), "Timer Started!", Toast.LENGTH_SHORT).show();
+                        if(time > 0)
+                        {
+                            Log.d("Timerminus", "run was called");
+                            countDownTime.setText(Long.valueOf(displayTime).toString());
+                            timeHandler.postDelayed(this, 1000);
+                        }
+                        else
+                        {
+                            countDownTime.setText("0:00");
+                            Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                };
+                timeHandler.postDelayed(timerTask, 1000);
+                Toast.makeText(getApplicationContext(), "Timer Started!", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                startStopToggle.toggle();
+                Toast.makeText(getApplicationContext(), "No time value entered yet!", Toast.LENGTH_SHORT).show();
+            }
         }
         else
         {
-            //if no input entered, prompt user to enter a time and turn toggle button back to checked
+            //stop task and revert timer value back to zero
+            time = 0;
+            countDownTime.setText("0:00");
             Toast.makeText(getApplicationContext(), "Timer Stopped!", Toast.LENGTH_SHORT).show();
 
         }
