@@ -1,11 +1,16 @@
 package com.example.ethannesbitt.youcook;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -170,7 +175,7 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                     public void run()
                     {
                         time = time - 1000;
-                        Long diplayTimeValue = time / 1000;
+                        Long diplayTimeValue = time / 60 / 1000 ;
                         String displayTime = Long.valueOf(diplayTimeValue).toString();
 
                         if(time > 0)
@@ -181,8 +186,17 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                         }
                         else
                         {
+                            startStopToggle.toggle();
                             countDownTime.setText("0:00");
                             Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
+                            //not my code need to make my own version of this
+                            NotificationCompat.Builder notifications = new NotificationCompat.Builder(Timer.this);
+                            notifications.setContentTitle("Timer Complete!");
+                            notifications.setContentText("The timer has completed, your food is now ready!");
+                            notifications.setSmallIcon(R.mipmap.youcookic_launcher);
+                            notifications.setDefaults(Notification.DEFAULT_ALL);
+                            NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+                            notificationManager.notify(001, notifications.build());
                         }
                     }
                 };
