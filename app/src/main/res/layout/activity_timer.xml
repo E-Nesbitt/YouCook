@@ -26,13 +26,13 @@
             android:id="@+id/startstop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textOff="@string/time_stop"
-            android:textOn="@string/time_start"
+            android:textOff="@string/time_start"
+            android:textOn="@string/time_stop"
             android:layout_below="@+id/timecount"
             android:layout_centerHorizontal="true"/>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/userinputbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/startstop"
@@ -45,7 +45,7 @@
         android:id="@+id/timerdnav"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@color/background_material_light"
+        android:background="@color/primary_text_material_dark"
         android:layout_gravity="start"
         app:headerLayout="@layout/menu_head"
         app:itemIconTint="@color/darkgrey"

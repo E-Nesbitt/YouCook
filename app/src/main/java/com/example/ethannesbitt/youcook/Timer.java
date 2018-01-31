@@ -1,5 +1,7 @@
 package com.example.ethannesbitt.youcook;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -9,14 +11,22 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
-public class Timer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+public class Timer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, CompoundButton.OnCheckedChangeListener
 {
 
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
     private Handler timeHandler;
     private long time;
+    private ToggleButton startStopToggle;
+    private Button userInputButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,9 +43,49 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         NavigationView navigationView = (NavigationView) findViewById(R.id.timerdnav);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //setting toggle button to have onclick
+        startStopToggle = (ToggleButton) findViewById(R.id.startstop);
+        startStopToggle.setOnCheckedChangeListener(this);
+
         //setting up the time
         timeHandler = new Handler();
 
+        //user input button with alert dialogue to prompt user to enter time
+        userInputButton = (Button) findViewById(R.id.userinputbutton);
+        userInputButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                final EditText userInput = new EditText(view.getContext());
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle("Enter the time to count down from");
+                builder.setView(userInput);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i)
+                    {
+                        time = Long.valueOf(userInput.getText().toString());
+                        Toast.makeText(getApplicationContext(), "Value Set to " + time + "!", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+            }
+        });
+
+        //timer task to reduce time entered by 1 second each second and stop once it reaches 0
         final Runnable timerTask = new Runnable()
         {
             @Override
@@ -101,4 +151,20 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
     }
 
 
+    @Override //on click for toggle so that it knows what to do when checked or unchecked i.e. start or stop
+    public void onCheckedChanged(CompoundButton compoundButton, boolean checked)
+    {
+        if(checked)
+        {
+            //if user has input a time take user input and start the running of the task
+
+            Toast.makeText(getApplicationContext(), "Timer Started!", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            //if no input entered, prompt user to enter a time and turn toggle button back to checked
+            Toast.makeText(getApplicationContext(), "Timer Stopped!", Toast.LENGTH_SHORT).show();
+
+        }
+    }
 }
