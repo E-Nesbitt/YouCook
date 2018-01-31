@@ -75,12 +75,22 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i)
                     {
-                        time = Long.valueOf(userInput.getText().toString());
-                        //setting minutes entered and converting it to milliseconds
-                        time = time * 60 * 1000;
-                        countDownTime.setText(Long.valueOf(time / 1000).toString());
-                        Toast.makeText(getApplicationContext(), "Value Set to " + time / 60 / 1000 + " minutes", Toast.LENGTH_SHORT).show();
-
+                        try
+                        {
+                            time = Long.valueOf(userInput.getText().toString());
+                        }
+                        catch (NumberFormatException e)
+                        {
+                            Toast.makeText(getApplicationContext(), "No Value Entered!", Toast.LENGTH_SHORT).show();
+                            dialogInterface.cancel();
+                        }
+                        if(time > 0)
+                        {
+                            //setting minutes entered and converting it to milliseconds
+                            time = time * 60 * 1000;
+                            countDownTime.setText(Long.valueOf(time / 1000).toString());
+                            Toast.makeText(getApplicationContext(), "Value Set to " + time / 60 / 1000 + " minutes", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
