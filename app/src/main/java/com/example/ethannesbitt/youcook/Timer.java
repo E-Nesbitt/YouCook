@@ -80,6 +80,7 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i)
                     {
+                        //error handling for user input, has to be a number value and cannot be null
                         try
                         {
                             time = Long.valueOf(userInput.getText().toString());
@@ -93,7 +94,7 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                         {
                             //setting minutes entered and converting it to milliseconds
                             time = time * 60 * 1000;
-                            countDownTime.setText(Long.valueOf(time / 1000).toString());
+                            countDownTime.setText(Long.valueOf(time / 1000 / 60).toString());
                             Toast.makeText(getApplicationContext(), "Value Set to " + time / 60 / 1000 + " minutes", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -112,7 +113,7 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         });
     }
 
-    @Override //needed to toggle the drawer menu
+    @Override //toggle the navigation drawer menu
     public boolean onOptionsItemSelected(MenuItem item)
     {
         if (menuToggle.onOptionsItemSelected(item)) {
@@ -122,7 +123,7 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         return super.onOptionsItemSelected(item);
     }
 
-    @Override //on clicks for the different items in the drawer menu
+    @Override //on clicks for the different items in the navigation drawer menu
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
         Intent mOptions;
@@ -215,7 +216,6 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
             time = 0;
             countDownTime.setText("0:00");
             Toast.makeText(getApplicationContext(), "Timer Stopped!", Toast.LENGTH_SHORT).show();
-
         }
     }
 }
