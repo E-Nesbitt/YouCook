@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "957827283600",
+    "firebase_url": "https://youcook-6240b.firebaseio.com",
+    "project_id": "youcook-6240b",
+    "storage_bucket": "youcook-6240b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957827283600:android:e168195ea2422af9",
+        "android_client_info": {
+          "package_name": "com.example.ethannesbitt.youcook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "957827283600-afhfcv6fmp4ktgs30vgc68avns4hhnjq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ethannesbitt.youcook",
+            "certificate_hash": "f0fa9d37e8f257bc253f580f16f89211d5d9c722"
+          }
+        },
+        {
+          "client_id": "957827283600-u6aj6uave6l868ut0q7p96fghdter28i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-eSvR-nJQFP15fN7idSIG7pS3gzpbVvU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "957827283600-u6aj6uave6l868ut0q7p96fghdter28i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
