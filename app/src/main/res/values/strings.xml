@@ -2,6 +2,12 @@
     <string name="app_name">YouCook</string>
     <string name="dashboard">YouCook - Home</string>
     <string name="title_activity_login">Sign in</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="register">Register</string>
+    <string name="already_registered">If Already Registered Click Here</string>
+    <string name="not_registered">Not Registered? Click Here</string>
     <string name="action_add">Add</string>
     <string name="action_clear_all">Clear All Items</string>
     <string name="search_menu">Search</string>
