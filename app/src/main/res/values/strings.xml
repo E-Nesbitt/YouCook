@@ -5,11 +5,14 @@
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
     <string name="sign_out">Sign Out</string>
+    <string name="sign_in">Sign In</string>
     <string name="register">Register</string>
     <string name="already_registered">If Already Registered Click Here</string>
     <string name="not_registered">Not Registered? Click Here</string>
     <string name="action_add">Add</string>
     <string name="action_clear_all">Clear All Items</string>
+    <string name="login_title">Login</string>
+    <string name="register_title">Register</string>
     <string name="search_menu">Search</string>
     <string name="search_menu_desc">Search for a recipe by entering ingredients</string>
     <string name="shopping_list_menu">Shopping List</string>
