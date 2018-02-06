@@ -30,4 +30,8 @@
         android:icon="@drawable/ic_compare_arrows_black_24dp_dm"
         android:title="Converter">
     </item>
+    <item
+        android:id="@+id/signout"
+        android:title="Sign Out">
+    </item>
 </menu>

@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.widget.DrawerLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.ethannesbitt.youcook.MainActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainactivity">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:gravity="center"
     android:background="@color/backgroundcolour"
     android:orientation="vertical"
@@ -13,7 +18,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -28,7 +33,8 @@
                 android:layout_height="180dp"
                 android:layout_margin="8dp"
                 android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:id="@+id/searchmenuoption">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -40,6 +46,7 @@
                         android:layout_height="72dp"
                         android:padding="8dp"
                         android:background="@drawable/menucirclebgcolour1"
+                        android:contentDescription="@string/search_menu"
                         android:src="@drawable/ic_search_black_24dp"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -67,7 +74,8 @@
                 android:layout_height="180dp"
                 android:layout_margin="8dp"
                 android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:id="@+id/shoppinglistmenuoption">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -79,6 +87,7 @@
                         android:layout_height="72dp"
                         android:padding="8dp"
                         android:background="@drawable/menucirclebgcolour2"
+                        android:contentDescription="@string/shopping_list_menu"
                         android:src="@drawable/ic_list_black_24dp"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -113,7 +122,8 @@
                 android:layout_height="180dp"
                 android:layout_margin="8dp"
                 android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:id="@+id/recipesmenuoption">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -125,6 +135,7 @@
                         android:layout_height="72dp"
                         android:padding="8dp"
                         android:background="@drawable/menucirclebgcolour4"
+                        android:contentDescription="@string/recipe_menu"
                         android:src="@drawable/ic_book_black_24dp"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -152,7 +163,8 @@
                 android:layout_height="180dp"
                 android:layout_margin="8dp"
                 android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:id="@+id/timermenuoption">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -164,6 +176,7 @@
                         android:layout_height="72dp"
                         android:padding="8dp"
                         android:background="@drawable/menucirclebgcolour3"
+                        android:contentDescription="@string/timer_menu"
                         android:src="@drawable/ic_timer_black_24dp"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -199,7 +212,8 @@
                 android:layout_height="200dp"
                 android:layout_margin="8dp"
                 android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:id="@+id/convertermenuoption">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -211,6 +225,7 @@
                         android:layout_height="72dp"
                         android:padding="8dp"
                         android:background="@drawable/menucirclebgcolour5"
+                        android:contentDescription="@string/converter_menu"
                         android:src="@drawable/ic_compare_arrows_black_24dp"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -235,3 +250,18 @@
 
     </LinearLayout>
 </ScrollView>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/mainmenudnav"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/background_material_light"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/menu_head"
+        app:itemIconTint="@color/darkgrey"
+        app:itemTextColor="@color/darkgrey"
+        app:menu="@menu/drawer_menu">
+
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>

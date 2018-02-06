@@ -1,19 +1,38 @@
 package com.example.ethannesbitt.youcook;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.view.MenuItem;
 import android.view.View;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener
+{
 
     private CardView searchOption;
     private CardView shoppingListOption;
     private CardView recipeOption;
     private CardView timerOption;
     private CardView converterOption;
+    private DrawerLayout drawerMenu;
+    private ActionBarDrawerToggle menuToggle;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        mAuth.addAuthStateListener(mAuthListener);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +53,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         timerOption.setOnClickListener(this);
         converterOption.setOnClickListener(this);
 
+        //Drawer Navigation Menu set up
+        drawerMenu = (DrawerLayout) findViewById(R.id.mainactivity);
+        menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
+        drawerMenu.addDrawerListener(menuToggle);
+        menuToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.mainmenudnav);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        //setting mAuth Variable to current instance
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener()
+        {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth)
+            {
+                if (firebaseAuth.getCurrentUser() == null)
+                {
+                    startActivity(new Intent(MainActivity.this, Login.class));
+                }
+            }
+        };
     }
 
     @Override
@@ -66,5 +108,59 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 break;
         }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Intent mOptions;
+
+        switch (item.getItemId())
+        {
+            case R.id.home : mOptions = new Intent(this, MainActivity.class);
+                startActivity(mOptions);
+                break;
+
+            case R.id.search : mOptions = new Intent(this, Search.class);
+                startActivity(mOptions);
+                break;
+
+            case R.id.shoppinglist : mOptions = new Intent(this, ShoppingList.class);
+                startActivity(mOptions);
+                break;
+
+            case R.id.recipes : mOptions = new Intent(this, Recipes.class);
+                startActivity(mOptions);
+                break;
+
+            case R.id.timer : mOptions = new Intent(this, Timer.class);
+                startActivity(mOptions);
+                break;
+
+            case R.id.converter : mOptions = new Intent(this, Converter.class);
+                startActivity(mOptions);
+                break;
+
+            case R.id.signout :
+                signOut();
+                break;
+
+            default:
+                break;
+        }
+        return false;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if (menuToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void signOut()
+    {
+        mAuth.signOut();
     }
 }
