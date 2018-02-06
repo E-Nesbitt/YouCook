@@ -6,6 +6,7 @@
     <string name="password_hint">Password</string>
     <string name="sign_out">Sign Out</string>
     <string name="sign_in">Sign In</string>
+    <string name="sign_in_text">Sign in with a Google Account or with Email and Password:</string>
     <string name="register">Register</string>
     <string name="already_registered">If Already Registered Click Here</string>
     <string name="not_registered">Not Registered? Click Here</string>
