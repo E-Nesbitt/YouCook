@@ -105,7 +105,8 @@ public class Login extends AppCompatActivity
         googleSignInButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 googleSignIn();
             }
         });
@@ -186,6 +187,7 @@ public class Login extends AppCompatActivity
                             Log.w("TAG", "signInWithCredential:failure", task.getException());
                             Toast.makeText(Login.this, "Authentication Failed!", Toast.LENGTH_SHORT).show();
                         }
+                        pDialog.dismiss();
                     }
                 });
     }
@@ -204,7 +206,7 @@ public class Login extends AppCompatActivity
 
         if(TextUtils.isEmpty(userPassword))
         {
-            Toast.makeText(Login.this, "You have not entered an password!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login.this, "You have not entered a password!", Toast.LENGTH_SHORT).show();
             //stopping the method from executing
             return;
         }
@@ -218,7 +220,14 @@ public class Login extends AppCompatActivity
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task)
                     {
-                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (task.isSuccessful())
+                        {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                        }
+                        else
+                        {
+                            Toast.makeText(Login.this, "You are not yet registered, please register and try again!", Toast.LENGTH_LONG).show();
+                        }
                         pDialog.dismiss();
                     }
                 });

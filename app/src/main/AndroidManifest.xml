@@ -24,11 +24,13 @@
         <!--Login Activity-->
         <activity
             android:name=".Login"
-            android:label="@string/login_title" />
+            android:label="@string/login_title"
+            android:theme="@style/NoTitle"/>
         <!--Register Activity-->
         <activity
             android:name=".Register"
-            android:label="@string/register_title" />
+            android:label="@string/register_title"
+            android:theme="@style/NoTitle" />
 
         <!-- Main Activity -->
         <activity
