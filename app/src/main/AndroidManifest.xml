@@ -21,6 +21,15 @@
             </intent-filter>
         </activity>
 
+        <!--Login Activity-->
+        <activity
+            android:name=".Login"
+            android:label="@string/login_title" />
+        <!--Register Activity-->
+        <activity
+            android:name=".Register"
+            android:label="@string/register_title" />
+
         <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
@@ -30,24 +39,22 @@
         <activity
             android:name=".ShoppingList"
             android:label="@string/shopping_list_menu" />
+        <!--Search Activity-->
         <activity
             android:name=".Search"
             android:label="@string/search_menu" />
+        <!--Recipes Activity-->
         <activity
             android:name=".Recipes"
             android:label="@string/recipe_menu" />
+        <!--Timer Activity-->
         <activity
             android:name=".Timer"
             android:label="@string/timer_menu" />
+        <!--Converter Activity-->
         <activity
             android:name=".Converter"
-            android:label="@string/converter_menu" />
-        <activity
-            android:name=".Login"
-            android:label="@string/login_title" />
-        <activity
-            android:name=".Register"
-            android:label="@string/register_title" >
+            android:label="@string/converter_menu" >
         </activity>
     </application>
 
