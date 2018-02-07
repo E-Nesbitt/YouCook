@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -83,7 +84,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
 
-        Toast.makeText(this, "Welcome Back " + user.getEmail() + "!", Toast.LENGTH_LONG).show();
+
+        String username = user.getEmail().toString();
+        Log.d("Username=", username);
+        int index = username.indexOf("@");
+        username = username.substring(0, index);
+        setTitle("YouCook - " + username);
     }
 
     @Override
@@ -166,7 +172,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        if (menuToggle.onOptionsItemSelected(item)) {
+        if (menuToggle.onOptionsItemSelected(item))
+        {
             return true;
         }
 

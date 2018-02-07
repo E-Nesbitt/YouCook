@@ -23,6 +23,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,6 +34,8 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
 {
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
+
+    private FirebaseAuth mAuth;
 
     ArrayList<String> ingredientList = null;
     ArrayAdapter<String> aAdapter = null;
@@ -41,6 +46,10 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list);
+
+        //getting user data
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
 
         drawerMenu = (DrawerLayout) findViewById(R.id.shoppinglist);
         menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
@@ -162,27 +171,37 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId())
         {
             case R.id.home : mOptions = new Intent(this, MainActivity.class);
+                finish();
                 startActivity(mOptions);
                 break;
 
             case R.id.search : mOptions = new Intent(this, Search.class);
+                finish();
                 startActivity(mOptions);
                 break;
 
             case R.id.shoppinglist : mOptions = new Intent(this, ShoppingList.class);
+                finish();
                 startActivity(mOptions);
                 break;
 
             case R.id.recipes : mOptions = new Intent(this, Recipes.class);
+                finish();
                 startActivity(mOptions);
                 break;
 
             case R.id.timer : mOptions = new Intent(this, Timer.class);
+                finish();
                 startActivity(mOptions);
                 break;
 
             case R.id.converter : mOptions = new Intent(this, Converter.class);
+                finish();
                 startActivity(mOptions);
+                break;
+
+            case R.id.signout :
+                signOut();
                 break;
 
             default:
@@ -248,6 +267,11 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
         }
 
         return input.substring(0,1).toUpperCase() + input.substring(1).toLowerCase();
+    }
+
+    private void signOut()
+    {
+        mAuth.signOut();
     }
 
 }

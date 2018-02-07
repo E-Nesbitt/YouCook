@@ -75,9 +75,6 @@ public class Login extends AppCompatActivity
             {
                 if(firebaseAuth.getCurrentUser() != null)
                 {
-                    pDialog.setMessage("Authenticating Account...");
-                    pDialog.show();
-                    finish();
                     startActivity(new Intent(Login.this, MainActivity.class));
                 }
             }
@@ -180,6 +177,8 @@ public class Login extends AppCompatActivity
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("TAG", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            pDialog.setMessage("Authenticating Account...");
+                            pDialog.show();
                             //updateUI(user);
                         } else
                             {

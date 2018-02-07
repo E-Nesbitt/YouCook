@@ -9,11 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class Search extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
 
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,6 +33,10 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = (NavigationView) findViewById(R.id.searchdnav);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //getting user data
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
     }
 
     @Override
@@ -48,32 +57,47 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
         switch (item.getItemId())
         {
             case R.id.home : mOptions = new Intent(this, MainActivity.class);
+                finish();
                 startActivity(mOptions);
                 break;
 
             case R.id.search : mOptions = new Intent(this, Search.class);
+                finish();
                 startActivity(mOptions);
                 break;
 
             case R.id.shoppinglist : mOptions = new Intent(this, ShoppingList.class);
+                finish();
                 startActivity(mOptions);
                 break;
 
             case R.id.recipes : mOptions = new Intent(this, Recipes.class);
+                finish();
                 startActivity(mOptions);
                 break;
 
             case R.id.timer : mOptions = new Intent(this, Timer.class);
+                finish();
                 startActivity(mOptions);
                 break;
 
             case R.id.converter : mOptions = new Intent(this, Converter.class);
+                finish();
                 startActivity(mOptions);
+                break;
+
+            case R.id.signout :
+                signOut();
                 break;
 
             default:
                 break;
         }
         return false;
+    }
+
+    private void signOut()
+    {
+        mAuth.signOut();
     }
 }

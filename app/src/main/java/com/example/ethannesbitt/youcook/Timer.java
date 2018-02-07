@@ -26,6 +26,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class Timer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, CompoundButton.OnCheckedChangeListener
 {
 
@@ -37,11 +40,18 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
     private ToggleButton startStopToggle;
     private Button userInputButton;
 
+    private FirebaseAuth mAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
+
+        //getting user data
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
 
         //Drawer Navigation Menu set up
         drawerMenu = (DrawerLayout) findViewById(R.id.timer);
@@ -131,27 +141,37 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         switch (item.getItemId())
         {
             case R.id.home : mOptions = new Intent(this, MainActivity.class);
+                finish();
                 startActivity(mOptions);
                 break;
 
             case R.id.search : mOptions = new Intent(this, Search.class);
+                finish();
                 startActivity(mOptions);
                 break;
 
             case R.id.shoppinglist : mOptions = new Intent(this, ShoppingList.class);
+                finish();
                 startActivity(mOptions);
                 break;
 
             case R.id.recipes : mOptions = new Intent(this, Recipes.class);
+                finish();
                 startActivity(mOptions);
                 break;
 
             case R.id.timer : mOptions = new Intent(this, Timer.class);
+                finish();
                 startActivity(mOptions);
                 break;
 
             case R.id.converter : mOptions = new Intent(this, Converter.class);
+                finish();
                 startActivity(mOptions);
+                break;
+
+            case R.id.signout :
+                signOut();
                 break;
 
             default:
@@ -218,4 +238,10 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
             Toast.makeText(getApplicationContext(), "Timer Stopped!", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void signOut()
+    {
+        mAuth.signOut();
+    }
+
 }
