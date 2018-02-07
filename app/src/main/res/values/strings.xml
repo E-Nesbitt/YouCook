@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">YouCook</string>
     <string name="dashboard">YouCook - Home</string>
+
+    <!--Login, Register Strings -->
     <string name="title_activity_login">Sign in</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
@@ -10,25 +12,41 @@
     <string name="register">Register</string>
     <string name="already_registered">If Already Registered Click Here</string>
     <string name="not_registered">Not Registered? Click Here</string>
-    <string name="action_add">Add</string>
-    <string name="action_clear_all">Clear All Items</string>
     <string name="login_title">Login</string>
     <string name="register_title">Register</string>
+
+    <!-- Search Activity Strings -->
     <string name="search_menu">Search</string>
     <string name="search_menu_desc">Search for a recipe by entering ingredients</string>
+
+    <!-- Shooping List Activity Strings -->
     <string name="shopping_list_menu">Shopping List</string>
     <string name="shopping_list_menu_desc">Create a shopping list of ingredients</string>
+    <string name="action_add">Add</string>
+    <string name="action_clear_all">Clear All Items</string>
+
+    <!-- Recipe Activity Strings -->
     <string name="recipe_menu">Recipes</string>
     <string name="recipe_menu_desc">Create and Store your own recipes for later</string>
+    <string name="recipe_name">Recipe Name</string>
+    <string name="recipe_ingredients">Recipe Ingredients</string>
+    <string name="recipe_method">Recipe Method</string>
+    <string name="save">Save</string>
+
+    <!-- Timer Activity Strings -->
     <string name="timer_menu">Timer</string>
     <string name="timer_menu_desc">Set a timer so you don\'t burn the meal</string>
     <string name="time">0:00</string>
     <string name="time_start">Start</string>
     <string name="time_stop">Stop</string>
     <string name="time_input_button">Click Here to Enter Time</string>
+
+    <!-- Converter Activity Strings -->
     <string name="converter_menu">Converter</string>
     <string name="converter_menu_desc">Convert measures to suit your scales</string>
+
     <string name="open">Open</string>
     <string name="close">Close</string>
+
     <string name="server_client_id">957827283600-u6aj6uave6l868ut0q7p96fghdter28i.apps.googleusercontent.com</string>
 </resources>
