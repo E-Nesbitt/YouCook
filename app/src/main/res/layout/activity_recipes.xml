@@ -8,48 +8,79 @@
     android:id="@+id/recipes">
 
     <android.support.constraint.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/activity_vertical_margin">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/recipeName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/recipe_name" />
+                android:text="@string/recipe_name"
+                android:textStyle="bold"/>
 
             <EditText
+                android:id="@+id/recipeNameInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/recipeType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/recipe_type"
+                android:textStyle="bold"/>
+
+            <Spinner
+                android:id="@+id/recipeTypeInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:entries="@array/course_type">
+            </Spinner>
 
             <TextView
                 android:id="@+id/recipeIngredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/recipe_ingredients" />
+                android:text="@string/recipe_ingredients"
+                android:layout_marginTop="3dp"
+                android:textStyle="bold"/>
 
             <EditText
+                android:id="@+id/recipeIngredientsInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/recipeMethod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/recipe_method" />
+                android:text="@string/recipe_method"
+                android:textStyle="bold"/>
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <Button
+                android:id="@+id/recipeMethodInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/save"/>
+                android:ems="10"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/save" />
 
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>

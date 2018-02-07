@@ -29,9 +29,16 @@
     <string name="recipe_menu">Recipes</string>
     <string name="recipe_menu_desc">Create and Store your own recipes for later</string>
     <string name="recipe_name">Recipe Name</string>
+    <string name="recipe_type">Recipe Type</string>
     <string name="recipe_ingredients">Recipe Ingredients</string>
     <string name="recipe_method">Recipe Method</string>
     <string name="save">Save</string>
+    <!-- Spinner Array for Course Type -->
+    <array name="course_type">
+        <item>Starter</item>
+        <item>Main</item>
+        <item>Dessert</item>
+    </array>
 
     <!-- Timer Activity Strings -->
     <string name="timer_menu">Timer</string>
