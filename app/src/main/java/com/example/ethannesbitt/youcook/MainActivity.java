@@ -10,8 +10,11 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener
@@ -65,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //setting mAuth Variable to current instance
         mAuth = FirebaseAuth.getInstance();
 
+        FirebaseUser user = mAuth.getCurrentUser();
+
         mAuthListener = new FirebaseAuth.AuthStateListener()
         {
             @Override
@@ -72,10 +77,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             {
                 if (firebaseAuth.getCurrentUser() == null)
                 {
+                    finish();
                     startActivity(new Intent(MainActivity.this, Login.class));
                 }
             }
         };
+
+        Toast.makeText(this, "Welcome Back " + user.getEmail() + "!", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -117,28 +125,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (item.getItemId())
         {
             case R.id.home : mOptions = new Intent(this, MainActivity.class);
-                startActivity(mOptions);
-                break;
+            finish();
+            startActivity(mOptions);
+            break;
 
             case R.id.search : mOptions = new Intent(this, Search.class);
-                startActivity(mOptions);
-                break;
+            finish();
+            startActivity(mOptions);
+            break;
 
             case R.id.shoppinglist : mOptions = new Intent(this, ShoppingList.class);
-                startActivity(mOptions);
-                break;
+            finish();
+            startActivity(mOptions);
+            break;
 
             case R.id.recipes : mOptions = new Intent(this, Recipes.class);
-                startActivity(mOptions);
-                break;
+            finish();
+            startActivity(mOptions);
+            break;
 
             case R.id.timer : mOptions = new Intent(this, Timer.class);
-                startActivity(mOptions);
-                break;
+            finish();
+            startActivity(mOptions);
+            break;
 
             case R.id.converter : mOptions = new Intent(this, Converter.class);
-                startActivity(mOptions);
-                break;
+            finish();
+            startActivity(mOptions);
+            break;
 
             case R.id.signout :
                 signOut();

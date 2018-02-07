@@ -1,14 +1,16 @@
 package com.example.ethannesbitt.youcook;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -34,17 +36,23 @@ public class Login extends AppCompatActivity
     private FirebaseAuth mAuth;
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private ProgressDialog pDialog;
+
 
     //Email and Password Login
     private Button signInButton;
     private EditText emailInput;
     private EditText passwordInput;
 
+    //Registration activity link
+    private TextView registration;
+
 
     private static final int RC_SIGN_IN = 2;
 
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
 
         mAuth.addAuthStateListener(mAuthListener);
@@ -67,6 +75,9 @@ public class Login extends AppCompatActivity
             {
                 if(firebaseAuth.getCurrentUser() != null)
                 {
+                    pDialog.setMessage("Authenticating Account...");
+                    pDialog.show();
+                    finish();
                     startActivity(new Intent(Login.this, MainActivity.class));
                 }
             }
@@ -89,16 +100,39 @@ public class Login extends AppCompatActivity
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        //email and password sign in setup
-        emailInput = (EditText) findViewById(R.id.emailInput);
-        passwordInput = (EditText) findViewById(R.id.passwordInput);
-        signInButton = (Button) findViewById(R.id.signInButton);
+        pDialog = new ProgressDialog(this);
 
         googleSignInButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view) {
                 googleSignIn();
+            }
+        });
+
+        //email and password sign in setup
+        emailInput = (EditText) findViewById(R.id.emailInput);
+        passwordInput = (EditText) findViewById(R.id.passwordInput);
+        signInButton = (Button) findViewById(R.id.signInButton);
+
+        signInButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                signIn();
+            }
+        });
+
+        //registration text
+        registration = (TextView) findViewById(R.id.alreadyRegistered);
+        registration.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                finish();
+                startActivity(new Intent(Login.this, Register.class));
             }
         });
     }
@@ -140,16 +174,17 @@ public class Login extends AppCompatActivity
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task)
                     {
-                        if (task.isSuccessful()) {
+                        if (task.isSuccessful())
+                        {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("TAG", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
-                        } else {
+                        } else
+                            {
                             // If sign in fails, display a message to the user.
                             Log.w("TAG", "signInWithCredential:failure", task.getException());
-                            Snackbar.make(findViewById(R.id.activity_login), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            //updateUI(null);
+                            Toast.makeText(Login.this, "Authentication Failed!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -157,6 +192,36 @@ public class Login extends AppCompatActivity
 
     private void signIn()
     {
+        String userEmail = emailInput.getText().toString().trim();
+        String userPassword = passwordInput.getText().toString().trim();
+
+        if(TextUtils.isEmpty(userEmail))
+        {
+            Toast.makeText(Login.this, "You have not entered an email!", Toast.LENGTH_SHORT).show();
+            //stopping the method from executing
+            return;
+        }
+
+        if(TextUtils.isEmpty(userPassword))
+        {
+            Toast.makeText(Login.this, "You have not entered an password!", Toast.LENGTH_SHORT).show();
+            //stopping the method from executing
+            return;
+        }
+
+        pDialog.setMessage("Authenticating User..");
+        pDialog.show();
+
+        mAuth.signInWithEmailAndPassword(userEmail, userPassword)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>()
+                {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task)
+                    {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        pDialog.dismiss();
+                    }
+                });
 
     }
 }
