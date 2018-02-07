@@ -27,7 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 
-public class Login extends AppCompatActivity implements View.OnClickListener
+public class Login extends AppCompatActivity
 {
     //google login
     private SignInButton googleSignInButton;
@@ -93,20 +93,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener
         emailInput = (EditText) findViewById(R.id.emailInput);
         passwordInput = (EditText) findViewById(R.id.passwordInput);
         signInButton = (Button) findViewById(R.id.signInButton);
-    }
 
-    @Override
-    public void onClick(View view)
-    {
-        switch (view.getId())
+        googleSignInButton.setOnClickListener(new View.OnClickListener()
         {
-            case R.id.googleSignInButton:
+            @Override
+            public void onClick(View view) {
                 googleSignIn();
-                break;
-            case R.id.signInButton:
-                //signIn();
-                break;
-        }
+            }
+        });
     }
 
     private void googleSignIn()
@@ -161,8 +155,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener
                 });
     }
 
-//    private void signIn()
-//    {
-//
-//    }
+    private void signIn()
+    {
+
+    }
 }
