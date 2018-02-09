@@ -74,26 +74,32 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
         recipeDatabase = FirebaseDatabase.getInstance().getReference("Recipes");
     }
 
+    //method to save the recipe
     private void saveRecipe()
     {
+        //takes inputs from user and sets them to strings
         String name = rName.getText().toString().trim();
         String type = rType.getSelectedItem().toString().trim();
         String ingredients = rIngredients.getText().toString().trim();
         String method = rMethod.getText().toString().trim();
 
+        //error handling to check all the inputs have data filled in
         if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(ingredients) && !TextUtils.isEmpty(method))
         {
+            //save the input data to the Firebase database, setting a new Unique id each time a save is actioned
             String id = recipeDatabase.push().getKey();
             Recipe recipe = new Recipe(id, name, type, ingredients, method);
             recipeDatabase.child(id).setValue(recipe);
 
             Toast.makeText(Recipes.this, "Recipe has been saved!", Toast.LENGTH_LONG).show();
+            //empty the input text areas so that the next recipe is ready to be entered
             rName.setText("");
             rIngredients.setText("");
             rMethod.setText("");
         }
         else
         {
+            //Error toast message to let user know more data needs entered before save can be completed
             Toast.makeText(Recipes.this, "Ensure all details are entered and try again!", Toast.LENGTH_SHORT).show();
         }
     }

@@ -71,11 +71,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         FirebaseUser user = mAuth.getCurrentUser();
 
+
+        //state listener for Firebase
         mAuthListener = new FirebaseAuth.AuthStateListener()
         {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth)
             {
+                //if the state of the current user changes to null, i.e. the user account gets logged out it will finish the current activity and re-direct user to the login screen
                 if (firebaseAuth.getCurrentUser() == null)
                 {
                     finish();
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
 
-
+        //setting the main page title to have the users email in it, this personalises the page
         String username = user.getEmail().toString();
         Log.d("Username=", username);
         int index = username.indexOf("@");
