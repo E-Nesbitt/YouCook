@@ -11,6 +11,87 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/inputTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/converter_input"
+                android:layout_margin="3dp"/>
+
+            <EditText
+                android:id="@+id/conversionInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/fromTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/converter_from"
+                android:layout_margin="3dp"/>
+
+            <Spinner
+                android:id="@+id/conversionInputType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:entries="@array/conversion_type">
+            </Spinner>
+
+            <TextView
+                android:id="@+id/toTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/converter_to"
+                android:layout_margin="3dp"
+                android:paddingTop="20dp" />
+
+            <Spinner
+                android:id="@+id/conversionOutputType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:entries="@array/conversion_type">
+            </Spinner>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/converter"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:id="@+id/outputTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/converter_output"
+                android:textStyle="bold"
+                android:layout_margin="3dp"
+                android:paddingTop="20dp"
+                android:textSize="20dp"/>
+
+            <EditText
+                android:id="@+id/conversionOutput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:clickable="false"
+                android:focusable="false"
+                android:textSize="20dp"/>
+
+        </LinearLayout>
+
+
+
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView
