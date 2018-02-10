@@ -8,9 +8,16 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.text.DecimalFormat;
 
 public class Converter extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -19,6 +26,13 @@ public class Converter extends AppCompatActivity implements NavigationView.OnNav
     private ActionBarDrawerToggle menuToggle;
 
     private FirebaseAuth mAuth;
+
+    private EditText inputValue;
+    private EditText outputValue;
+    private Button convertButton;
+    private Button resetButton;
+    private Spinner inputType;
+    private Spinner outputType;
 
 
     @Override
@@ -39,6 +53,136 @@ public class Converter extends AppCompatActivity implements NavigationView.OnNav
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = (NavigationView) findViewById(R.id.converterdnav);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //conversion editTexts and Buttons set up
+        inputValue = (EditText) findViewById(R.id.conversionInput);
+        outputValue = (EditText) findViewById(R.id.conversionOutput);
+        inputType = (Spinner) findViewById(R.id.conversionInputType);
+        outputType = (Spinner) findViewById(R.id.conversionOutputType);
+
+        //convert button and on click to call correct methods at correct time
+        convertButton = (Button) findViewById(R.id.convertButton);
+        convertButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                try
+                {
+                    double input = Double.parseDouble(String.valueOf(inputValue.getText()));
+
+                    if(inputType.getSelectedItem().equals("Kilogram - Kg") && outputType.getSelectedItem().equals("Kilogram - Kg"))
+                    {
+                        if(input == 1)
+                        {
+                            outputValue.setText(String.valueOf(input) + " Kilogram");
+                        }
+                        else
+                        {
+                            outputValue.setText(String.valueOf(input) + " Kilograms");
+                        }
+                    }
+                    else if(inputType.getSelectedItem().equals("Gram - g") && outputType.getSelectedItem().equals("Gram - g"))
+                    {
+                        if(input == 1)
+                        {
+                            outputValue.setText(String.valueOf(input) + " Gram");
+                        }
+                        else
+                        {
+                            outputValue.setText(String.valueOf(input) + " Grams");
+                        }
+                    }
+                    else if(inputType.getSelectedItem().equals("Pound - lb") && outputType.getSelectedItem().equals("Pound - lb"))
+                    {
+                        if(input == 1)
+                        {
+                            outputValue.setText(String.valueOf(input) + " Pound");
+                        }
+                        else
+                        {
+                            outputValue.setText(String.valueOf(input) + " Pounds");
+                        }
+                    }
+                    else if(inputType.getSelectedItem().equals("Ounce - oz") && outputType.getSelectedItem().equals("Ounce - oz"))
+                    {
+                        if(input == 1)
+                        {
+                            outputValue.setText(String.valueOf(input) + " Ounce");
+                        }
+                        else
+                        {
+                            outputValue.setText(String.valueOf(input) + " Ounces");
+                        }
+                    }
+                    else if(inputType.getSelectedItem().equals("Kilogram - Kg") && outputType.getSelectedItem().equals("Gram - g"))
+                    {
+                        kiloToGram(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Kilogram - Kg") && outputType.getSelectedItem().equals("Pound - lb"))
+                    {
+                        kiloToPound(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Kilogram - Kg") && outputType.getSelectedItem().equals("Ounce - oz"))
+                    {
+                        kiloToOunce(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Gram - g") && outputType.getSelectedItem().equals("Kilogram - Kg"))
+                    {
+                        gramToKilo(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Gram - g") && outputType.getSelectedItem().equals("Pound - lb"))
+                    {
+                        gramToPound(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Gram - g") && outputType.getSelectedItem().equals("Ounce - oz"))
+                    {
+                        gramToOunce(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Ounce - oz") && outputType.getSelectedItem().equals("Kilogram - Kg"))
+                    {
+                        ounceToKilo(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Ounce - oz") && outputType.getSelectedItem().equals("Gram - g"))
+                    {
+                        ounceToGram(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Ounce - oz") && outputType.getSelectedItem().equals("Pound - lb"))
+                    {
+                        ounceToPound(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Pound - lb") && outputType.getSelectedItem().equals("Kilogram - Kg"))
+                    {
+                        poundToKilo(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Pound - lb") && outputType.getSelectedItem().equals("Gram - g"))
+                    {
+                        poundToGram(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Pound - lb") && outputType.getSelectedItem().equals("Ounce - oz"))
+                    {
+                        poundToOunce(input);
+                    }
+
+                }
+                catch (NumberFormatException e)
+                {
+                    Toast.makeText(Converter.this, "Enter a value first!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        //reset button and on click to reset the values back to default
+        resetButton = (Button) findViewById(R.id.resetButton);
+        resetButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                //calls reset method to return all to default state
+                reset();
+            }
+        });
     }
 
     //allows drawer menu to be opened via a button in title bar
@@ -100,133 +244,206 @@ public class Converter extends AppCompatActivity implements NavigationView.OnNav
         return false;
     }
 
+    DecimalFormat decimalFormat = new DecimalFormat("##.00");
 
     //conversion methods 'to Grams'
     private String kiloToGram (double k)
     {
-        String finalResult = ;
+        double result = k * 1000;
+        String finalResult = decimalFormat.format(result);
+        if(result == 1)
+        {
+            outputValue.setText(String.valueOf(finalResult + " Gram"));
+        }
+        else
+        {
+            outputValue.setText(String.valueOf(finalResult + " Grams"));
+        }
         return finalResult;
     }
 
     private String poundToGram (double p)
     {
-        String finalResult = ;
+        double result = p * 453.59237;
+        String finalResult = decimalFormat.format(result);
+        if(result == 1)
+        {
+            outputValue.setText(String.valueOf(finalResult + " Gram"));
+        }
+        else
+        {
+            outputValue.setText(String.valueOf(finalResult + " Grams"));
+        }
         return finalResult;
     }
 
     private String ounceToGram (double o)
     {
-        String finalResult = ;
+        double result = o * 28.34952;
+        String finalResult = decimalFormat.format(result);
+        if(result == 1)
+        {
+            outputValue.setText(String.valueOf(finalResult + " Gram"));
+        }
+        else
+        {
+            outputValue.setText(String.valueOf(finalResult + " Grams"));
+        }
         return finalResult;
     }
 
-    private String cupToGram (double c)
-    {
-        String finalResult = ;
-        return finalResult;
-    }
 
 
     //conversion methods 'to Kilos'
     private String gramToKilo (double g)
     {
-        String finalResult = ;
+        DecimalFormat decimalFormat2 = new DecimalFormat("00.000");
+        double result = g * 0.001;
+        String finalResult = decimalFormat2.format(result);
+        if(result == 1)
+        {
+            outputValue.setText(String.valueOf(finalResult + " Kilogram"));
+        }
+        else
+        {
+            outputValue.setText(String.valueOf(finalResult + " Kilograms"));
+        }
         return finalResult;
     }
 
     private String poundToKilo (double p)
     {
-        String finalResult = ;
+        double result = p * 0.45359237;
+        String finalResult = decimalFormat.format(result);
+        if(result == 1)
+        {
+            outputValue.setText(String.valueOf(finalResult + " Kilogram"));
+        }
+        else
+        {
+            outputValue.setText(String.valueOf(finalResult + " Kilograms"));
+        }
         return finalResult;
     }
 
     private String ounceToKilo (double o)
     {
-        String finalResult = ;
+        double result = o * 0.02834952;
+        String finalResult = decimalFormat.format(result);
+        if(result == 1)
+        {
+            outputValue.setText(String.valueOf(finalResult + " Kilogram"));
+        }
+        else
+        {
+            outputValue.setText(String.valueOf(finalResult + " Kilograms"));
+        }
         return finalResult;
     }
 
-    private String cupToKilo (double c)
-    {
-        String finalResult = ;
-        return finalResult;
-    }
 
 
     //conversion methods 'to Pounds'
     private String kiloToPound (double k)
     {
-        String finalResult = ;
+        double result = k * 2.20462;
+        String finalResult = decimalFormat.format(result);
+        if(result == 1)
+        {
+            outputValue.setText(String.valueOf(finalResult + " Pound"));
+        }
+        else
+        {
+            outputValue.setText(String.valueOf(finalResult + " Pounds"));
+        }
         return finalResult;
     }
 
     private String gramToPound (double g)
     {
-        String finalResult = ;
+        double result = g * 0.00220462;
+        String finalResult = decimalFormat.format(result);
+        if(result == 1)
+        {
+            outputValue.setText(String.valueOf(finalResult + " Pound"));
+        }
+        else
+        {
+            outputValue.setText(String.valueOf(finalResult + " Pounds"));
+        }
         return finalResult;
     }
 
-    private String ounceToPound (double g)
+    private String ounceToPound (double o)
     {
-        String finalResult = ;
+        double result = o * 0.0625;
+        String finalResult = decimalFormat.format(result);
+        if(result == 1)
+        {
+            outputValue.setText(String.valueOf(finalResult + " Pound"));
+        }
+        else
+        {
+            outputValue.setText(String.valueOf(finalResult + " Pounds"));
+        }
         return finalResult;
     }
 
-    private String cupToPound (double g)
-    {
-        String finalResult = ;
-        return finalResult;
-    }
 
 
     //conversion methods 'to Ounces'
     private String kiloToOunce (double k)
     {
-        String finalResult = ;
+        double result = k * 35.2739619;
+        String finalResult = decimalFormat.format(result);
+        if(result == 1)
+        {
+            outputValue.setText(String.valueOf(finalResult + " Ounce"));
+        }
+        else
+        {
+            outputValue.setText(String.valueOf(finalResult + " Ounces"));
+        }
         return finalResult;
     }
 
     private String gramToOunce (double g)
     {
-        String finalResult = ;
+        double result = g * 0.0352739619;
+        String finalResult = decimalFormat.format(result);
+        if(result == 1)
+        {
+            outputValue.setText(String.valueOf(finalResult + " Ounce"));
+        }
+        else
+        {
+            outputValue.setText(String.valueOf(finalResult + " Ounces"));
+        }
         return finalResult;
     }
 
-    private String poundToPound (double g)
+    private String poundToOunce (double p)
     {
-        String finalResult = ;
+        double result = p * 16;
+        String finalResult = decimalFormat.format(result);
+        if(result == 1)
+        {
+            outputValue.setText(String.valueOf(finalResult + " Ounce"));
+        }
+        else
+        {
+            outputValue.setText(String.valueOf(finalResult + " Ounces"));
+        }
         return finalResult;
     }
 
-    private String cupToPound (double g)
+    //method used to reset all values back to their default values so a new conversion can be carried out quickly
+    private void reset()
     {
-        String finalResult = ;
-        return finalResult;
-    }
-
-    //conversion methods 'to Cups'
-    private String kiloToCup (double k)
-    {
-        String finalResult = ;
-        return finalResult;
-    }
-
-    private String gramToCup (double g)
-    {
-        String finalResult = ;
-        return finalResult;
-    }
-
-    private String poundToCup (double g)
-    {
-        String finalResult = ;
-        return finalResult;
-    }
-
-    private String ounceToCup (double g)
-    {
-        String finalResult = ;
-        return finalResult;
+        inputValue.setText("");
+        outputValue.setText("");
+        inputType.setSelection(0);
+        outputType.setSelection(0);
     }
 
     //sign out method to allow user to sign out of account/app

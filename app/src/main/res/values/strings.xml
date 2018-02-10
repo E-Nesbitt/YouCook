@@ -51,18 +51,18 @@
     <!-- Converter Activity Strings -->
     <string name="converter_menu">Converter</string>
     <string name="converter_menu_desc">Convert measures to suit your scales</string>
-    <string name="converter_input">Input Value:</string>
+    <string name="converter_input">Input Weight:</string>
     <string name="converter_output">Output Value:</string>
     <string name="converter_from">From:</string>
     <string name="converter_to">To:</string>
     <string name="converter">Convert</string>
+    <string name="reset">Reset</string>
     <!-- Spinner Array for Conversion Types-->
     <array name="conversion_type">
         <item>Kilogram - Kg</item>
         <item>Gram - g</item>
         <item>Pound - lb</item>
         <item>Ounce - oz</item>
-        <item>Cup</item>
     </array>
 
     <string name="open">Open</string>

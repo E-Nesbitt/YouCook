@@ -16,44 +16,62 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:padding="5dp">
 
             <TextView
                 android:id="@+id/inputTitle"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/converter_input"
-                android:layout_margin="3dp"/>
+                android:layout_margin="3dp"
+                android:layout_gravity="left"/>
 
             <EditText
                 android:id="@+id/conversionInput"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:inputType="numberDecimal"
+                android:layout_gravity="left"
+                android:minEms="5"
+                android:maxEms="10"
+                android:layout_marginRight="10dp"/>
 
             <TextView
                 android:id="@+id/fromTitle"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/converter_from"
-                android:layout_margin="3dp"/>
+                android:layout_marginRight="2dp"
+                android:layout_gravity="right"/>
 
             <Spinner
                 android:id="@+id/conversionInputType"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
-                android:entries="@array/conversion_type">
+                android:entries="@array/conversion_type"
+                android:layout_gravity="right">
             </Spinner>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
+                android:padding="5dp"
+                android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/toTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/converter_to"
                 android:layout_margin="3dp"
-                android:paddingTop="20dp" />
+                android:paddingTop="20dp"
+                android:text="@string/converter_to" />
 
             <Spinner
                 android:id="@+id/conversionOutputType"
@@ -64,33 +82,38 @@
             </Spinner>
 
             <Button
+                android:id="@+id/convertButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/converter"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:text="@string/converter" />
 
             <TextView
                 android:id="@+id/outputTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/converter_output"
-                android:textStyle="bold"
                 android:layout_margin="3dp"
                 android:paddingTop="20dp"
-                android:textSize="20dp"/>
+                android:text="@string/converter_output"
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/conversionOutput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none"
                 android:clickable="false"
                 android:focusable="false"
-                android:textSize="20dp"/>
+                android:inputType="none"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/resetButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/reset" />
 
         </LinearLayout>
-
-
 
     </android.support.constraint.ConstraintLayout>
 
