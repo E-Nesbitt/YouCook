@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ethannesbitt.youcook.Mains">
+    tools:context="com.example.ethannesbitt.youcook.Mains"
+    android:id="@+id/mains">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mainsList" />
+        </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/shoppinglistdnav"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/background_material_light"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/menu_head"
+        app:itemIconTint="@color/darkgrey"
+        app:itemTextColor="@color/darkgrey"
+        app:menu="@menu/drawer_menu">
+
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout >

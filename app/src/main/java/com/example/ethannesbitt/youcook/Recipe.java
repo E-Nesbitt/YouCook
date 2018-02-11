@@ -50,4 +50,24 @@ public class Recipe
     {
         return recipeMethod;
     }
+
+    public void setRecipeId(String recipeId) {
+        this.recipeId = recipeId;
+    }
+
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
+    }
+
+    public void setRecipeType(String recipeType) {
+        this.recipeType = recipeType;
+    }
+
+    public void setRecipeIngredients(String recipeIngredients) {
+        this.recipeIngredients = recipeIngredients;
+    }
+
+    public void setRecipeMethod(String recipeMethod) {
+        this.recipeMethod = recipeMethod;
+    }
 }

@@ -107,7 +107,6 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
                 startActivity(new Intent(Recipes.this, Desserts.class));
             }
         });
-
     }
 
     //method to save the recipe
@@ -135,15 +134,6 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
             //Error toast message to let user know more data needs entered before save can be completed
             Toast.makeText(Recipes.this, "Ensure all details are entered and try again!", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void deleteRecipe(String recipeId)
-    {
-        DatabaseReference recipeDB = FirebaseDatabase.getInstance().getReference("Recipes").child(recipeId);
-
-        recipeDB.removeValue();
-
-        Toast.makeText(Recipes.this, "Recipe Deleted Successfully!", Toast.LENGTH_LONG).show();
     }
 
     @Override
