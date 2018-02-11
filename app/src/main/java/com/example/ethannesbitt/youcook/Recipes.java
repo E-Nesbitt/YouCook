@@ -92,16 +92,22 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
             recipeDatabase.child(id).setValue(recipe);
 
             Toast.makeText(Recipes.this, "Recipe has been saved!", Toast.LENGTH_LONG).show();
-            //empty the input text areas so that the next recipe is ready to be entered
-            rName.setText("");
-            rIngredients.setText("");
-            rMethod.setText("");
+            reset();
         }
         else
         {
             //Error toast message to let user know more data needs entered before save can be completed
             Toast.makeText(Recipes.this, "Ensure all details are entered and try again!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void deleteRecipe(String recipeId)
+    {
+        DatabaseReference recipeDB = FirebaseDatabase.getInstance().getReference("Recipes").child(recipeId);
+
+        recipeDB.removeValue();
+
+        Toast.makeText(Recipes.this, "Recipe Deleted Successfully!", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -162,6 +168,15 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
         return false;
     }
 
+    //empty the input text areas so that the next recipe is ready to be entered i.e. reset activity to default
+    private void reset()
+    {
+        rName.setText("");
+        rIngredients.setText("");
+        rMethod.setText("");
+    }
+
+    //sign out method so user can log out of the app
     private void signOut()
     {
         mAuth.signOut();

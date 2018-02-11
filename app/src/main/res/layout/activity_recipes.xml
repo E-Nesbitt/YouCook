@@ -19,6 +19,16 @@
             android:layout_centerVertical="true"
             android:orientation="vertical">
 
+
+            <TextView
+                android:id="@+id/recipeAddTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/recipe_add"
+                android:gravity="center_horizontal"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
             <TextView
                 android:id="@+id/recipeName"
                 android:layout_width="match_parent"
@@ -80,7 +90,47 @@
                 android:id="@+id/saveButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/save" />
+                android:text="@string/save"
+                android:layout_marginBottom="15dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimaryDark"/>
+
+            <TextView
+                android:id="@+id/recipeTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/view_recipes_title"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/recipeSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/view_recipes"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"/>
+
+            <Button
+                android:id="@+id/starterButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/starter" />
+            <Button
+                android:id="@+id/mainButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/main" />
+            <Button
+                android:id="@+id/dessertButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dessert" />
 
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
