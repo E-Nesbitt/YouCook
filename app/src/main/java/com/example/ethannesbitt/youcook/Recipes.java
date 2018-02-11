@@ -29,6 +29,9 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
     private FirebaseAuth mAuth;
 
     private Button save;
+    private Button startersButton;
+    private Button mainsButton;
+    private Button dessertsButton;
     private EditText rName;
     private Spinner rType;
     private EditText rIngredients;
@@ -72,6 +75,39 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
 
         //recipe database
         recipeDatabase = FirebaseDatabase.getInstance().getReference("Recipes");
+
+        //view recipes buttons and their onClicks to redirect to the corresponding activities
+        startersButton = (Button) findViewById(R.id.starterButton);
+        mainsButton = (Button) findViewById(R.id.mainButton);
+        dessertsButton = (Button) findViewById(R.id.dessertButton);
+
+        startersButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                startActivity(new Intent(Recipes.this, Starters.class));
+            }
+        });
+
+        mainsButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                startActivity(new Intent(Recipes.this, Mains.class));
+            }
+        });
+
+        dessertsButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                startActivity(new Intent(Recipes.this, Desserts.class));
+            }
+        });
+
     }
 
     //method to save the recipe
