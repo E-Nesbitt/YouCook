@@ -8,17 +8,23 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Recipes extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -29,13 +35,11 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
     private FirebaseAuth mAuth;
 
     private Button save;
-    private Button startersButton;
-    private Button mainsButton;
-    private Button dessertsButton;
-    private EditText rName;
+    private Button startersButton, mainsButton, dessertsButton;
+    private EditText rName, rIngredients, rMethod;
     private Spinner rType;
-    private EditText rIngredients;
-    private EditText rMethod;
+
+    TextView testRe;
 
     DatabaseReference recipeDatabase;
 
@@ -44,6 +48,12 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
+
+        //test
+        testRe = (TextView) findViewById(R.id.testRe);
+
+        //Initialise recipe database
+        recipeDatabase = FirebaseDatabase.getInstance().getReference("Recipes");
 
         //getting user data
         mAuth = FirebaseAuth.getInstance();
@@ -73,9 +83,6 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
             }
         });
 
-        //recipe database
-        recipeDatabase = FirebaseDatabase.getInstance().getReference("Recipes");
-
         //view recipes buttons and their onClicks to redirect to the corresponding activities
         startersButton = (Button) findViewById(R.id.starterButton);
         mainsButton = (Button) findViewById(R.id.mainButton);
@@ -86,7 +93,41 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
             @Override
             public void onClick(View view)
             {
-                startActivity(new Intent(Recipes.this, Starters.class));
+
+                recipeDatabase.addValueEventListener(new ValueEventListener()
+                {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot)
+                    {
+                        for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren())
+                        {
+                            Recipe recipe = recipeSnapshot.getValue(Recipe.class);
+
+                            try
+                            {
+                                String test = recipe.recipeName;
+                                Log.d("test", test);
+                                Intent Starters = new Intent(Recipes.this, Starters.class);
+                                Starters.putExtra("DB Data1", recipe.recipeName);
+                                Starters.putExtra("DB Data2", recipe.recipeType);
+                                Starters.putExtra("DB Data3", recipe.recipeIngredients);
+                                Starters.putExtra("DB Data4", recipe.recipeMethod);
+                                startActivity(Starters);
+                            }
+                            catch (NullPointerException e)
+                            {
+                                Toast.makeText(Recipes.this, "Null Pointer caught", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError)
+                    {
+                        Log.d("Error", "loadPost:onCancelled", databaseError.toException());
+                        Toast.makeText(Recipes.this, "Failed to load recipe.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
@@ -114,7 +155,7 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
     {
         //takes inputs from user and sets them to strings
         String name = rName.getText().toString().trim();
-        String type = rType.getSelectedItem().toString().trim();
+        String type = rType.getSelectedItem().toString();
         String ingredients = rIngredients.getText().toString().trim();
         String method = rMethod.getText().toString().trim();
 
@@ -124,10 +165,10 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
             //save the input data to the Firebase database, setting a new Unique id each time a save is actioned
             String id = recipeDatabase.push().getKey();
             Recipe recipe = new Recipe(id, name, type, ingredients, method);
+
             recipeDatabase.child(id).setValue(recipe);
 
-            Toast.makeText(Recipes.this, "Recipe has been saved!", Toast.LENGTH_LONG).show();
-            reset();
+            Toast.makeText(Recipes.this, "Recipe "+ name + " saved!", Toast.LENGTH_LONG).show();
         }
         else
         {
@@ -206,6 +247,45 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
     private void signOut()
     {
         mAuth.signOut();
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+
+        recipeDatabase.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren())
+                {
+                    Recipe recipe = recipeSnapshot.getValue(Recipe.class);
+
+                    try
+                    {
+                        testRe.setText(recipe.recipeName);
+
+                        String test = recipe.recipeName;
+                        Log.d("test", test);
+
+                    }
+                    catch (NullPointerException e)
+                    {
+                        Toast.makeText(Recipes.this, "Null Pointer caught", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
+                Log.d("Error", "loadPost:onCancelled", databaseError.toException());
+                Toast.makeText(Recipes.this, "Failed to load recipe.",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

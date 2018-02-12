@@ -36,6 +36,10 @@
     <string name="save">Save</string>
     <string name="view_recipes_title">View Your Recipes</string>
     <string name="view_recipes">Click on the type of Recipes you would like to view</string>
+    <string name="hint_name">Enter Recipe Name</string>
+    <string name="hint_ingredients">Enter Ingredients</string>
+    <string name="hint_method">Enter Method</string>
+
 
     <!-- Spinner Array for Course Type -->
     <array name="course_type">
