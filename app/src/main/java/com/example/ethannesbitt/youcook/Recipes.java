@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -26,6 +27,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Recipes extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
 
@@ -39,9 +43,13 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
     private EditText rName, rIngredients, rMethod;
     private Spinner rType;
 
-    TextView testRe;
+    //testing list view items
+    private ListView recipeItem;
+    private List<Recipe> recipeList;
 
     DatabaseReference recipeDatabase;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,8 +57,9 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
 
-        //test
-        testRe = (TextView) findViewById(R.id.testRe);
+        //testing list view population
+        recipeItem = (ListView) findViewById(R.id.listViewRecipes);
+        recipeList = new ArrayList<>();
 
         //Initialise recipe database
         recipeDatabase = FirebaseDatabase.getInstance().getReference("Recipes");
@@ -259,13 +268,17 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
+                recipeList.clear();
+
                 for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren())
                 {
                     Recipe recipe = recipeSnapshot.getValue(Recipe.class);
 
+                    recipeList.add(recipe);
+
                     try
                     {
-                        testRe.setText(recipe.recipeName);
+                        //testRe.setText(recipe.recipeName);
 
                         String test = recipe.recipeName;
                         Log.d("test", test);
@@ -276,6 +289,8 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
                         Toast.makeText(Recipes.this, "Null Pointer caught", Toast.LENGTH_SHORT).show();
                     }
                 }
+                RecipeList adapter = new RecipeList(Recipes.this, recipeList);
+                recipeItem.setAdapter(adapter);
             }
 
             @Override
@@ -287,5 +302,4 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
             }
         });
     }
-
 }

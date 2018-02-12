@@ -19,7 +19,6 @@
             android:layout_centerVertical="true"
             android:orientation="vertical">
 
-
             <TextView
                 android:id="@+id/recipeAddTitle"
                 android:layout_width="match_parent"
@@ -135,12 +134,11 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dessert" />
 
-            <TextView
-                android:id="@+id/testRe"
+            <ListView
+                android:id="@+id/listViewRecipes"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="30dp" />
+                android:layout_height="wrap_content">
+            </ListView>
 
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
