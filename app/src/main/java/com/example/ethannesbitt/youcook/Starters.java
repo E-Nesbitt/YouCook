@@ -41,6 +41,8 @@ public class Starters extends AppCompatActivity
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //clearing the list prior to adding items, so we get a fresh list each time
                 recipeList.clear();
 
                 for(DataSnapshot recipeSnapshot: dataSnapshot.getChildren())
