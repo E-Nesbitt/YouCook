@@ -11,12 +11,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,9 +41,6 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
     private EditText rName, rIngredients, rMethod;
     private Spinner rType;
 
-    //testing list view items
-    private ListView recipeItem;
-    private List<Recipe> recipeList;
 
     DatabaseReference recipeDatabase;
 
@@ -57,12 +52,8 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
 
-        //testing list view population
-        recipeItem = (ListView) findViewById(R.id.listViewRecipes);
-        recipeList = new ArrayList<>();
-
         //Initialise recipe database
-        recipeDatabase = FirebaseDatabase.getInstance().getReference("Recipes");
+        recipeDatabase = FirebaseDatabase.getInstance().getReference("recipes");
 
         //getting user data
         mAuth = FirebaseAuth.getInstance();
@@ -102,41 +93,7 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
             @Override
             public void onClick(View view)
             {
-
-                recipeDatabase.addValueEventListener(new ValueEventListener()
-                {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot)
-                    {
-                        for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren())
-                        {
-                            Recipe recipe = recipeSnapshot.getValue(Recipe.class);
-
-                            try
-                            {
-                                String test = recipe.recipeName;
-                                Log.d("test", test);
-                                Intent Starters = new Intent(Recipes.this, Starters.class);
-                                Starters.putExtra("DB Data1", recipe.recipeName);
-                                Starters.putExtra("DB Data2", recipe.recipeType);
-                                Starters.putExtra("DB Data3", recipe.recipeIngredients);
-                                Starters.putExtra("DB Data4", recipe.recipeMethod);
-                                startActivity(Starters);
-                            }
-                            catch (NullPointerException e)
-                            {
-                                Toast.makeText(Recipes.this, "Null Pointer caught", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError)
-                    {
-                        Log.d("Error", "loadPost:onCancelled", databaseError.toException());
-                        Toast.makeText(Recipes.this, "Failed to load recipe.",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
+                startActivity(new Intent(Recipes.this, Starters.class));
             }
         });
 
@@ -173,6 +130,7 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
         {
             //save the input data to the Firebase database, setting a new Unique id each time a save is actioned
             String id = recipeDatabase.push().getKey();
+
             Recipe recipe = new Recipe(id, name, type, ingredients, method);
 
             recipeDatabase.child(id).setValue(recipe);
@@ -256,50 +214,5 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
     private void signOut()
     {
         mAuth.signOut();
-    }
-
-    @Override
-    protected void onStart()
-    {
-        super.onStart();
-
-        recipeDatabase.addValueEventListener(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
-                recipeList.clear();
-
-                for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren())
-                {
-                    Recipe recipe = recipeSnapshot.getValue(Recipe.class);
-
-                    recipeList.add(recipe);
-
-                    try
-                    {
-                        //testRe.setText(recipe.recipeName);
-
-                        String test = recipe.recipeName;
-                        Log.d("test", test);
-
-                    }
-                    catch (NullPointerException e)
-                    {
-                        Toast.makeText(Recipes.this, "Null Pointer caught", Toast.LENGTH_SHORT).show();
-                    }
-                }
-                RecipeList adapter = new RecipeList(Recipes.this, recipeList);
-                recipeItem.setAdapter(adapter);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError)
-            {
-                Log.d("Error", "loadPost:onCancelled", databaseError.toException());
-                Toast.makeText(Recipes.this, "Failed to load recipe.",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 }

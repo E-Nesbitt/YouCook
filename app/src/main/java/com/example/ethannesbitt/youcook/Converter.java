@@ -11,13 +11,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Converter extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -34,12 +42,22 @@ public class Converter extends AppCompatActivity implements NavigationView.OnNav
     private Spinner inputType;
     private Spinner outputType;
 
+    //testing database
+    DatabaseReference databaseReference;
+    ListView listViewRecipes;
+    List<Recipe> recipeDBList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_converter);
+
+        //testing db
+        databaseReference = FirebaseDatabase.getInstance().getReference("recipes");
+        listViewRecipes = (ListView) findViewById(R.id.listtest);
+        recipeDBList = new ArrayList<>();
 
         //getting user data
         mAuth = FirebaseAuth.getInstance();
@@ -181,6 +199,33 @@ public class Converter extends AppCompatActivity implements NavigationView.OnNav
             {
                 //calls reset method to return all to default state
                 reset();
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                recipeDBList.clear();
+
+                for(DataSnapshot recipeSnapshot: dataSnapshot.getChildren())
+                {
+                    Recipe recipe = recipeSnapshot.getValue(Recipe.class);
+
+                    recipeDBList.add(recipe);
+                }
+
+                RecipeList adapter = new RecipeList(Converter.this, recipeDBList);
+                listViewRecipes.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ethannesbitt.youcook">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -54,13 +54,13 @@
         <!-- Recipe SubActivities -->
         <activity
             android:name=".Mains"
-            android:label="@string/main"/>
+            android:label="@string/main" />
         <activity
             android:name=".Starters"
-            android:label="@string/starter"/>
+            android:label="@string/starter" />
         <activity
             android:name=".Desserts"
-            android:label="@string/dessert"/>
+            android:label="@string/dessert" />
         <!-- Timer Activity -->
         <activity
             android:name=".Timer"
@@ -68,8 +68,7 @@
         <!-- Converter Activity -->
         <activity
             android:name=".Converter"
-            android:label="@string/converter_menu" >
-        </activity>
+            android:label="@string/converter_menu"></activity>
     </application>
 
 </manifest>

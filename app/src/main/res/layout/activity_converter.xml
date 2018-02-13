@@ -113,6 +113,12 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/reset" />
 
+            <ListView
+                android:id="@+id/listtest"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </ListView>
+
         </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
