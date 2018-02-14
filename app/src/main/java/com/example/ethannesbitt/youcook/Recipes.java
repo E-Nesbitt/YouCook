@@ -19,14 +19,9 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Recipes extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -41,10 +36,7 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
     private EditText rName, rIngredients, rMethod;
     private Spinner rType;
 
-
     DatabaseReference recipeDatabase;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -136,6 +128,8 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
             recipeDatabase.child(id).setValue(recipe);
 
             Toast.makeText(Recipes.this, "Recipe "+ name + " saved!", Toast.LENGTH_LONG).show();
+
+            reset();
         }
         else
         {
@@ -206,6 +200,7 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
     private void reset()
     {
         rName.setText("");
+        rType.setSelection(0);
         rIngredients.setText("");
         rMethod.setText("");
     }

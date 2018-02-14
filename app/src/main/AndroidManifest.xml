@@ -68,7 +68,8 @@
         <!-- Converter Activity -->
         <activity
             android:name=".Converter"
-            android:label="@string/converter_menu"></activity>
+            android:label="@string/converter_menu" />
+        <activity android:name=".RecipePage"></activity>
     </application>
 
 </manifest>

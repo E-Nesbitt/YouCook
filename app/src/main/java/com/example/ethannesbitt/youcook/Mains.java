@@ -3,6 +3,7 @@ package com.example.ethannesbitt.youcook;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -62,6 +63,15 @@ public class Mains extends AppCompatActivity
 
             }
         });
+    }
+
+    private void deleteRecipe(String recipeId)
+    {
+        DatabaseReference recipeDB = FirebaseDatabase.getInstance().getReference("recipes").child(recipeId);
+
+        recipeDB.removeValue();
+
+        Toast.makeText(Mains.this, "Recipe Deleted Successfully!", Toast.LENGTH_LONG).show();
     }
 
 }

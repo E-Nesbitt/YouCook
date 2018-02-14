@@ -65,7 +65,7 @@ public class Desserts extends AppCompatActivity
 
     private void deleteRecipe(String recipeId)
     {
-        DatabaseReference recipeDB = FirebaseDatabase.getInstance().getReference("Recipes").child(recipeId);
+        DatabaseReference recipeDB = FirebaseDatabase.getInstance().getReference("recipes").child(recipeId);
 
         recipeDB.removeValue();
 
