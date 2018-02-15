@@ -17,8 +17,12 @@ public class RecipePage extends AppCompatActivity
 
         if(recipePageBundle != null)
         {
+            String id = recipePageBundle.getString("Recipe id");
             String name = recipePageBundle.getString("Recipe name");
-            Log.d("listtest", name);
+            String type = recipePageBundle.getString("Recipe type");
+            String ingredients = recipePageBundle.getString("Recipe ingredients");
+            String method = recipePageBundle.getString("Recipe method");
+            Log.d("listtest", id + " " + name + " " + type + " " + ingredients + " " + method);
             Toast.makeText(this, "Recipe Name: " + name, Toast.LENGTH_SHORT);
         }
     }
