@@ -47,7 +47,7 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
 
         //testing db
         databaseReference = FirebaseDatabase.getInstance().getReference("recipes");
-        listRecipes = (ListView) findViewById(R.id.dessertsList);
+        listRecipes = findViewById(R.id.dessertsList);
         recipeList = new ArrayList<>();
 
         //initialising user
@@ -55,12 +55,12 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
         FirebaseUser user = mAuth.getCurrentUser();
 
         //initialising drawer menu
-        drawerMenu = (DrawerLayout) findViewById(R.id.desserts);
+        drawerMenu = findViewById(R.id.desserts);
         menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
         drawerMenu.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.dessertsdnav);
+        NavigationView navigationView = findViewById(R.id.dessertsdnav);
         navigationView.setNavigationItemSelectedListener(this);
 
         listRecipes.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -101,7 +101,7 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
                 {
                     Recipe recipe = recipeSnapshot.getValue(Recipe.class);
 
-                    if(recipe.recipeType.equals("Dessert"))
+                    if(recipe != null && recipe.recipeType.equals("Dessert"))
                     {
                         recipeList.add(recipe);
                     }

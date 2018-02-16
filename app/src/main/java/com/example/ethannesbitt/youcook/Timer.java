@@ -3,10 +3,8 @@ package com.example.ethannesbitt.youcook;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -54,26 +52,26 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         FirebaseUser user = mAuth.getCurrentUser();
 
         //Drawer Navigation Menu set up
-        drawerMenu = (DrawerLayout) findViewById(R.id.timer);
+        drawerMenu = findViewById(R.id.timer);
         menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
         drawerMenu.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.timerdnav);
+        NavigationView navigationView = findViewById(R.id.timerdnav);
         navigationView.setNavigationItemSelectedListener(this);
 
         //setting countdown time
-        countDownTime = (TextView) findViewById(R.id.timecount);
+        countDownTime = findViewById(R.id.timecount);
 
         //setting toggle button to have onclick
-        startStopToggle = (ToggleButton) findViewById(R.id.startstop);
+        startStopToggle = findViewById(R.id.startstop);
         startStopToggle.setOnCheckedChangeListener(this);
 
         //setting up the time
         timeHandler = new Handler();
 
         //user input button with alert dialogue to prompt user to enter time
-        userInputButton = (Button) findViewById(R.id.userinputbutton);
+        userInputButton = findViewById(R.id.userinputbutton);
         userInputButton.setOnClickListener(new View.OnClickListener()
         {
             @Override

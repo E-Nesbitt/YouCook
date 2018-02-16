@@ -90,4 +90,7 @@
     <string name="close">Close</string>
 
     <string name="server_client_id">957827283600-u6aj6uave6l868ut0q7p96fghdter28i.apps.googleusercontent.com</string>
+
+    <!-- Image Descriptions -->
+    <string name="logo">YouCook Logo Image</string>
 </resources>

@@ -49,7 +49,7 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
 
         //testing db
         databaseReference = FirebaseDatabase.getInstance().getReference("recipes");
-        listRecipes = (ListView) findViewById(R.id.mainsList);
+        listRecipes = findViewById(R.id.mainsList);
         recipeList = new ArrayList<>();
 
         //initialising user
@@ -57,12 +57,12 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
         FirebaseUser user = mAuth.getCurrentUser();
 
         //initialising drawer menu
-        drawerMenu = (DrawerLayout) findViewById(R.id.mains);
+        drawerMenu = findViewById(R.id.mains);
         menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
         drawerMenu.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.mainsdnav);
+        NavigationView navigationView = findViewById(R.id.mainsdnav);
         navigationView.setNavigationItemSelectedListener(this);
 
         listRecipes.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -103,7 +103,7 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
                 {
                     Recipe recipe = recipeSnapshot.getValue(Recipe.class);
 
-                    if(recipe.recipeType.equals("Main"))
+                    if(recipe != null && recipe.recipeType.equals("Main"))
                     {
                         recipeList.add(recipe);
                     }

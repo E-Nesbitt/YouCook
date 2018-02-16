@@ -51,17 +51,17 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
-        drawerMenu = (DrawerLayout) findViewById(R.id.shoppinglist);
+        drawerMenu = findViewById(R.id.shoppinglist);
         menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
         drawerMenu.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.shoppinglistdnav);
+        NavigationView navigationView = findViewById(R.id.shoppinglistdnav);
         navigationView.setNavigationItemSelectedListener(this);
 
         ingredientList = getIngredientsList(getApplicationContext());
         aAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, ingredientList);
-        lView = (ListView) findViewById(R.id.list);
+        lView = findViewById(R.id.list);
         lView.setAdapter(aAdapter);
 
         lView.setOnItemClickListener(new AdapterView.OnItemClickListener()

@@ -3,7 +3,6 @@ package com.example.ethannesbitt.youcook;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -38,13 +37,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener
 
         pDialog = new ProgressDialog(this);
 
-        emailInput = (EditText) findViewById(R.id.emailInput);
-        passwordInput = (EditText) findViewById(R.id.passwordInput);
+        emailInput = findViewById(R.id.emailInput);
+        passwordInput = findViewById(R.id.passwordInput);
 
-        registerButton = (Button) findViewById(R.id.registerButton);
+        registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener(this);
 
-        signIn = (TextView) findViewById(R.id.signIn);
+        signIn = findViewById(R.id.signIn);
         signIn.setOnClickListener(this);
 
     }

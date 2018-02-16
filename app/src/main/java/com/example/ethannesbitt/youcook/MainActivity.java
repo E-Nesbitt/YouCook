@@ -11,9 +11,7 @@ import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -44,11 +42,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //Link menu options to card views, defining each of the options
-        searchOption = (CardView) findViewById(R.id.searchmenuoption);
-        shoppingListOption = (CardView) findViewById(R.id.shoppinglistmenuoption);
-        recipeOption = (CardView) findViewById(R.id.recipesmenuoption);
-        timerOption = (CardView) findViewById(R.id.timermenuoption);
-        converterOption = (CardView) findViewById(R.id.convertermenuoption);
+        searchOption = findViewById(R.id.searchmenuoption);
+        shoppingListOption = findViewById(R.id.shoppinglistmenuoption);
+        recipeOption = findViewById(R.id.recipesmenuoption);
+        timerOption = findViewById(R.id.timermenuoption);
+        converterOption = findViewById(R.id.convertermenuoption);
 
         //Make options clickable
         searchOption.setOnClickListener(this);
@@ -58,12 +56,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         converterOption.setOnClickListener(this);
 
         //Drawer Navigation Menu set up
-        drawerMenu = (DrawerLayout) findViewById(R.id.mainactivity);
+        drawerMenu = findViewById(R.id.mainactivity);
         menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
         drawerMenu.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.mainmenudnav);
+        NavigationView navigationView = findViewById(R.id.mainmenudnav);
         navigationView.setNavigationItemSelectedListener(this);
 
         //setting mAuth Variable to current instance

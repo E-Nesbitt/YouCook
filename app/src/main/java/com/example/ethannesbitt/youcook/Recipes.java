@@ -8,12 +8,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -52,20 +50,20 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
         FirebaseUser user = mAuth.getCurrentUser();
 
         //setting up drawer menu
-        drawerMenu = (DrawerLayout) findViewById(R.id.recipes);
+        drawerMenu = findViewById(R.id.recipes);
         menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
         drawerMenu.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.recipednav);
+        NavigationView navigationView = findViewById(R.id.recipednav);
         navigationView.setNavigationItemSelectedListener(this);
 
         //setting up recipe inputs
-        rName = (EditText) findViewById(R.id.recipeNameInput);
-        rIngredients = (EditText) findViewById(R.id.recipeIngredientsInput);
-        rMethod = (EditText) findViewById(R.id.recipeMethodInput);
-        rType = (Spinner) findViewById(R.id.recipeTypeInput);
-        save = (Button) findViewById(R.id.saveButton);
+        rName = findViewById(R.id.recipeNameInput);
+        rIngredients = findViewById(R.id.recipeIngredientsInput);
+        rMethod = findViewById(R.id.recipeMethodInput);
+        rType = findViewById(R.id.recipeTypeInput);
+        save = findViewById(R.id.saveButton);
         save.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -76,9 +74,9 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
         });
 
         //view recipes buttons and their onClicks to redirect to the corresponding activities
-        startersButton = (Button) findViewById(R.id.starterButton);
-        mainsButton = (Button) findViewById(R.id.mainButton);
-        dessertsButton = (Button) findViewById(R.id.dessertButton);
+        startersButton = findViewById(R.id.starterButton);
+        mainsButton = findViewById(R.id.mainButton);
+        dessertsButton = findViewById(R.id.dessertButton);
 
         startersButton.setOnClickListener(new View.OnClickListener()
         {

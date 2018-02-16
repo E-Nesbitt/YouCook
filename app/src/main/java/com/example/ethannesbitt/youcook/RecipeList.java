@@ -11,10 +11,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by EthanNesbitt on 12/02/2018.
- */
-
 public class RecipeList extends ArrayAdapter<Recipe>
 {
     private Activity context;
@@ -34,8 +30,8 @@ public class RecipeList extends ArrayAdapter<Recipe>
 
         View recipeItem = inflater.inflate(R.layout.recipe_list, null, true);
 
-        TextView name = (TextView) recipeItem.findViewById(R.id.name);
-        TextView type = (TextView) recipeItem.findViewById(R.id.type);
+        TextView name = recipeItem.findViewById(R.id.name);
+        TextView type = recipeItem.findViewById(R.id.type);
 
         Recipe recipe = recipeList.get(position);
 

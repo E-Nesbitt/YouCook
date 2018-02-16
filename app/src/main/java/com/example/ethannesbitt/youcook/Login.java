@@ -65,7 +65,7 @@ public class Login extends AppCompatActivity
         setContentView(R.layout.activity_login);
 
         //google sign in set up
-        googleSignInButton = (SignInButton) findViewById(R.id.googleSignInButton);
+        googleSignInButton = findViewById(R.id.googleSignInButton);
         mAuth = FirebaseAuth.getInstance();
 
         mAuthListener = new FirebaseAuth.AuthStateListener()
@@ -109,9 +109,9 @@ public class Login extends AppCompatActivity
         });
 
         //email and password sign in setup
-        emailInput = (EditText) findViewById(R.id.emailInput);
-        passwordInput = (EditText) findViewById(R.id.passwordInput);
-        signInButton = (Button) findViewById(R.id.signInButton);
+        emailInput = findViewById(R.id.emailInput);
+        passwordInput = findViewById(R.id.passwordInput);
+        signInButton = findViewById(R.id.signInButton);
 
         signInButton.setOnClickListener(new View.OnClickListener()
         {
@@ -123,7 +123,7 @@ public class Login extends AppCompatActivity
         });
 
         //registration text
-        registration = (TextView) findViewById(R.id.alreadyRegistered);
+        registration = findViewById(R.id.alreadyRegistered);
         registration.setOnClickListener(new View.OnClickListener()
         {
             @Override

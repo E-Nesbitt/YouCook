@@ -46,22 +46,22 @@ public class Converter extends AppCompatActivity implements NavigationView.OnNav
         FirebaseUser user = mAuth.getCurrentUser();
 
         //initialising drawer menu
-        drawerMenu = (DrawerLayout) findViewById(R.id.converter);
+        drawerMenu = findViewById(R.id.converter);
         menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
         drawerMenu.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.converterdnav);
+        NavigationView navigationView = findViewById(R.id.converterdnav);
         navigationView.setNavigationItemSelectedListener(this);
 
         //conversion editTexts and Buttons set up
-        inputValue = (EditText) findViewById(R.id.conversionInput);
-        outputValue = (EditText) findViewById(R.id.conversionOutput);
-        inputType = (Spinner) findViewById(R.id.conversionInputType);
-        outputType = (Spinner) findViewById(R.id.conversionOutputType);
+        inputValue = findViewById(R.id.conversionInput);
+        outputValue = findViewById(R.id.conversionOutput);
+        inputType = findViewById(R.id.conversionInputType);
+        outputType = findViewById(R.id.conversionOutputType);
 
         //convert button and on click to call correct methods at correct time
-        convertButton = (Button) findViewById(R.id.convertButton);
+        convertButton = findViewById(R.id.convertButton);
         convertButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -173,7 +173,7 @@ public class Converter extends AppCompatActivity implements NavigationView.OnNav
         });
 
         //reset button and on click to reset the values back to default
-        resetButton = (Button) findViewById(R.id.resetButton);
+        resetButton = findViewById(R.id.resetButton);
         resetButton.setOnClickListener(new View.OnClickListener()
         {
             @Override

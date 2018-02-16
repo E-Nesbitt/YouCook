@@ -1,9 +1,5 @@
 package com.example.ethannesbitt.youcook;
 
-/**
- * Created by EthanNesbitt on 07/02/2018.
- */
-
 public class Recipe
 {
     String recipeId;

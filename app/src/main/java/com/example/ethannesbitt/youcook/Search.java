@@ -26,12 +26,12 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        drawerMenu = (DrawerLayout) findViewById(R.id.search);
+        drawerMenu = findViewById(R.id.search);
         menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
         drawerMenu.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.searchdnav);
+        NavigationView navigationView = findViewById(R.id.searchdnav);
         navigationView.setNavigationItemSelectedListener(this);
 
         //getting user data

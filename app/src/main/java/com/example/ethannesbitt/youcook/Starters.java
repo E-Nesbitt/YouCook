@@ -48,7 +48,7 @@ public class Starters extends AppCompatActivity implements NavigationView.OnNavi
 
         //initialising database
         databaseReference = FirebaseDatabase.getInstance().getReference("recipes");
-        listRecipes = (ListView) findViewById(R.id.starterslist);
+        listRecipes = findViewById(R.id.starterslist);
         recipeList = new ArrayList<>();
 
         //initialising user
@@ -56,12 +56,12 @@ public class Starters extends AppCompatActivity implements NavigationView.OnNavi
         FirebaseUser user = mAuth.getCurrentUser();
 
         //initialising drawer menu
-        drawerMenu = (DrawerLayout) findViewById(R.id.starters);
+        drawerMenu = findViewById(R.id.starters);
         menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
         drawerMenu.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.startersdnav);
+        NavigationView navigationView = findViewById(R.id.startersdnav);
         navigationView.setNavigationItemSelectedListener(this);
 
         listRecipes.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -107,7 +107,7 @@ public class Starters extends AppCompatActivity implements NavigationView.OnNavi
                 {
                     Recipe recipe = recipeSnapshot.getValue(Recipe.class);
 
-                    if(recipe.recipeType.equals("Starter"))
+                    if(recipe != null && recipe.recipeType.equals("Starter"))
                     {
                         recipeList.add(recipe);
                     }
