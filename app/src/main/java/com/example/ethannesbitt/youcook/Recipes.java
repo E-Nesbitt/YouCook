@@ -34,7 +34,7 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
     private EditText rName, rIngredients, rMethod;
     private Spinner rType;
 
-    DatabaseReference recipeDatabase;
+    private DatabaseReference recipeDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

@@ -35,9 +35,9 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
     private FirebaseAuth mAuth;
 
     //initialising database
-    DatabaseReference databaseReference;
-    ListView listRecipes;
-    List<Recipe> recipeList;
+    private DatabaseReference databaseReference;
+    private ListView listRecipes;
+    private List<Recipe> recipeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

@@ -35,9 +35,9 @@ public class Starters extends AppCompatActivity implements NavigationView.OnNavi
     private FirebaseAuth mAuth;
 
     //declaring variables for  database
-    DatabaseReference databaseReference;
-    ListView listRecipes;
-    List<Recipe> recipeList;
+    private DatabaseReference databaseReference;
+    private ListView listRecipes;
+    private List<Recipe> recipeList;
 
 
     @Override
@@ -180,15 +180,6 @@ public class Starters extends AppCompatActivity implements NavigationView.OnNavi
                 break;
         }
         return false;
-    }
-
-    private void deleteRecipe(String recipeId)
-    {
-        DatabaseReference recipeDB = FirebaseDatabase.getInstance().getReference("recipes").child(recipeId);
-
-        recipeDB.removeValue();
-
-        Toast.makeText(Starters.this, "Recipe Deleted Successfully!", Toast.LENGTH_LONG).show();
     }
 
     private void signOut()

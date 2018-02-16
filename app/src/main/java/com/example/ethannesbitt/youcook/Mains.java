@@ -35,9 +35,9 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
     private FirebaseAuth mAuth;
 
     //initialising database
-    DatabaseReference databaseReference;
-    ListView listRecipes;
-    List<Recipe> recipeList;
+    private DatabaseReference databaseReference;
+    private ListView listRecipes;
+    private List<Recipe> recipeList;
 
 
     @Override

@@ -19,11 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener
 {
 
-    private CardView searchOption;
-    private CardView shoppingListOption;
-    private CardView recipeOption;
-    private CardView timerOption;
-    private CardView converterOption;
+    private CardView searchOption, shoppingListOption, recipeOption, timerOption, converterOption;
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
     private FirebaseAuth mAuth;

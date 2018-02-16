@@ -44,7 +44,7 @@
     <string name="ingredients">Ingredients</string>
     <string name="hint_method">Enter Method</string>
     <string name="method">Method</string>
-
+    <string name="delete">Delete Recipe</string>
 
     <!-- Spinner Array for Course Type -->
     <array name="course_type">
