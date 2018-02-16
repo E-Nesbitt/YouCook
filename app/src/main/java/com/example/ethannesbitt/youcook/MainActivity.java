@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         };
 
         //setting the main page title to have the users email in it, this personalises the page
-        String username = user.getEmail().toString();
+        String username = user.getEmail();
         Log.d("Username=", username);
         int index = username.indexOf("@");
         username = username.substring(0, index);

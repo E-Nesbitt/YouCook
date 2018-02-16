@@ -39,7 +39,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="@string/email_hint"
-            android:layout_centerVertical="true"
             android:inputType="textEmailAddress"/>
 
         <EditText
@@ -48,7 +47,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="@string/password_hint"
-            android:layout_centerVertical="true"
             android:inputType="textPassword"/>
 
         <Button

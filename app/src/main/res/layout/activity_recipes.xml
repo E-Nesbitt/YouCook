@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/recipe_add"
                 android:gravity="center_horizontal"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"/>
 
             <TextView
@@ -108,7 +108,7 @@
                 android:text="@string/view_recipes_title"
                 android:gravity="center_horizontal"
                 android:layout_marginTop="15dp"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/recipeSubTitle"
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/view_recipes"
                 android:gravity="center_horizontal"
-                android:textSize="10dp"/>
+                android:textSize="10sp"/>
 
             <Button
                 android:id="@+id/starterButton"

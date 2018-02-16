@@ -2,6 +2,9 @@
     <string name="app_name">YouCook</string>
     <string name="dashboard">YouCook - Home</string>
 
+    <!-- Drawer Menu String -->
+    <string name="home">Home</string>
+
     <!--Login, Register Strings -->
     <string name="title_activity_login">Sign in</string>
     <string name="email_hint">Email</string>
@@ -19,7 +22,7 @@
     <string name="search_menu">Search</string>
     <string name="search_menu_desc">Search for a recipe by entering ingredients</string>
 
-    <!-- Shooping List Activity Strings -->
+    <!-- Shopping List Activity Strings -->
     <string name="shopping_list_menu">Shopping List</string>
     <string name="shopping_list_menu_desc">Create a shopping list of ingredients</string>
     <string name="action_add">Add</string>

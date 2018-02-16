@@ -23,7 +23,6 @@ public class RecipePage extends AppCompatActivity
             String ingredients = recipePageBundle.getString("Recipe ingredients");
             String method = recipePageBundle.getString("Recipe method");
             Log.d("listtest", id + " " + name + " " + type + " " + ingredients + " " + method);
-            Toast.makeText(this, "Recipe Name: " + name, Toast.LENGTH_SHORT);
         }
     }
 }

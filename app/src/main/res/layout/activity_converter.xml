@@ -25,14 +25,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/converter_input"
                 android:layout_margin="3dp"
-                android:layout_gravity="left"/>
+                android:layout_gravity="start"/>
 
             <EditText
                 android:id="@+id/conversionInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
-                android:layout_gravity="left"
+                android:layout_gravity="start"
                 android:minEms="5"
                 android:maxEms="10"
                 android:layout_marginRight="10dp"/>
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/converter_from"
                 android:layout_marginRight="2dp"
-                android:layout_gravity="right"/>
+                android:layout_gravity="end"/>
 
             <Spinner
                 android:id="@+id/conversionInputType"
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:entries="@array/conversion_type"
-                android:layout_gravity="right">
+                android:layout_gravity="end">
             </Spinner>
         </LinearLayout>
 
@@ -95,7 +95,7 @@
                 android:layout_margin="3dp"
                 android:paddingTop="20dp"
                 android:text="@string/converter_output"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/conversionOutput"
@@ -104,7 +104,7 @@
                 android:clickable="false"
                 android:focusable="false"
                 android:inputType="none"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/resetButton"
