@@ -61,6 +61,9 @@
         <activity
             android:name=".Desserts"
             android:label="@string/dessert" />
+        <activity
+            android:name=".RecipePage"
+            android:label="@string/recipe_menu"/>
         <!-- Timer Activity -->
         <activity
             android:name=".Timer"
@@ -68,8 +71,8 @@
         <!-- Converter Activity -->
         <activity
             android:name=".Converter"
-            android:label="@string/converter_menu" />
-        <activity android:name=".RecipePage"></activity>
+            android:label="@string/converter_menu" >
+        </activity>
     </application>
 
 </manifest>

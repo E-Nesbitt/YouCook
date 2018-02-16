@@ -41,7 +41,9 @@
     <string name="view_recipes">Click on the type of Recipes you would like to view</string>
     <string name="hint_name">Enter Recipe Name</string>
     <string name="hint_ingredients">Enter Ingredients</string>
+    <string name="ingredients">Ingredients</string>
     <string name="hint_method">Enter Method</string>
+    <string name="method">Method</string>
 
 
     <!-- Spinner Array for Course Type -->
@@ -93,4 +95,5 @@
 
     <!-- Image Descriptions -->
     <string name="logo">YouCook Logo Image</string>
+
 </resources>
