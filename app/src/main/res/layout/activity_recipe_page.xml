@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ethannesbitt.youcook.RecipePage"
-    android:layout_centerHorizontal="true"
-    android:layout_centerVertical="true"
-    android:orientation="vertical"
-    android:layout_margin="10dp">
+    tools:context="com.example.ethannesbitt.youcook.RecipePage">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
 
     <TextView
         android:id="@+id/title_recipe_page"
@@ -18,6 +21,36 @@
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/nunito_bold"
         android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/recipe_prep_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/prep_time"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/prep_time_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/nunito" />
+
+    <TextView
+        android:id="@+id/recipe_cook_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/cooking_time"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/cook_time_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/nunito" />
 
     <TextView
         android:id="@+id/ingredients_title"
@@ -55,6 +88,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/nunito_bold"
-        android:text="@string/delete" />
+        android:text="@string/delete"
+        android:layout_marginBottom="20dp"/>
 
-</LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

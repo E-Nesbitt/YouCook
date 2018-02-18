@@ -28,7 +28,7 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
     private FirebaseAuth mAuth;
 
     private Button save;
-    private EditText rName, rIngredients, rMethod;
+    private EditText rName, rPrepTime, rCookTime, rIngredients, rMethod;
     private Spinner rType;
 
     private DatabaseReference recipeDatabase;
@@ -57,6 +57,8 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
 
         //setting up recipe inputs
         rName = findViewById(R.id.recipeNameInput);
+        rPrepTime = findViewById(R.id.prep_time_input);
+        rCookTime = findViewById(R.id.cooking_time_input);
         rIngredients = findViewById(R.id.recipeIngredientsInput);
         rMethod = findViewById(R.id.recipeMethodInput);
         rType = findViewById(R.id.recipeTypeInput);
@@ -76,6 +78,8 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
     {
         //takes inputs from user and sets them to strings
         String name = rName.getText().toString().trim();
+        String prepTime = rPrepTime.getText().toString().trim();
+        String cookTime = rCookTime.getText().toString().trim();
         String type = rType.getSelectedItem().toString();
         String ingredients = rIngredients.getText().toString().trim();
         String method = rMethod.getText().toString().trim();
@@ -86,7 +90,7 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
             //save the input data to the Firebase database, setting a new Unique id each time a save is actioned
             String id = recipeDatabase.push().getKey();
 
-            Recipe recipe = new Recipe(id, name, type, ingredients, method);
+            Recipe recipe = new Recipe(id, name, type, prepTime, cookTime, ingredients, method);
 
             recipeDatabase.child(id).setValue(recipe);
 
@@ -105,6 +109,8 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
     private void reset()
     {
         rName.setText("");
+        rPrepTime.setText("");
+        rCookTime.setText("");
         rType.setSelection(0);
         rIngredients.setText("");
         rMethod.setText("");

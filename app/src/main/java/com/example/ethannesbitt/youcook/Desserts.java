@@ -72,6 +72,8 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
 
                 String rid = recipe.getRecipeId();
                 String name = recipe.getRecipeName();
+                String prepTime = recipe.getRecipePrepTime();
+                String cookTime = recipe.getRecipePrepTime();
                 String type = recipe.getRecipeType();
                 String ingredients = recipe.getRecipeIngredients();
                 String method = recipe.getRecipeMethod();
@@ -79,6 +81,8 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
                 Intent recipePage = new Intent(Desserts.this, RecipePage.class);
                 recipePage.putExtra("Recipe id", rid);
                 recipePage.putExtra("Recipe name", name);
+                recipePage.putExtra("Recipe prepTime", prepTime);
+                recipePage.putExtra("Recipe cookTime", cookTime);
                 recipePage.putExtra("Recipe type", type);
                 recipePage.putExtra("Recipe ingredients", ingredients);
                 recipePage.putExtra("Recipe method", method);

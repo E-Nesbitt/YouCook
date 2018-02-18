@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RecipePage extends AppCompatActivity
 {
 
-    private TextView recipeName, ingredientsList, methodList;
+    private TextView recipeName, ingredientsList, methodList, prepTime, cookTime;
     private Button deleteButton;
     private String recipeID;
 
@@ -30,6 +30,8 @@ public class RecipePage extends AppCompatActivity
 
         //initialising text views and delete button
         recipeName = findViewById(R.id.title_recipe_page);
+        prepTime = findViewById(R.id.prep_time_display);
+        cookTime = findViewById(R.id.cook_time_display);
         ingredientsList = findViewById(R.id.list_ingredients);
         methodList = findViewById(R.id.list_method);
         deleteButton = findViewById(R.id.delete_recipe);
@@ -39,6 +41,8 @@ public class RecipePage extends AppCompatActivity
             //getting all recipe details passed over from the previous activity on the list item click
             String id = recipePageBundle.getString("Recipe id");
             String name = recipePageBundle.getString("Recipe name");
+            String pTime = recipePageBundle.getString("Recipe prepTime");
+            String cTime = recipePageBundle.getString("Recipe cookTime");
             String type = recipePageBundle.getString("Recipe type");
             String ingredients = recipePageBundle.getString("Recipe ingredients");
             String method = recipePageBundle.getString("Recipe method");
@@ -46,6 +50,8 @@ public class RecipePage extends AppCompatActivity
 
             //setting text views to have the information from the selected recipe in the DB
             recipeName.setText(name);
+            prepTime.setText(pTime);
+            cookTime.setText(cTime);
             ingredientsList.setText(ingredients);
             methodList.setText(method);
 

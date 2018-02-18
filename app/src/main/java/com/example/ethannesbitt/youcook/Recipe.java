@@ -4,6 +4,8 @@ public class Recipe
 {
     private String recipeId;
     private String recipeName;
+    private String recipePrepTime;
+    private String recipeCookTime;
     String recipeType;
     private String recipeIngredients;
     private String recipeMethod;
@@ -13,10 +15,12 @@ public class Recipe
 
     }
 
-    public Recipe(String recipeId, String recipeName, String recipeType, String recipeIngredients, String recipeMethod)
+    public Recipe(String recipeId, String recipeName, String recipeType, String recipePrepTime, String recipeCookTime, String recipeIngredients, String recipeMethod)
     {
         this.recipeId = recipeId;
         this.recipeName = recipeName;
+        this.recipePrepTime = recipePrepTime;
+        this.recipeCookTime = recipeCookTime;
         this.recipeType = recipeType;
         this.recipeIngredients = recipeIngredients;
         this.recipeMethod = recipeMethod;
@@ -30,6 +34,16 @@ public class Recipe
     public String getRecipeName()
     {
         return recipeName;
+    }
+
+    public String getRecipePrepTime()
+    {
+        return recipePrepTime;
+    }
+
+    public String getRecipeCookTime()
+    {
+        return recipeCookTime;
     }
 
     public String getRecipeType()
@@ -47,23 +61,5 @@ public class Recipe
         return recipeMethod;
     }
 
-    public void setRecipeId(String recipeId) {
-        this.recipeId = recipeId;
-    }
 
-    public void setRecipeName(String recipeName) {
-        this.recipeName = recipeName;
-    }
-
-    public void setRecipeType(String recipeType) {
-        this.recipeType = recipeType;
-    }
-
-    public void setRecipeIngredients(String recipeIngredients) {
-        this.recipeIngredients = recipeIngredients;
-    }
-
-    public void setRecipeMethod(String recipeMethod) {
-        this.recipeMethod = recipeMethod;
-    }
 }
