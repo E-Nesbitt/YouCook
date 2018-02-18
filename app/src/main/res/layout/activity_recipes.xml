@@ -7,47 +7,47 @@
     tools:context="com.example.ethannesbitt.youcook.Recipes"
     android:id="@+id/recipes">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/activity_vertical_margin">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/activity_vertical_margin">
 
             <TextView
                 android:id="@+id/recipeAddTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/recipe_add"
+                android:fontFamily="@font/nunito"
                 android:gravity="center_horizontal"
+                android:text="@string/recipe_add"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/recipeName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
                 android:text="@string/recipe_name"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/recipeNameInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/hint_name"/>
+                android:fontFamily="@font/nunito"
+                android:hint="@string/hint_name"
+                android:inputType="text" />
 
             <TextView
                 android:id="@+id/recipeType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
                 android:text="@string/recipe_type"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/recipeTypeInput"
@@ -61,39 +61,44 @@
                 android:id="@+id/recipeIngredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/recipe_ingredients"
                 android:layout_marginTop="3dp"
-                android:textStyle="bold"/>
+                android:fontFamily="@font/nunito"
+                android:text="@string/recipe_ingredients"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/recipeIngredientsInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textMultiLine"
-                android:hint="@string/hint_ingredients"/>
+                android:fontFamily="@font/nunito"
+                android:hint="@string/hint_ingredients"
+                android:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/recipeMethod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
                 android:text="@string/recipe_method"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/recipeMethodInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textMultiLine"
-                android:hint="@string/hint_method"/>
+                android:fontFamily="@font/nunito"
+                android:hint="@string/hint_method"
+                android:inputType="textMultiLine" />
 
             <Button
                 android:id="@+id/saveButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/save"
-                android:layout_marginBottom="15dp"/>
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/save" />
 
             <View
                 android:layout_width="match_parent"
@@ -105,39 +110,44 @@
                 android:id="@+id/recipeTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/view_recipes_title"
-                android:gravity="center_horizontal"
                 android:layout_marginTop="15dp"
+                android:fontFamily="@font/nunito"
+                android:gravity="center_horizontal"
+                android:text="@string/view_recipes_title"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/recipeSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/view_recipes"
+                android:fontFamily="@font/nunito"
                 android:gravity="center_horizontal"
-                android:textSize="10sp"/>
+                android:text="@string/view_recipes"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/starterButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
                 android:text="@string/starter" />
+
             <Button
                 android:id="@+id/mainButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
                 android:text="@string/main" />
+
             <Button
                 android:id="@+id/dessertButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
                 android:text="@string/dessert" />
 
         </LinearLayout>
-    </android.support.constraint.ConstraintLayout>
-
-
 
     <android.support.design.widget.NavigationView
         android:id="@+id/recipednav"

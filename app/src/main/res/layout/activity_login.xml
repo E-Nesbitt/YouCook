@@ -25,8 +25,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/sign_in_text"
-            android:layout_margin="3dp" />
+            android:layout_margin="3dp"
+            android:fontFamily="@font/nunito_extralight"
+            android:text="@string/sign_in_text" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/googleSignInButton"
@@ -39,31 +40,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:fontFamily="@font/nunito_extralight"
             android:hint="@string/email_hint"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/passwordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:fontFamily="@font/nunito_extralight"
             android:hint="@string/password_hint"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/signInButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="@string/sign_in"/>
+            android:fontFamily="@font/nunito_bold"
+            android:text="@string/sign_in" />
 
         <TextView
+            android:id="@+id/alreadyRegistered"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:text="@string/not_registered"
+            android:fontFamily="@font/nunito_extralight"
             android:gravity="center"
-            android:id="@+id/alreadyRegistered"/>
+            android:text="@string/not_registered" />
 
     </LinearLayout>
 

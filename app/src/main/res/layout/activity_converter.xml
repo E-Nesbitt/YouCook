@@ -23,27 +23,30 @@
                 android:id="@+id/inputTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/converter_input"
+                android:layout_gravity="start"
                 android:layout_margin="3dp"
-                android:layout_gravity="start"/>
+                android:fontFamily="@font/nunito"
+                android:text="@string/converter_input" />
 
             <EditText
                 android:id="@+id/conversionInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
                 android:layout_gravity="start"
-                android:minEms="5"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/nunito"
+                android:inputType="numberDecimal"
                 android:maxEms="10"
-                android:layout_marginRight="10dp"/>
+                android:minEms="5" />
 
             <TextView
                 android:id="@+id/fromTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/converter_from"
+                android:layout_gravity="end"
                 android:layout_marginRight="2dp"
-                android:layout_gravity="end"/>
+                android:fontFamily="@font/nunito"
+                android:text="@string/converter_from" />
 
             <Spinner
                 android:id="@+id/conversionInputType"
@@ -70,6 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
+                android:fontFamily="@font/nunito"
                 android:paddingTop="20dp"
                 android:text="@string/converter_to" />
 
@@ -86,6 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:fontFamily="@font/nunito_bold"
                 android:text="@string/converter" />
 
             <TextView
@@ -93,6 +98,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
+                android:fontFamily="@font/nunito"
                 android:paddingTop="20dp"
                 android:text="@string/converter_output"
                 android:textSize="20sp" />
@@ -111,13 +117,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:fontFamily="@font/nunito_bold"
                 android:text="@string/reset" />
-
-            <ListView
-                android:id="@+id/listtest"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </ListView>
 
         </LinearLayout>
 

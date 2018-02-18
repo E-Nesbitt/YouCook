@@ -15,40 +15,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="30sp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/nunito_bold"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/ingredients_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:text="@string/ingredients"/>
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/ingredients"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/list_ingredients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/nunito" />
 
     <TextView
         android:id="@+id/method_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:text="@string/method"/>
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/method"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/list_method"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/nunito" />
 
     <Button
         android:id="@+id/delete_recipe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/delete"/>
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/delete" />
 
 </LinearLayout>

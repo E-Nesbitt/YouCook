@@ -48,12 +48,14 @@
                         android:background="@drawable/menucirclebgcolour1"
                         android:contentDescription="@string/search_menu"
                         android:src="@drawable/ic_search_black_24dp"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:textStyle="bold"
-                        android:text="@string/search_menu"/>
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="@string/search_menu"
+                        android:textStyle="bold" />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -89,12 +91,14 @@
                         android:background="@drawable/menucirclebgcolour2"
                         android:contentDescription="@string/shopping_list_menu"
                         android:src="@drawable/ic_list_black_24dp"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:textStyle="bold"
-                        android:text="@string/shopping_list_menu"/>
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="@string/shopping_list_menu"
+                        android:textStyle="bold" />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -137,12 +141,14 @@
                         android:background="@drawable/menucirclebgcolour4"
                         android:contentDescription="@string/recipe_menu"
                         android:src="@drawable/ic_book_black_24dp"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:textStyle="bold"
-                        android:text="@string/recipe_menu"/>
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="@string/recipe_menu"
+                        android:textStyle="bold" />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -178,12 +184,14 @@
                         android:background="@drawable/menucirclebgcolour3"
                         android:contentDescription="@string/timer_menu"
                         android:src="@drawable/ic_timer_black_24dp"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:textStyle="bold"
-                        android:text="@string/timer_menu"/>
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="@string/timer_menu"
+                        android:textStyle="bold" />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -227,12 +235,14 @@
                         android:background="@drawable/menucirclebgcolour5"
                         android:contentDescription="@string/converter_menu"
                         android:src="@drawable/ic_compare_arrows_black_24dp"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:textStyle="bold"
-                        android:text="@string/converter_menu"/>
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="@string/converter_menu"
+                        android:textStyle="bold" />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"

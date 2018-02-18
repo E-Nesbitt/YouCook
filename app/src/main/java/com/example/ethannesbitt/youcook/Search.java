@@ -20,6 +20,7 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
 
     private FirebaseAuth mAuth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

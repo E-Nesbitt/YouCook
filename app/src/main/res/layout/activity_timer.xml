@@ -16,20 +16,22 @@
             android:id="@+id/timecount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="80sp"
-            android:textColor="@color/darkgrey"
-            android:text="@string/time"
+            android:layout_margin="100dp"
+            android:fontFamily="@font/nunito"
             android:gravity="center"
-            android:layout_margin="100dp"/>
+            android:text="@string/time"
+            android:textColor="@color/darkgrey"
+            android:textSize="80sp" />
 
         <ToggleButton
             android:id="@+id/startstop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textOff="@string/time_start"
-            android:textOn="@string/time_stop"
             android:layout_below="@+id/timecount"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/nunito_bold"
+            android:textOff="@string/time_start"
+            android:textOn="@string/time_stop" />
 
         <Button
             android:id="@+id/userinputbutton"
@@ -37,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/startstop"
             android:layout_centerHorizontal="true"
+            android:fontFamily="@font/nunito_bold"
             android:text="@string/time_input_button" />
 
     </RelativeLayout>
