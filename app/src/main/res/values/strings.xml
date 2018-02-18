@@ -44,9 +44,9 @@
     <string name="recipe_menu_desc">Create and Store your own recipes for later</string>
     <string name="recipe_add">Add Recipe</string>
     <string name="recipe_name">Recipe Name</string>
-    <string name="recipe_type">Recipe Type</string>
-    <string name="recipe_ingredients">Recipe Ingredients</string>
-    <string name="recipe_method">Recipe Method</string>
+    <string name="recipe_type">Course</string>
+    <string name="recipe_ingredients">Ingredients</string>
+    <string name="recipe_method">Method</string>
     <string name="save">Save</string>
     <string name="view_recipes_title">View Your Recipes</string>
     <string name="view_recipes">Click on the type of Recipes you would like to view</string>
@@ -57,6 +57,11 @@
     <string name="method">Method</string>
     <string name="delete">Delete Recipe</string>
     <string name="new_recipe">New Recipe</string>
+    <string name="prep_time">Preparation Time</string>
+    <string name="prep_input">Enter Preparation Time</string>
+    <string name="cooking_time">Cooking Time</string>
+    <string name="cooking_time_input">Enter Cooking Time</string>
+
 
     <!-- Spinner Array for Course Type -->
     <array name="course_type">

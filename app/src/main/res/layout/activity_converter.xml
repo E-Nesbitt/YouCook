@@ -91,7 +91,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/nunito_bold"
-                android:text="@string/converter" />
+                android:text="@string/converter"
+                android:background="@drawable/button_layout"
+                android:textColor="@color/backgroundcolour"
+                android:layout_marginBottom="10dp"/>
 
             <TextView
                 android:id="@+id/outputTitle"
@@ -118,7 +121,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/nunito_bold"
-                android:text="@string/reset" />
+                android:text="@string/reset"
+                android:background="@drawable/button_layout"
+                android:textColor="@color/backgroundcolour" />
 
         </LinearLayout>
 

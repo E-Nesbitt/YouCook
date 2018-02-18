@@ -31,7 +31,10 @@
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/nunito_bold"
             android:textOff="@string/time_start"
-            android:textOn="@string/time_stop" />
+            android:textOn="@string/time_stop"
+            android:background="@drawable/button_layout"
+            android:textColor="@color/backgroundcolour"
+            android:layout_marginBottom="10dp"/>
 
         <Button
             android:id="@+id/userinputbutton"
@@ -39,8 +42,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/startstop"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_layout"
             android:fontFamily="@font/nunito_bold"
-            android:text="@string/time_input_button" />
+            android:padding="12dp"
+            android:text="@string/time_input_button"
+            android:textColor="@color/backgroundcolour" />
 
     </RelativeLayout>
 
