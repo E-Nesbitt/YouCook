@@ -42,7 +42,7 @@
     <!-- Recipe Activity Strings -->
     <string name="recipe_menu">Recipes</string>
     <string name="recipe_menu_desc">Create and Store your own recipes for later</string>
-    <string name="recipe_add">Add a Recipe</string>
+    <string name="recipe_add">Add Recipe</string>
     <string name="recipe_name">Recipe Name</string>
     <string name="recipe_type">Recipe Type</string>
     <string name="recipe_ingredients">Recipe Ingredients</string>
@@ -56,6 +56,7 @@
     <string name="hint_method">Enter Method</string>
     <string name="method">Method</string>
     <string name="delete">Delete Recipe</string>
+    <string name="new_recipe">New Recipe</string>
 
     <!-- Spinner Array for Course Type -->
     <array name="course_type">

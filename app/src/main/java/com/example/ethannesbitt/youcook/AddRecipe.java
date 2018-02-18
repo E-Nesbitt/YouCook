@@ -20,78 +20,94 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-
-public class Recipes extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+public class AddRecipe extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
 
     private FirebaseAuth mAuth;
 
-    private Button startersButton, mainsButton, dessertsButton, newRecipe;
+    private Button save;
+    private EditText rName, rIngredients, rMethod;
+    private Spinner rType;
 
+    private DatabaseReference recipeDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipes);
+        setContentView(R.layout.activity_add_recipe);
+
+        //Initialise recipe database
+        recipeDatabase = FirebaseDatabase.getInstance().getReference("recipes");
 
         //getting user data
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
         //setting up drawer menu
-        drawerMenu = findViewById(R.id.recipes);
+        drawerMenu = findViewById(R.id.add_recipes);
         menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
         drawerMenu.addDrawerListener(menuToggle);
         menuToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView = findViewById(R.id.recipednav);
+        NavigationView navigationView = findViewById(R.id.addrecipednav);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //recipes buttons and their onClicks to redirect to the corresponding activities
-        newRecipe = findViewById(R.id.addRecipeButton);
-        startersButton = findViewById(R.id.starterButton);
-        mainsButton = findViewById(R.id.mainButton);
-        dessertsButton = findViewById(R.id.dessertButton);
-
-        newRecipe.setOnClickListener(new View.OnClickListener()
+        //setting up recipe inputs
+        rName = findViewById(R.id.recipeNameInput);
+        rIngredients = findViewById(R.id.recipeIngredientsInput);
+        rMethod = findViewById(R.id.recipeMethodInput);
+        rType = findViewById(R.id.recipeTypeInput);
+        save = findViewById(R.id.saveButton);
+        save.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                startActivity(new Intent (Recipes.this, AddRecipe.class));
+                saveRecipe();
             }
         });
+    }
 
-        startersButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                startActivity(new Intent(Recipes.this, Starters.class));
-            }
-        });
+    //method to save the recipe
+    private void saveRecipe()
+    {
+        //takes inputs from user and sets them to strings
+        String name = rName.getText().toString().trim();
+        String type = rType.getSelectedItem().toString();
+        String ingredients = rIngredients.getText().toString().trim();
+        String method = rMethod.getText().toString().trim();
 
-        mainsButton.setOnClickListener(new View.OnClickListener()
+        //error handling to check all the inputs have data filled in
+        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(ingredients) && !TextUtils.isEmpty(method))
         {
-            @Override
-            public void onClick(View view)
-            {
-                startActivity(new Intent(Recipes.this, Mains.class));
-            }
-        });
+            //save the input data to the Firebase database, setting a new Unique id each time a save is actioned
+            String id = recipeDatabase.push().getKey();
 
-        dessertsButton.setOnClickListener(new View.OnClickListener()
+            Recipe recipe = new Recipe(id, name, type, ingredients, method);
+
+            recipeDatabase.child(id).setValue(recipe);
+
+            Toast.makeText(AddRecipe.this, "Recipe "+ name + " saved!", Toast.LENGTH_LONG).show();
+
+            reset();
+        }
+        else
         {
-            @Override
-            public void onClick(View view)
-            {
-                startActivity(new Intent(Recipes.this, Desserts.class));
-            }
-        });
+            //Error toast message to let user know more data needs entered before save can be completed
+            Toast.makeText(AddRecipe.this, "Ensure all details are entered and try again!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //empty the input text areas so that the next recipe is ready to be entered i.e. reset activity to default
+    private void reset()
+    {
+        rName.setText("");
+        rType.setSelection(0);
+        rIngredients.setText("");
+        rMethod.setText("");
     }
 
     @Override

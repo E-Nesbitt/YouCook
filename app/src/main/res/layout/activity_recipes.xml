@@ -23,82 +23,18 @@
                 android:gravity="center_horizontal"
                 android:text="@string/recipe_add"
                 android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/recipeName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:text="@string/recipe_name"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/recipeNameInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:hint="@string/hint_name"
-                android:inputType="text" />
-
-            <TextView
-                android:id="@+id/recipeType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:text="@string/recipe_type"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/recipeTypeInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:entries="@array/course_type">
-            </Spinner>
-
-            <TextView
-                android:id="@+id/recipeIngredients"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:fontFamily="@font/nunito"
-                android:text="@string/recipe_ingredients"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/recipeIngredientsInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:fontFamily="@font/nunito"
-                android:hint="@string/hint_ingredients"
-                android:inputType="textMultiLine" />
-
-            <TextView
-                android:id="@+id/recipeMethod"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:text="@string/recipe_method"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/recipeMethodInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:fontFamily="@font/nunito"
-                android:hint="@string/hint_method"
-                android:inputType="textMultiLine" />
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
 
             <Button
-                android:id="@+id/saveButton"
+                android:id="@+id/addRecipeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/nunito_bold"
-                android:text="@string/save" />
+                android:text="@string/new_recipe"
+                android:background="@drawable/button_layout"
+                android:textColor="@color/backgroundcolour"/>
 
             <View
                 android:layout_width="match_parent"
@@ -124,28 +60,38 @@
                 android:fontFamily="@font/nunito"
                 android:gravity="center_horizontal"
                 android:text="@string/view_recipes"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:layout_marginBottom="10dp"/>
 
             <Button
                 android:id="@+id/starterButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito_bold"
-                android:text="@string/starter" />
+                android:text="@string/starter"
+                android:background="@drawable/button_layout"
+                android:textColor="@color/backgroundcolour"
+                android:layout_marginBottom="10dp"/>
 
             <Button
                 android:id="@+id/mainButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito_bold"
-                android:text="@string/main" />
+                android:text="@string/main"
+                android:background="@drawable/button_layout"
+                android:textColor="@color/backgroundcolour"
+                android:layout_marginBottom="10dp"/>
 
             <Button
                 android:id="@+id/dessertButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito_bold"
-                android:text="@string/dessert" />
+                android:text="@string/dessert"
+                android:background="@drawable/button_layout"
+                android:textColor="@color/backgroundcolour"
+                android:layout_marginBottom="10dp"/>
 
         </LinearLayout>
 

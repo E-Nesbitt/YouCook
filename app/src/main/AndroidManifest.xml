@@ -52,6 +52,9 @@
             android:name=".Recipes"
             android:label="@string/recipe_menu" />
         <!-- Recipe SubActivities -->
+        <activity android:name=".AddRecipe"
+            android:label="@string/recipe_add"/>
+
         <activity
             android:name=".Mains"
             android:label="@string/main" />
@@ -63,7 +66,7 @@
             android:label="@string/dessert" />
         <activity
             android:name=".RecipePage"
-            android:label="@string/recipe_menu"/>
+            android:label="@string/recipe_menu" />
         <!-- Timer Activity -->
         <activity
             android:name=".Timer"
@@ -71,11 +74,12 @@
         <!-- Converter Activity -->
         <activity
             android:name=".Converter"
-            android:label="@string/converter_menu" >
-        </activity>
+            android:label="@string/converter_menu"></activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

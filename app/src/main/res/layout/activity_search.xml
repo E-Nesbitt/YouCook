@@ -31,35 +31,41 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito"
             android:text="@string/ingredients_input"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"/>
 
-        <SearchView
+        <!--<SearchView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:queryHint="@string/search_hint_ingredients">
-        </SearchView>
+            android:queryHint="@string/search_hint_ingredients"
+            android:background="@drawable/search_layout">
+        </SearchView>-->
 
-        <!--<EditText
+        <EditText
             android:id="@+id/recipeNameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/search_layout"
             android:hint="@string/search_hint_ingredients"
-            android:layout_marginBottom="20dp"/>-->
+            android:inputType="text"
+            android:padding="12dp" />
 
         <Button
             android:id="@+id/search_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:fontFamily="@font/nunito"
-            android:text="@string/search_menu" />
+            android:background="@drawable/button_layout"
+            android:fontFamily="@font/nunito_bold"
+            android:text="@string/search_menu"
+            android:textColor="@color/backgroundcolour" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_gravity="center"
-            android:background="@color/colorPrimaryDark"/>
+            android:background="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/help_title"
