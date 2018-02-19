@@ -14,10 +14,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Search extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-
+    //declaring variables for drawer navigation
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
 
+    //declaring variables for user
     private FirebaseAuth mAuth;
 
 
@@ -27,6 +28,7 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        //initialising drawer navigation
         drawerMenu = findViewById(R.id.search);
         menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
         drawerMenu.addDrawerListener(menuToggle);
@@ -35,7 +37,7 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
         NavigationView navigationView = findViewById(R.id.searchdnav);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //getting user data
+        //getting user data (initialising user)
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
     }

@@ -2,13 +2,9 @@ package com.example.ethannesbitt.youcook;
 
 public class Recipe
 {
-    private String recipeId;
-    private String recipeName;
-    private String recipePrepTime;
-    private String recipeCookTime;
+    private String recipeId, recipeName, recipePrepTime, recipeCookTime, recipeIngredients, recipeMethod;
     String recipeType;
-    private String recipeIngredients;
-    private String recipeMethod;
+
 
     public Recipe()
     {

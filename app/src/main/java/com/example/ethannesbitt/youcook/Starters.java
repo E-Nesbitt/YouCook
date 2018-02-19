@@ -31,10 +31,10 @@ public class Starters extends AppCompatActivity implements NavigationView.OnNavi
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
 
-    //declaring variables for  user
+    //declaring variables for user
     private FirebaseAuth mAuth;
 
-    //declaring variables for  database
+    //declaring variables for database
     private DatabaseReference databaseReference;
     private ListView listRecipes;
     private List<Recipe> recipeList;
@@ -51,7 +51,7 @@ public class Starters extends AppCompatActivity implements NavigationView.OnNavi
         listRecipes = findViewById(R.id.starterslist);
         recipeList = new ArrayList<>();
 
-        //initialising user
+        //getting user data (initialising user)
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 

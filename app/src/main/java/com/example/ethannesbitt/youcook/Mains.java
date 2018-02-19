@@ -34,7 +34,7 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
     //declaring variables for  user
     private FirebaseAuth mAuth;
 
-    //initialising database
+    //declaring variables for database
     private DatabaseReference databaseReference;
     private ListView listRecipes;
     private List<Recipe> recipeList;
@@ -47,12 +47,12 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
         setContentView(R.layout.activity_mains);
 
 
-        //testing db
+        //initialising database
         databaseReference = FirebaseDatabase.getInstance().getReference("recipes");
         listRecipes = findViewById(R.id.mainsList);
         recipeList = new ArrayList<>();
 
-        //initialising user
+        //getting user data (initialising user)
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -181,15 +181,6 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
                 break;
         }
         return false;
-    }
-
-    private void deleteRecipe(String recipeId)
-    {
-        DatabaseReference recipeDB = FirebaseDatabase.getInstance().getReference("recipes").child(recipeId);
-
-        recipeDB.removeValue();
-
-        Toast.makeText(Mains.this, "Recipe Deleted Successfully!", Toast.LENGTH_LONG).show();
     }
 
     private void signOut()

@@ -47,7 +47,7 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
-        //getting user data
+        //getting user data (initialising user)
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 

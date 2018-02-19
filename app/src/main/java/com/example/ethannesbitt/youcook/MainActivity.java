@@ -60,9 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NavigationView navigationView = findViewById(R.id.mainmenudnav);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //setting mAuth Variable to current instance
+        //getting user data (initialising user)
         mAuth = FirebaseAuth.getInstance();
-
         FirebaseUser user = mAuth.getCurrentUser();
 
 

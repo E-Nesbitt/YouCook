@@ -42,7 +42,7 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
         //Initialise recipe database
         recipeDatabase = FirebaseDatabase.getInstance().getReference("recipes");
 
-        //getting user data
+        //getting user data (initialising user)
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
