@@ -8,9 +8,20 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Search extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -21,6 +32,11 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
     //declaring variables for user
     private FirebaseAuth mAuth;
 
+    //declaring search feature variables
+    private Button searchButton;
+    private EditText searchInput;
+
+    String userInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,6 +56,56 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
         //getting user data (initialising user)
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+
+        //initialising search feature
+        searchInput = findViewById(R.id.search_input);
+        searchButton = findViewById(R.id.search_button);
+
+        //edamam api app_id=c4896013 --- app_key=8bacbcab9d13e1f47ae0a8febb727655
+        //test api https://api.edamam.com/search?q=turkey,onions&app_id=c4896013&app_key=8bacbcab9d13e1f47ae0a8febb727655
+
+        //food to fork  api key = 51bc38640178924d013b85854b8d7a52
+        //http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&q=chicken
+
+        searchButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                userInput = searchInput.getText().toString();
+            }
+        });
+
+        HttpURLConnection apiConnection;
+        BufferedReader reader;
+        try
+        {
+            URL url = new URL("http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&q=" + userInput + "");
+            apiConnection = (HttpURLConnection) url.openConnection();
+            apiConnection.connect();
+
+            InputStream stream = apiConnection.getInputStream();
+
+            reader = new BufferedReader(new InputStreamReader(stream));
+            StringBuffer buffer = new StringBuffer();
+
+
+            String line = "";
+            while((line = reader.readLine()) != null)
+            {
+                buffer.append((line));
+
+            }
+
+        } catch (MalformedURLException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
