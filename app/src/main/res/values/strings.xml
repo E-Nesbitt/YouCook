@@ -112,5 +112,6 @@
 
     <!-- Image Descriptions -->
     <string name="logo">YouCook Logo Image</string>
+    <string name="recipe_image">Recipe Image</string>
 
 </resources>

@@ -1,6 +1,8 @@
 package com.example.ethannesbitt.youcook;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -26,7 +28,6 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
     //declaring search feature variables
     private Button searchButton;
     private EditText searchInput;
-
     private String userInput;
 
     @Override

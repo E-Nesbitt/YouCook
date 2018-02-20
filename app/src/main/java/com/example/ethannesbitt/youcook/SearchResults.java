@@ -1,10 +1,24 @@
 package com.example.ethannesbitt.youcook;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.ethannesbitt.youcook.models.RecipeModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,11 +31,15 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SearchResults extends AppCompatActivity
 {
+    //declaring variables needed for search results
     private String userInput;
-    private TextView searchDisplay;
+    private ProgressDialog searchDialog;
+    private ListView searchResults;
 
 
     @Override
@@ -30,7 +48,23 @@ public class SearchResults extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
 
-        searchDisplay = findViewById(R.id.search_display);
+        //initialising searching progress dialog to show user it is searching for recipes
+        searchDialog = new ProgressDialog(this);
+        searchDialog.setMessage("Searching...");
+        searchDialog.show();
+
+        //handler to show the progress dialog for 3000 milliseconds and then dismiss it
+        Handler delayHandler = new Handler();
+        delayHandler.postDelayed(new Runnable()
+        {
+            public void run()
+            {
+                searchDialog.dismiss();
+            }
+        }, 2000);
+
+        //initialising list view for the results
+        searchResults = findViewById(R.id.search_results);
 
         Bundle searchResultsBundle = getIntent().getExtras();
 
@@ -46,57 +80,60 @@ public class SearchResults extends AppCompatActivity
             Toast.makeText(this, "SEARCH ERROR!", Toast.LENGTH_SHORT).show();
         }
 
+        //running the JSONSearch using the food to fork api with users input placed into search query
         new SearchResults.JSONSearch().execute("http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&q=" + userInput + "");
-
-
     }
 
-    public class JSONSearch extends AsyncTask<String, String, String> {
+    public class JSONSearch extends AsyncTask<String, String, List<RecipeModel>> {
 
         @Override
-        protected String doInBackground(String... urls) {
+        protected List<RecipeModel> doInBackground(String... urls) {
 
+            //initialising Url connection and BufferReader to be null, necessary for method to run successfully
             HttpURLConnection apiConnection = null;
-            BufferedReader reader = null;
+            BufferedReader dataReader = null;
             try {
-                URL url = new URL(urls[0]);
-                apiConnection = (HttpURLConnection) url.openConnection();
+                URL apiUrl = new URL(urls[0]);
+                apiConnection = (HttpURLConnection) apiUrl.openConnection();
                 apiConnection.connect();
 
-                InputStream stream = apiConnection.getInputStream();
+                InputStream jsonStream = apiConnection.getInputStream();
 
-                reader = new BufferedReader(new InputStreamReader(stream));
-                StringBuffer buffer = new StringBuffer();
+                dataReader = new BufferedReader(new InputStreamReader(jsonStream));
+                StringBuilder builder = new StringBuilder();
 
 
                 String line = "";
-                while ((line = reader.readLine()) != null) {
-                    buffer.append((line));
-
+                while ((line = dataReader.readLine()) != null)
+                {
+                    builder.append((line));
                 }
 
                 //complete json received here at this stage
-                String returnedJson = buffer.toString();
+                String returnedJson = builder.toString();
 
-                JSONObject parent = new JSONObject(returnedJson);
-                JSONArray pArray = parent.getJSONArray("recipes");
+                JSONObject count = new JSONObject(returnedJson);
+                JSONArray recipes = count.getJSONArray("recipes");
 
-                StringBuffer allDataBuffer = new StringBuffer();
-//                for (int i = 0; i < pArray.length(); i++)
-                for (int i = 0; i < 5; i++)
+                List<RecipeModel> recipeModelList = new ArrayList<>();
+
+               for (int i = 0; i < recipes.length(); i++)
                 {
-                    JSONObject finalObj = pArray.getJSONObject(i);
+                    JSONObject recipeObject = recipes.getJSONObject(i);
+                    RecipeModel recipeModel = new RecipeModel();
 
+                    //setting the recipes variables from the json object
+                    recipeModel.setRecipeId(recipeObject.getString("recipe_id"));
+                    recipeModel.setRecipeTitle(recipeObject.getString("title"));
+                    recipeModel.setSourceUrl(recipeObject.getString("source_url"));
+                    recipeModel.setPublisher(recipeObject.getString("publisher_url"));
+                    recipeModel.setImageUrl(recipeObject.getString("image_url"));
 
-                    String recipeTitle = finalObj.getString("title");
-                    String recipeLink = finalObj.getString("source_url");
-
-                    allDataBuffer.append(recipeTitle + " - " + recipeLink + "\n");
+                    //adding the json recipe object to the custom list
+                    recipeModelList.add(recipeModel);
                 }
-                JSONObject finalObj = pArray.getJSONObject(0);
 
-                return allDataBuffer.toString();
-
+                return recipeModelList;
             }
             catch (MalformedURLException e)
             {
@@ -118,9 +155,9 @@ public class SearchResults extends AppCompatActivity
                 }
                 try
                 {
-                    if (reader != null)
+                    if (dataReader != null)
                     {
-                        reader.close();
+                        dataReader.close();
                     }
                 }
                 catch (IOException e)
@@ -132,9 +169,76 @@ public class SearchResults extends AppCompatActivity
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(final List<RecipeModel> result)
+        {
             super.onPostExecute(result);
-            searchDisplay.setText(result);
+            RecipeAdapter recipeAdapter = new RecipeAdapter(getApplicationContext(), R.layout.search_list_row, result);
+            searchResults.setAdapter(recipeAdapter);
+            //setting the json recipe data received from search to the custom list
+
+            //code for setting up on click for list items
+//            searchResults.setOnItemClickListener(new AdapterView.OnItemClickListener()
+//            {
+//                @Override
+//                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+//                {
+//                    RecipeModel recipeModel = result.get(i);
+//                    Intent recipePage = new Intent(this, newclass.class);
+//                    recipePage.putExtra(allextrasputacrosshere);
+//                    startActivity(recipePage);
+//
+//                }
+//            });
         }
     }
+
+    public class RecipeAdapter extends ArrayAdapter
+    {
+        private LayoutInflater lInflater;
+        private int resource;
+        private List<RecipeModel> recipeModelList;
+
+        public RecipeAdapter(@NonNull Context context, int resource, @NonNull List<RecipeModel> objects)
+        {
+            super(context, resource, objects);
+            recipeModelList = objects;
+            this.resource = resource;
+            lInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
+        {
+            if(convertView == null)
+            {
+                convertView = lInflater.inflate(resource, null);
+            }
+
+            TextView recipeId;
+            TextView publisher;
+            TextView recipeTitle;
+            TextView sourceUrl;
+            ImageView imageUrl;
+
+            recipeId = convertView.findViewById(R.id.result_id);
+            publisher = convertView.findViewById(R.id.result_publisher);
+            recipeTitle = convertView.findViewById(R.id.result_title);
+            sourceUrl = convertView.findViewById(R.id.result_source);
+            imageUrl = convertView.findViewById(R.id.result_image);
+
+            String test;
+            test = recipeModelList.get(position).getRecipeTitle().toString();
+            Log.d("test", test);
+
+            recipeId.setText("Recipe ID: " + recipeModelList.get(position).getRecipeId());
+            publisher.setText("Publisher: " + recipeModelList.get(position).getPublisher());
+            recipeTitle.setText(recipeModelList.get(position).getRecipeTitle());
+            sourceUrl.setText("Source: " + recipeModelList.get(position).getSourceUrl());
+
+            return convertView;
+        }
+    }
+
 }
