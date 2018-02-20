@@ -15,16 +15,7 @@ import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-public class Search extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
-{
+public class Search extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //declaring variables for drawer navigation
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
@@ -36,11 +27,10 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
     private Button searchButton;
     private EditText searchInput;
 
-    String userInput;
+    private String userInput;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
@@ -73,44 +63,17 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
             public void onClick(View view)
             {
                 userInput = searchInput.getText().toString();
+
+                Intent searchResultsActivity = new Intent(Search.this, SearchResults.class);
+                searchResultsActivity.putExtra("User Input", userInput);
+
+                startActivity(searchResultsActivity);
             }
         });
-
-        HttpURLConnection apiConnection;
-        BufferedReader reader;
-        try
-        {
-            URL url = new URL("http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&q=" + userInput + "");
-            apiConnection = (HttpURLConnection) url.openConnection();
-            apiConnection.connect();
-
-            InputStream stream = apiConnection.getInputStream();
-
-            reader = new BufferedReader(new InputStreamReader(stream));
-            StringBuffer buffer = new StringBuffer();
-
-
-            String line = "";
-            while((line = reader.readLine()) != null)
-            {
-                buffer.append((line));
-
-            }
-
-        } catch (MalformedURLException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         if (menuToggle.onOptionsItemSelected(item)) {
             return true;
         }
@@ -119,43 +82,47 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item)
-    {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent mOptions;
 
-        switch (item.getItemId())
-        {
-            case R.id.home : mOptions = new Intent(this, MainActivity.class);
+        switch (item.getItemId()) {
+            case R.id.home:
+                mOptions = new Intent(this, MainActivity.class);
                 finish();
                 startActivity(mOptions);
                 break;
 
-            case R.id.search : mOptions = new Intent(this, Search.class);
+            case R.id.search:
+                mOptions = new Intent(this, Search.class);
                 finish();
                 startActivity(mOptions);
                 break;
 
-            case R.id.shoppinglist : mOptions = new Intent(this, ShoppingList.class);
+            case R.id.shoppinglist:
+                mOptions = new Intent(this, ShoppingList.class);
                 finish();
                 startActivity(mOptions);
                 break;
 
-            case R.id.recipes : mOptions = new Intent(this, Recipes.class);
+            case R.id.recipes:
+                mOptions = new Intent(this, Recipes.class);
                 finish();
                 startActivity(mOptions);
                 break;
 
-            case R.id.timer : mOptions = new Intent(this, Timer.class);
+            case R.id.timer:
+                mOptions = new Intent(this, Timer.class);
                 finish();
                 startActivity(mOptions);
                 break;
 
-            case R.id.converter : mOptions = new Intent(this, Converter.class);
+            case R.id.converter:
+                mOptions = new Intent(this, Converter.class);
                 finish();
                 startActivity(mOptions);
                 break;
 
-            case R.id.signout :
+            case R.id.signout:
                 signOut();
                 break;
 
@@ -165,8 +132,7 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
         return false;
     }
 
-    private void signOut()
-    {
+    private void signOut() {
         mAuth.signOut();
     }
 }

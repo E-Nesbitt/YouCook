@@ -47,14 +47,18 @@
         <activity
             android:name=".Search"
             android:label="@string/search_menu" />
+        <!-- Sub-Activity of Search -->
+        <activity
+            android:name=".SearchResults"
+            android:label="@string/recipe_menu"/>
         <!-- Recipes Activity -->
         <activity
             android:name=".Recipes"
             android:label="@string/recipe_menu" />
-        <!-- Recipe SubActivities -->
-        <activity android:name=".AddRecipe"
-            android:label="@string/recipe_add"/>
-
+        <!-- Sub-Activities of Recipe -->
+        <activity
+            android:name=".AddRecipe"
+            android:label="@string/recipe_add" />
         <activity
             android:name=".Mains"
             android:label="@string/main" />
@@ -74,13 +78,11 @@
         <!-- Converter Activity -->
         <activity
             android:name=".Converter"
-            android:label="@string/converter_menu">
-        </activity>
+            android:label="@string/converter_menu"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
-
+            android:resource="@array/preloaded_fonts"/>
     </application>
 
 </manifest>
