@@ -3,9 +3,14 @@ package com.example.ethannesbitt.youcook;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Icon;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.NotificationCompat;
@@ -185,7 +190,7 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         if(checked)
         {
             //if user has input a time take user input and start the running of the task
-            if(time > 0)
+            if(time >= 0)
             {
                 //timer task to reduce time entered by 1 second each second and stop once it reaches 0
                 final Runnable timerTask = new Runnable()
@@ -194,10 +199,19 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                     public void run()
                     {
                         time = time - 1000;
-                        Long diplayTimeValue = time / 60 / 1000 ;
-                        String displayTime = Long.valueOf(diplayTimeValue).toString();
+                        String displayTime = "";
+                        if(time > 60000)
+                        {
+                            Long diplayTimeValue = time / 60 / 1000 ;
+                            displayTime = Long.valueOf(diplayTimeValue).toString();
+                        }
+                        else
+                        {
+                            Long diplayTimeValue = time / 1000;
+                            displayTime = Long.valueOf(diplayTimeValue).toString();
+                        }
 
-                        if(time > 0)
+                        if(time >= 0)
                         {
                             Log.d("Timerminus", "run was called");
                             countDownTime.setText(Long.valueOf(displayTime).toString());
@@ -208,14 +222,41 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                             startStopToggle.toggle();
                             countDownTime.setText("0:00");
                             Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
-                            //not my code need to make my own version of this
-                            NotificationCompat.Builder notifications = new NotificationCompat.Builder(Timer.this);
-                            notifications.setContentTitle("Timer Complete!");
-                            notifications.setContentText("The timer has completed, your food is now ready!");
-                            notifications.setSmallIcon(R.mipmap.youcookic_launcher);
-                            notifications.setDefaults(Notification.DEFAULT_ALL);
+
+                            //new notification attempt, my code and working
+                            Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+                            Intent intent = new Intent(Timer.this, Timer.class);
+                            PendingIntent pendingIntent = PendingIntent.getActivity(Timer.this, 0, intent, 0);
+
+                            Notification notification = new Notification.Builder(Timer.this)
+                                    .setSound(sound)
+                                    .setSmallIcon(R.mipmap.youcookic_launcher)
+                                    .setContentTitle("Timer Complete!")
+                                    .setContentText("Timer done, check your food!")
+                                    .addAction(R.mipmap.youcookic_launcher, "Open", pendingIntent)
+                                    .addAction(1, "Stop", pendingIntent).build();
+
                             NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-                            notificationManager.notify(001, notifications.build());
+                            notificationManager.notify(0, notification);
+
+                            // my notification set up that doesnt work
+//                            Notification alarm = new NotificationCompat.Builder(Timer.this)
+//                                    .setContentTitle("Timer Complete!")
+//                                    .setContentText("Timer Completed, go check the food!")
+//                                    .setSmallIcon(R.mipmap.youcookic_launcher)
+//                                    .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000})
+//                                    .setSound(Settings.System.DEFAULT_ALARM_ALERT_URI)
+//                                    .setAutoCancel(true)
+//                                    .build();
+
+                              //not my code need to make my own version of this
+//                            NotificationCompat.Builder notifications = new NotificationCompat.Builder(Timer.this);
+//                            notifications.setContentTitle("Timer Complete!");
+//                            notifications.setContentText("The timer has completed, your food is now ready!");
+//                            notifications.setSmallIcon(R.mipmap.youcookic_launcher);
+//                            notifications.setDefaults(Notification.DEFAULT_ALL);
+//                            NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+//                            notificationManager.notify(001, notifications.build());
                         }
                     }
                 };
@@ -233,7 +274,6 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
             //stop task and revert timer value back to zero
             time = 0;
             countDownTime.setText("0:00");
-            Toast.makeText(getApplicationContext(), "Timer Stopped!", Toast.LENGTH_SHORT).show();
         }
     }
 
