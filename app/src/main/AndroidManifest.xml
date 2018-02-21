@@ -50,6 +50,9 @@
         <!-- Sub-Activity of Search -->
         <activity
             android:name=".SearchResults"
+            android:label="@string/list_recipes" />
+        <activity
+            android:name=".ResultPage"
             android:label="@string/recipe_menu"/>
         <!-- Recipes Activity -->
         <activity
@@ -78,11 +81,11 @@
         <!-- Converter Activity -->
         <activity
             android:name=".Converter"
-            android:label="@string/converter_menu"></activity>
+            android:label="@string/converter_menu" />
 
         <meta-data
             android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts"/>
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

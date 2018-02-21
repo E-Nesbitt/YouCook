@@ -29,32 +29,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp">
 
         <TextView
             android:id="@+id/result_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="20sp"
-            android:text="test"/>
+            android:fontFamily="@font/nunito"
+            android:text="test"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/result_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="test"/>
+            android:fontFamily="@font/nunito"
+            android:text="test" />
 
         <TextView
             android:id="@+id/result_publisher"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="test"/>
+            android:fontFamily="@font/nunito"
+            android:text="test" />
 
-        <TextView
+        <!--<TextView
             android:id="@+id/result_source"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="test"/>
+            android:fontFamily="@font/nunito"
+            android:text="test" />-->
 
     </LinearLayout>
 

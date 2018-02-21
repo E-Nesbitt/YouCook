@@ -32,12 +32,17 @@
     3. Click the \'Search\' button \n \n
     4. Recipes with those ingredients will be retrieved!
     </string>
+    <string name="list_recipes">List of Recipes</string>
 
     <!-- Shopping List Activity Strings -->
     <string name="shopping_list_menu">Shopping List</string>
     <string name="shopping_list_menu_desc">Create a shopping list of ingredients</string>
     <string name="action_add">Add</string>
     <string name="action_clear_all">Clear All Items</string>
+    <string name="recipe_id_text">Recipe ID</string>
+    <string name="recipe_publisher_text">Recipe Publisher</string>
+    <string name="recipe_link_text">Recipe Link, click for the full recipe</string>
+
 
     <!-- Recipe Activity Strings -->
     <string name="recipe_menu">Recipes</string>
@@ -113,5 +118,6 @@
     <!-- Image Descriptions -->
     <string name="logo">YouCook Logo Image</string>
     <string name="recipe_image">Recipe Image</string>
+    <string name="food2fork">Powered by Food2Fork API</string>
 
 </resources>

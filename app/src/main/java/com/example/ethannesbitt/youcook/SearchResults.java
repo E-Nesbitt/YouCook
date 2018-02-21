@@ -2,6 +2,7 @@ package com.example.ethannesbitt.youcook;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ethannesbitt.youcook.models.RecipeModel;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -177,21 +180,36 @@ public class SearchResults extends AppCompatActivity
             //setting the json recipe data received from search to the custom list
 
             //code for setting up on click for list items
-//            searchResults.setOnItemClickListener(new AdapterView.OnItemClickListener()
-//            {
-//                @Override
-//                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
-//                {
-//                    RecipeModel recipeModel = result.get(i);
-//                    Intent recipePage = new Intent(this, newclass.class);
-//                    recipePage.putExtra(allextrasputacrosshere);
-//                    startActivity(recipePage);
-//
-//                }
-//            });
+            searchResults.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+                {
+                    RecipeModel recipeModel = result.get(i);
+                    Intent recipePage = new Intent(SearchResults.this, ResultPage.class);
+
+                    //getting the clicked recipes details and setting them to be strings
+                    String title = recipeModel.getRecipeTitle().toString();
+                    String id = recipeModel.getRecipeId().toString();
+                    String publisher = recipeModel.getPublisher().toString();
+                    String source = recipeModel.getSourceUrl().toString();
+                    String image = recipeModel.getImageUrl().toString();
+
+                    //taking the string data for the recipe and passing it to the next activity using the bundle
+                    recipePage.putExtra("title", title);
+                    recipePage.putExtra("id", id);
+                    recipePage.putExtra("publisher", publisher);
+                    recipePage.putExtra("source", source);
+                    recipePage.putExtra("image", image);
+
+                    //start the activity with all recipe details added
+                    startActivity(recipePage);
+                }
+            });
         }
     }
 
+    //custom list adapter so that returned results can be displayed in a useful and easy to process manner
     public class RecipeAdapter extends ArrayAdapter
     {
         private LayoutInflater lInflater;
@@ -219,23 +237,25 @@ public class SearchResults extends AppCompatActivity
             TextView recipeId;
             TextView publisher;
             TextView recipeTitle;
-            TextView sourceUrl;
+            //TextView sourceUrl;
             ImageView imageUrl;
 
             recipeId = convertView.findViewById(R.id.result_id);
             publisher = convertView.findViewById(R.id.result_publisher);
             recipeTitle = convertView.findViewById(R.id.result_title);
-            sourceUrl = convertView.findViewById(R.id.result_source);
+            //sourceUrl = convertView.findViewById(R.id.result_source);
             imageUrl = convertView.findViewById(R.id.result_image);
+            //get the image url
+            String image;
+            image = recipeModelList.get(position).getImageUrl().toString();
 
-            String test;
-            test = recipeModelList.get(position).getRecipeTitle().toString();
-            Log.d("test", test);
+            //use the picasso library to load the image from its url in the returned json
+            Picasso.with(getContext()).load(image).into(imageUrl);
 
             recipeId.setText("Recipe ID: " + recipeModelList.get(position).getRecipeId());
             publisher.setText("Publisher: " + recipeModelList.get(position).getPublisher());
             recipeTitle.setText(recipeModelList.get(position).getRecipeTitle());
-            sourceUrl.setText("Source: " + recipeModelList.get(position).getSourceUrl());
+            //sourceUrl.setText("Source: " + recipeModelList.get(position).getSourceUrl());
 
             return convertView;
         }
