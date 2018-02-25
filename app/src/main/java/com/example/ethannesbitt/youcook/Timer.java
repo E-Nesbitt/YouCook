@@ -32,6 +32,8 @@ import android.widget.ToggleButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.concurrent.TimeUnit;
+
 public class Timer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, CompoundButton.OnCheckedChangeListener
 {
 
@@ -108,8 +110,7 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                         {
                             //setting minutes entered and converting it to milliseconds
                             time = time * 60 * 1000;
-                            countDownTime.setText(Long.valueOf(time / 1000 / 60).toString());
-                            Toast.makeText(getApplicationContext(), "Value Set to " + time / 60 / 1000 + " minutes", Toast.LENGTH_SHORT).show();
+                            countDownTime.setText(Long.valueOf(time / 1000 / 60).toString() + ":00");
                         }
                     }
                 });
@@ -191,7 +192,7 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         if(checked)
         {
             //if user has input a time take user input and start the running of the task
-            if(time >= 0)
+            if(time > 0)
             {
                 //timer task to reduce time entered by 1 second each second and stop once it reaches 0
                 final Runnable timerTask = new Runnable()
@@ -200,22 +201,22 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                     public void run()
                     {
                         time = time - 1000;
-                        String displayTime = "";
-                        if(time > 60000)
-                        {
-                            Long displayTimeValue = time / 60 / 1000 ;
-                            displayTime = Long.valueOf(displayTimeValue).toString();
-                        }
-                        else
-                        {
-                            Long displayTimeValue = time / 1000;
-                            displayTime = Long.valueOf(displayTimeValue).toString();
-                        }
-
                         if(time >= 0)
                         {
-                            Log.d("OneSecond", "run was called");
-                            countDownTime.setText(Long.valueOf(displayTime).toString());
+                            long minutes = TimeUnit.MILLISECONDS.toMinutes(time);
+                            long seconds = TimeUnit.MILLISECONDS.toSeconds(time)%60;
+                            String mins = Long.valueOf(minutes).toString();
+                            String secs = Long.valueOf(seconds).toString();
+                            Log.d("Timermin", mins + " Minutes, " +  secs + " Seconds");
+                            if(seconds >= 10)
+                            {
+                                countDownTime.setText(mins + ":" + secs);
+
+                            }
+                            else
+                            {
+                                countDownTime.setText(mins + ":0" + secs);
+                            }
                             timeHandler.postDelayed(this, 1000);
                         }
                         else
@@ -233,31 +234,13 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                                     .setSound(sound)
                                     .setSmallIcon(R.mipmap.youcookic_launcher)
                                     .setContentTitle("Timer Complete!")
-                                    .setContentText("Timer done, check your food!")
+                                    .setContentText("Check your food!")
                                     .addAction(R.mipmap.youcookic_launcher, "Open", pendingIntent)
-                                    .addAction(1, "Stop", pendingIntent).build();
+                                    .addAction(0, "Stop", pendingIntent).build();
 
                             NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
                             notificationManager.notify(0, notification);
 
-                            // my notification set up that doesnt work
-//                            Notification alarm = new NotificationCompat.Builder(Timer.this)
-//                                    .setContentTitle("Timer Complete!")
-//                                    .setContentText("Timer Completed, go check the food!")
-//                                    .setSmallIcon(R.mipmap.youcookic_launcher)
-//                                    .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000})
-//                                    .setSound(Settings.System.DEFAULT_ALARM_ALERT_URI)
-//                                    .setAutoCancel(true)
-//                                    .build();
-
-                              //not my code need to make my own version of this
-//                            NotificationCompat.Builder notifications = new NotificationCompat.Builder(Timer.this);
-//                            notifications.setContentTitle("Timer Complete!");
-//                            notifications.setContentText("The timer has completed, your food is now ready!");
-//                            notifications.setSmallIcon(R.mipmap.youcookic_launcher);
-//                            notifications.setDefaults(Notification.DEFAULT_ALL);
-//                            NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-//                            notificationManager.notify(001, notifications.build());
                         }
                     }
                 };
@@ -270,11 +253,11 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                 Toast.makeText(getApplicationContext(), "No time value entered yet!", Toast.LENGTH_SHORT).show();
             }
         }
-        else
+        else if(!checked)
         {
             //stop task and revert timer value back to zero
-            time = 0;
-            countDownTime.setText("0:00");
+                time = 0;
+                countDownTime.setText("0:00");
         }
     }
 

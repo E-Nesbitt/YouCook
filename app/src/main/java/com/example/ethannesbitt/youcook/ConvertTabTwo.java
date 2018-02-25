@@ -86,6 +86,55 @@ public class ConvertTabTwo extends Fragment {
                             outputValue.setText(String.valueOf(input) + " Fluid Ounces");
                         }
                     }
+                    else if(inputType.getSelectedItem().equals("Litres - l") && outputType.getSelectedItem().equals("Millilitres - ml"))
+                    {
+                        litresToMillilitres(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Litres - l") && outputType.getSelectedItem().equals("Pints - pt"))
+                    {
+                        litresToPints(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Litres - l") && outputType.getSelectedItem().equals("Fluid Ounces - fl oz"))
+                    {
+                        litresToFluidOunces(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Millilitres - ml") && outputType.getSelectedItem().equals("Litres - l"))
+                    {
+                        millilitresToLitres(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Millilitres - ml") && outputType.getSelectedItem().equals("Pints - pt"))
+                    {
+                        millilitresToPints(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Millilitres - ml") && outputType.getSelectedItem().equals("Fluid Ounces - fl oz"))
+                    {
+                        millilitresToFluidOunces(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Pints - pt") && outputType.getSelectedItem().equals("Litres - l"))
+                    {
+                        pintsToLitres(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Pints - pt") && outputType.getSelectedItem().equals("Millilitres - ml"))
+                    {
+                        pintsToMillilitres(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Pints - pt") && outputType.getSelectedItem().equals("Fluid Ounces - fl oz"))
+                    {
+                        pintsToFluidOunces(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Fluid Ounces - fl oz") && outputType.getSelectedItem().equals("Litres - l"))
+                    {
+                        fluidOuncesToLitres(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Fluid Ounces - fl oz") && outputType.getSelectedItem().equals("Millilitres - ml"))
+                    {
+                        fluidOuncesToMillilitres(input);
+                    }
+                    else if(inputType.getSelectedItem().equals("Fluid Ounces - fl oz") && outputType.getSelectedItem().equals("Pints - pt"))
+                    {
+                        fluidOuncesToPints(input);
+                    }
+
                 }
                 catch (NumberFormatException e)
                 {
