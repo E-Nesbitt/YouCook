@@ -7,127 +7,44 @@
     tools:context="com.example.ethannesbitt.youcook.Converter"
     android:id="@+id/converter">
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal"
-            android:padding="5dp">
+<android.support.design.widget.AppBarLayout
+    android:id="@+id/app_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/TabTheme">
 
-            <TextView
-                android:id="@+id/inputTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_margin="3dp"
-                android:fontFamily="@font/nunito"
-                android:text="@string/converter_input" />
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/conversionInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginRight="10dp"
-                android:fontFamily="@font/nunito"
-                android:inputType="numberDecimal"
-                android:maxEms="10"
-                android:minEms="5" />
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test"/>
 
-            <TextView
-                android:id="@+id/fromTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginRight="2dp"
-                android:fontFamily="@font/nunito"
-                android:text="@string/converter_from" />
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabItem2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-            <Spinner
-                android:id="@+id/conversionInputType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:entries="@array/conversion_type"
-                android:layout_gravity="end">
-            </Spinner>
-        </LinearLayout>
+    </android.support.design.widget.TabLayout>
+</android.support.design.widget.AppBarLayout>
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="20dp"
-                android:padding="5dp"
-                android:gravity="center_horizontal">
+<android.support.v4.view.ViewPager
+    android:id="@+id/container_converter"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-            <TextView
-                android:id="@+id/toTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:fontFamily="@font/nunito"
-                android:paddingTop="20dp"
-                android:text="@string/converter_to" />
-
-            <Spinner
-                android:id="@+id/conversionOutputType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:entries="@array/conversion_type">
-            </Spinner>
-
-            <Button
-                android:id="@+id/convertButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/converter"
-                android:background="@drawable/button_layout"
-                android:textColor="@color/backgroundcolour"
-                android:layout_marginBottom="10dp"/>
-
-            <TextView
-                android:id="@+id/outputTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:fontFamily="@font/nunito"
-                android:paddingTop="20dp"
-                android:text="@string/converter_output"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/conversionOutput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:focusable="false"
-                android:inputType="none"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/resetButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/reset"
-                android:background="@drawable/button_layout"
-                android:textColor="@color/backgroundcolour" />
-
-        </LinearLayout>
-
-    </android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/converterdnav"

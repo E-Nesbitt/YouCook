@@ -102,12 +102,22 @@
     <string name="converter_to">To:</string>
     <string name="converter">Convert</string>
     <string name="reset">Reset</string>
-    <!-- Spinner Array for Conversion Types-->
+    <!-- Fragment Two - Fluids -->
+    <string name="fluid_input">Input Volume:</string>
+    <string name="fluid_output">Output Volume:</string>
+    <!-- Spinner Array for Weight Conversion Types-->
     <array name="conversion_type">
         <item>Kilogram - Kg</item>
         <item>Gram - g</item>
         <item>Pound - lb</item>
         <item>Ounce - oz</item>
+    </array>
+    <!-- Spinner Array for Fluid Conversion Types-->
+    <array name="fluid_type">
+        <item>Litres - l</item>
+        <item>Millilitres - ml</item>
+        <item>Pints - pt</item>
+        <item>Fluid Ounces - fl oz</item>
     </array>
 
     <string name="open">Open</string>

@@ -83,10 +83,11 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
             public void onClick(View view)
             {
                 final EditText userInput = new EditText(view.getContext());
-                userInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+                userInput.setInputType(InputType.TYPE_CLASS_NUMBER);//setting the pop up dialog user input to only accept numbers
 
+                //Building the alert dialog using the user input edit text initialised above
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setTitle("Enter the time to count down from in minutes");
+                builder.setTitle("Enter the time in Minutes");
                 builder.setView(userInput);
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
                 {
@@ -202,18 +203,18 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                         String displayTime = "";
                         if(time > 60000)
                         {
-                            Long diplayTimeValue = time / 60 / 1000 ;
-                            displayTime = Long.valueOf(diplayTimeValue).toString();
+                            Long displayTimeValue = time / 60 / 1000 ;
+                            displayTime = Long.valueOf(displayTimeValue).toString();
                         }
                         else
                         {
-                            Long diplayTimeValue = time / 1000;
-                            displayTime = Long.valueOf(diplayTimeValue).toString();
+                            Long displayTimeValue = time / 1000;
+                            displayTime = Long.valueOf(displayTimeValue).toString();
                         }
 
                         if(time >= 0)
                         {
-                            Log.d("Timerminus", "run was called");
+                            Log.d("OneSecond", "run was called");
                             countDownTime.setText(Long.valueOf(displayTime).toString());
                             timeHandler.postDelayed(this, 1000);
                         }

@@ -1,0 +1,125 @@
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/converter_tab_one"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/inputTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_margin="3dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/converter_input" />
+
+        <EditText
+            android:id="@+id/conversionInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/nunito"
+            android:inputType="numberDecimal"
+            android:maxEms="5"
+            android:minEms="2" />
+
+        <TextView
+            android:id="@+id/fromTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginRight="2dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/converter_from" />
+
+        <Spinner
+            android:id="@+id/conversionInputType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:entries="@array/conversion_type"
+            android:layout_gravity="end">
+        </Spinner>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:padding="5dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/toTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:fontFamily="@font/nunito"
+            android:paddingTop="20dp"
+            android:text="@string/converter_to" />
+
+        <Spinner
+            android:id="@+id/conversionOutputType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:entries="@array/conversion_type">
+        </Spinner>
+
+        <Button
+            android:id="@+id/convertButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="@string/converter"
+            android:background="@drawable/button_layout"
+            android:textColor="@color/backgroundcolour"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:id="@+id/outputTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:fontFamily="@font/nunito"
+            android:paddingTop="20dp"
+            android:text="@string/converter_output"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/conversionOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:inputType="none"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/resetButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="@string/reset"
+            android:background="@drawable/button_layout"
+            android:textColor="@color/backgroundcolour" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
