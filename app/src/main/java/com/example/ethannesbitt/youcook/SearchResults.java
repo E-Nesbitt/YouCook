@@ -77,6 +77,7 @@ public class SearchResults extends AppCompatActivity
             String input = searchResultsBundle.getString("User Input");
 
             userInput = input;
+            userInput = userInput.replaceAll(",\\s+", "%20");
         }
         else
         {
@@ -245,6 +246,7 @@ public class SearchResults extends AppCompatActivity
             recipeTitle = convertView.findViewById(R.id.result_title);
             //sourceUrl = convertView.findViewById(R.id.result_source);
             imageUrl = convertView.findViewById(R.id.result_image);
+
             //get the image url
             String image;
             image = recipeModelList.get(position).getImageUrl().toString();
