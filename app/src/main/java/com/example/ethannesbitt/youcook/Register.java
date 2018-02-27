@@ -19,8 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Register extends AppCompatActivity implements View.OnClickListener
 {
-    private EditText emailInput;
-    private EditText passwordInput;
+    private EditText emailInput, passwordInput;
     private Button registerButton;
     private TextView signIn;
     private ProgressDialog pDialog;

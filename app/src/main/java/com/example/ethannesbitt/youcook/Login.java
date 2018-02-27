@@ -31,22 +31,19 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class Login extends AppCompatActivity
 {
-    //google login
+    //Google Login Variables
     private SignInButton googleSignInButton;
     private FirebaseAuth mAuth;
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private ProgressDialog pDialog;
 
-
-    //Email and Password Login
+    //Email and Password Login Variables
     private Button signInButton;
-    private EditText emailInput;
-    private EditText passwordInput;
+    private EditText emailInput, passwordInput;
 
-    //Registration activity link
+    //Registration Activity Link
     private TextView registration;
-
 
     private static final int RC_SIGN_IN = 2;
 
@@ -68,6 +65,7 @@ public class Login extends AppCompatActivity
         googleSignInButton = findViewById(R.id.googleSignInButton);
         mAuth = FirebaseAuth.getInstance();
 
+        //when the user signs in the Firebase Auth will change and so will run the method to start the main activity (menu)
         mAuthListener = new FirebaseAuth.AuthStateListener()
         {
             @Override
@@ -97,6 +95,7 @@ public class Login extends AppCompatActivity
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+        //initialising progress dialog to be used when user is being authenticated
         pDialog = new ProgressDialog(this);
 
         googleSignInButton.setOnClickListener(new View.OnClickListener()
@@ -108,11 +107,12 @@ public class Login extends AppCompatActivity
             }
         });
 
-        //email and password sign in setup
+        //email, password and sign in initialisation
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
         signInButton = findViewById(R.id.signInButton);
 
+        //on click to call the sign in method
         signInButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -145,19 +145,19 @@ public class Login extends AppCompatActivity
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        //Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN)
         {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess())
             {
-                // Google Sign In was successful, authenticate with Firebase
+                //Google sign in success, Firebase authentication
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             }
             else
             {
-                // Google Sign In failed, update UI appropriately
+                //Google sign in failure
                 Toast.makeText(Login.this, "Authentication went wrong!", Toast.LENGTH_SHORT).show();
             }
         }
@@ -166,6 +166,8 @@ public class Login extends AppCompatActivity
     private void firebaseAuthWithGoogle(GoogleSignInAccount account)
     {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        pDialog.setMessage("Authenticating Account...");
+        pDialog.show();
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
                 {
@@ -175,18 +177,15 @@ public class Login extends AppCompatActivity
                         if (task.isSuccessful())
                         {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d("TAG", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            pDialog.setMessage("Authenticating Account...");
-                            pDialog.show();
-                            //updateUI(user);
-                        } else
-                            {
-                            // If sign in fails, display a message to the user.
-                            Log.w("TAG", "signInWithCredential:failure", task.getException());
-                            Toast.makeText(Login.this, "Authentication Failed!", Toast.LENGTH_SHORT).show();
+                            pDialog.dismiss();//dismiss the authenticating dialog
                         }
-                        pDialog.dismiss();
+                        else
+                        {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(Login.this, "Authentication Failed!", Toast.LENGTH_SHORT).show();
+                            pDialog.dismiss();//dismiss the authenticating dialog
+                        }
                     }
                 });
     }
@@ -196,16 +195,9 @@ public class Login extends AppCompatActivity
         String userEmail = emailInput.getText().toString().trim();
         String userPassword = passwordInput.getText().toString().trim();
 
-        if(TextUtils.isEmpty(userEmail))
+        if(TextUtils.isEmpty(userEmail) || TextUtils.isEmpty(userPassword))
         {
-            Toast.makeText(Login.this, "You have not entered an email!", Toast.LENGTH_SHORT).show();
-            //stopping the method from executing
-            return;
-        }
-
-        if(TextUtils.isEmpty(userPassword))
-        {
-            Toast.makeText(Login.this, "You have not entered a password!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login.this, "You have not entered an email or password!", Toast.LENGTH_SHORT).show();
             //stopping the method from executing
             return;
         }
@@ -230,6 +222,5 @@ public class Login extends AppCompatActivity
                         pDialog.dismiss();
                     }
                 });
-
     }
 }

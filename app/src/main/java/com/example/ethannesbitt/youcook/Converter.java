@@ -59,7 +59,6 @@ public class Converter extends AppCompatActivity implements NavigationView.OnNav
         navigationView.setNavigationItemSelectedListener(this);
 
         //initialising tabs
-        SectionsPageAdapter sPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
         viewPager = findViewById(R.id.container_converter);
         viewPagerCreate(viewPager);
         tabLayout = findViewById(R.id.tabs);
@@ -142,6 +141,9 @@ public class Converter extends AppCompatActivity implements NavigationView.OnNav
         mAuth.signOut();
     }
 
+    //section page adapter class used to create tabs, containing the methods needed
+    //addFragment needed to add title to tab and the tab fragment
+    //getItem used to return the correct tab
     public class SectionsPageAdapter extends FragmentPagerAdapter
     {
         private final List<String> titleList = new ArrayList<>();
