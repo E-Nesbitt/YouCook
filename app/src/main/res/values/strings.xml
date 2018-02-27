@@ -23,7 +23,9 @@
     <string name="search_menu_desc">Search for a recipe by entering ingredients</string>
     <string name="search_title">Search for a Recipe via Ingredients</string>
     <string name="ingredients_input">Ingredients Input:</string>
-    <string name="search_hint_ingredients">Enter Ingredients You Have</string>
+    <string name="search_hint_ingredients">E.g. Chicken, peppers, rice</string>
+    <string name="trending">&#9733; Trending</string>
+    <string name="highest_rated">Highest Rated &#9825;</string>
     <string name="search_help_title">Search Help (?)</string>
     <string name="search_help_text">To search for recipes: \n \n
     1. Select the text area \n \n

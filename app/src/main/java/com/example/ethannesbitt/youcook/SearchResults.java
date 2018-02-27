@@ -77,7 +77,18 @@ public class SearchResults extends AppCompatActivity
             String input = searchResultsBundle.getString("User Input");
 
             userInput = input;
-            userInput = userInput.replaceAll(",\\s+", "%20");
+            if(userInput.equals("&sort=t"))
+            {
+                this.setTitle("Trending Recipes");
+            }
+            else if(userInput.equals("&sort=r"))
+            {
+                this.setTitle("Highest Rated Recipes");
+            }
+            else
+            {
+                userInput = userInput.replaceAll(",\\s+", "%20");
+            }
         }
         else
         {
@@ -87,6 +98,12 @@ public class SearchResults extends AppCompatActivity
         //running the JSONSearch using the food to fork api with users input placed into search query
         new SearchResults.JSONSearch().execute("http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&q=" + userInput + "");
     }
+
+    //trending api call
+    //http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&sort=t
+
+    //highest rating api call
+    //http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&sort=r
 
     public class JSONSearch extends AsyncTask<String, String, List<RecipeModel>> {
 

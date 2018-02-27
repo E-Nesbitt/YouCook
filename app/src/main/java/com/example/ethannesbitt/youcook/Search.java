@@ -26,7 +26,7 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
     private FirebaseAuth mAuth;
 
     //declaring search feature variables
-    private Button searchButton;
+    private Button searchButton, trendingButton, highestRatedButton;
     private EditText searchInput;
     private String userInput;
 
@@ -52,6 +52,10 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
         searchInput = findViewById(R.id.search_input);
         searchButton = findViewById(R.id.search_button);
 
+        //initialising trending and highest rated button
+        trendingButton = findViewById(R.id.search_trending_button);
+        highestRatedButton= findViewById(R.id.search_highestrated_button);
+
         //edamam api app_id=c4896013 --- app_key=8bacbcab9d13e1f47ae0a8febb727655
         //test api https://api.edamam.com/search?q=turkey,onions&app_id=c4896013&app_key=8bacbcab9d13e1f47ae0a8febb727655
 
@@ -69,6 +73,32 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
                 searchResultsActivity.putExtra("User Input", userInput);
 
                 startActivity(searchResultsActivity);
+            }
+        });
+
+        //
+        trendingButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+
+                Intent trendingResultsActivity = new Intent(Search.this, SearchResults.class);
+                trendingResultsActivity.putExtra("User Input", "&sort=t");
+                startActivity(trendingResultsActivity);
+            }
+        });
+
+        highestRatedButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+
+                Intent highestRatedActivity = new Intent(Search.this, SearchResults.class);
+                highestRatedActivity.putExtra("User Input", "&sort=r");
+
+                startActivity(highestRatedActivity);
             }
         });
     }

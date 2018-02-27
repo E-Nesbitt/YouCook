@@ -51,6 +51,7 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
+        //initialising drawer navigation
         drawerMenu = findViewById(R.id.shoppinglist);
         menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
         drawerMenu.addDrawerListener(menuToggle);
@@ -59,11 +60,13 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.shoppinglistdnav);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //initialising shopping list
         ingredientList = getIngredientsList(getApplicationContext());
         aAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, ingredientList);
         lView = findViewById(R.id.list);
         lView.setAdapter(aAdapter);
 
+        //setting the on click for the shopping list items so they can be deleted
         lView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
@@ -72,16 +75,19 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
                 String activeItem = ((TextView) view).getText().toString();
                 if(activeItem.trim().equals(ingredientList.get(position).trim()))
                 {
+                    //call the delete method on the clicked item
                     deleteItem(activeItem, position);
                 }
                 else
                 {
+                    //error handling if the item wont delete
                     Toast.makeText(getApplicationContext(), "Error trying to delete item", Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
+    //allows drawer menu to be opened via a button in title bar
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.shopping_menu, menu);
@@ -105,7 +111,7 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
             //creating an alert prompt for user to enter the name of the item
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Add New Item");
-            builder.setView(newItem);
+            builder.setView(newItem);//passing the edit text to the alert prompt view
             builder.setPositiveButton("Add", new DialogInterface.OnClickListener()
             {
                 @Override
@@ -134,15 +140,15 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
         {
             //creating an alert prompt to ask user if shopping list can be cleared or not
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Clear Shopping List?");
+            builder.setTitle("Do you want to clear the Shopping List?");
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
             {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i)
                 {
                     ingredientList.clear();
-                    storeIngredientsList(ingredientList, getApplicationContext());
-                    lView.setAdapter(aAdapter);
+                    storeIngredientsList(ingredientList, getApplicationContext());//storing the now clear shopping list to the shared preferences
+                    lView.setAdapter(aAdapter);//update the list by re setting the adapter
                     Toast.makeText(getApplicationContext(), "Shopping List has been cleared!", Toast.LENGTH_LONG).show();
 
                 }
@@ -161,53 +167,6 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item)
-    {
-        Intent mOptions;
-
-        switch (item.getItemId())
-        {
-            case R.id.home : mOptions = new Intent(this, MainActivity.class);
-                finish();
-                startActivity(mOptions);
-                break;
-
-            case R.id.search : mOptions = new Intent(this, Search.class);
-                finish();
-                startActivity(mOptions);
-                break;
-
-            case R.id.shoppinglist : mOptions = new Intent(this, ShoppingList.class);
-                finish();
-                startActivity(mOptions);
-                break;
-
-            case R.id.recipes : mOptions = new Intent(this, Recipes.class);
-                finish();
-                startActivity(mOptions);
-                break;
-
-            case R.id.timer : mOptions = new Intent(this, Timer.class);
-                finish();
-                startActivity(mOptions);
-                break;
-
-            case R.id.converter : mOptions = new Intent(this, Converter.class);
-                finish();
-                startActivity(mOptions);
-                break;
-
-            case R.id.signout :
-                signOut();
-                break;
-
-            default:
-                break;
-        }
-        return false;
     }
 
     public void deleteItem(final String activeItem, final int position)
@@ -265,8 +224,58 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
         {
             return input;
         }
+        else
+        {
+            return input.substring(0, 1).toUpperCase() + input.substring(1).toLowerCase();
+        }
+    }
 
-        return input.substring(0,1).toUpperCase() + input.substring(1).toLowerCase();
+    //drawer menu navigation, on clicks for each item in the menu, finishes current activity and starts the new activity
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item)
+    {
+        Intent mOptions;
+
+        switch (item.getItemId())
+        {
+            case R.id.home : mOptions = new Intent(this, MainActivity.class);
+                finish();
+                startActivity(mOptions);
+                break;
+
+            case R.id.search : mOptions = new Intent(this, Search.class);
+                finish();
+                startActivity(mOptions);
+                break;
+
+            case R.id.shoppinglist : mOptions = new Intent(this, ShoppingList.class);
+                finish();
+                startActivity(mOptions);
+                break;
+
+            case R.id.recipes : mOptions = new Intent(this, Recipes.class);
+                finish();
+                startActivity(mOptions);
+                break;
+
+            case R.id.timer : mOptions = new Intent(this, Timer.class);
+                finish();
+                startActivity(mOptions);
+                break;
+
+            case R.id.converter : mOptions = new Intent(this, Converter.class);
+                finish();
+                startActivity(mOptions);
+                break;
+
+            case R.id.signout :
+                signOut();
+                break;
+
+            default:
+                break;
+        }
+        return false;
     }
 
     private void signOut()
