@@ -139,4 +139,9 @@
     <string name="recipe_image">Recipe Image</string>
     <string name="food2fork">Powered by Food2Fork API</string>
 
+    <!-- Delete Account Strings -->
+    <string name="delete_account">Delete Account</string>
+    <string name="delete_account_text">Delete Your YouCook Account?</string>
+
+
 </resources>

@@ -160,6 +160,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 signOut();
                 break;
 
+            case R.id.delete_account : mOptions = new Intent(this, DisableAccount.class);
+                finish();
+                startActivity(mOptions);
+                break;
+
             default:
                 break;
         }

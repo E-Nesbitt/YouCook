@@ -180,6 +180,11 @@ public class Starters extends AppCompatActivity implements NavigationView.OnNavi
                 signOut();
                 break;
 
+            case R.id.delete_account : mOptions = new Intent(this, DisableAccount.class);
+                finish();
+                startActivity(mOptions);
+                break;
+
             default:
                 break;
         }

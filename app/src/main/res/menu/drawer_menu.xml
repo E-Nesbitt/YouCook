@@ -41,10 +41,15 @@
     <group
         android:id="@+id/menu_bottom"
         android:checkableBehavior="single">
-    <item
-        android:id="@+id/signout"
-        android:icon="@drawable/ic_exit_to_app_black_24dp"
-        android:title="@string/sign_out">
-    </item>
+        <item
+            android:id="@+id/signout"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="@string/sign_out">
+        </item>
+        <item
+            android:id="@+id/delete_account"
+            android:icon="@drawable/ic_delete_forever_black_24dp"
+            android:title="@string/delete_account">
+        </item>
     </group>
 </menu>

@@ -33,7 +33,14 @@
             android:name=".Register"
             android:label="@string/register_title"
             android:theme="@style/NoTitle" />
-
+        <!-- Forgotten Password Activity -->
+        <activity
+            android:name=".ForgottenPassword"
+            android:label="@string/forgotten_password"/>
+        <!-- Delete Account Activity -->
+        <activity
+            android:name=".DisableAccount"
+            android:label="@string/delete_account"/>
         <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
@@ -81,13 +88,13 @@
         <!-- Converter Activity -->
         <activity
             android:name=".Converter"
-            android:label="@string/converter_menu" />
+            android:label="@string/converter_menu" >
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-        <activity android:name=".ForgottenPassword"></activity>
     </application>
 
 </manifest>

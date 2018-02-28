@@ -146,6 +146,11 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
                 signOut();
                 break;
 
+            case R.id.delete_account : mOptions = new Intent(this, DisableAccount.class);
+                finish();
+                startActivity(mOptions);
+                break;
+
             default:
                 break;
         }

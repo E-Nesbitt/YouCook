@@ -129,6 +129,11 @@ public class Converter extends AppCompatActivity implements NavigationView.OnNav
                 signOut();
                 break;
 
+            case R.id.delete_account : mOptions = new Intent(this, DisableAccount.class);
+                finish();
+                startActivity(mOptions);
+                break;
+
             default:
                 break;
         }
