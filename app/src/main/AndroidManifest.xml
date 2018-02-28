@@ -53,7 +53,7 @@
             android:label="@string/list_recipes" />
         <activity
             android:name=".ResultPage"
-            android:label="@string/recipe_menu"/>
+            android:label="@string/recipe_menu" />
         <!-- Recipes Activity -->
         <activity
             android:name=".Recipes"
@@ -86,6 +86,8 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".ForgottenPassword"></activity>
     </application>
 
 </manifest>

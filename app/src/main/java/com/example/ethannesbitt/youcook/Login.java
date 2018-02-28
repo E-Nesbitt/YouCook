@@ -29,7 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 
-public class Login extends AppCompatActivity
+public class Login extends AppCompatActivity implements View.OnClickListener
 {
     //Google Login Variables
     private SignInButton googleSignInButton;
@@ -116,38 +116,15 @@ public class Login extends AppCompatActivity
         signInButton = findViewById(R.id.signInButton);
 
         //on click to call the sign in method
-        signInButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                signIn();
-            }
-        });
+        signInButton.setOnClickListener(this);
 
         //registration text and onclick to redirect to register activity
         registration = findViewById(R.id.alreadyRegistered);
-        registration.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                finish();
-                startActivity(new Intent(Login.this, Register.class));
-            }
-        });
+        registration.setOnClickListener(this);
 
         //forgot password text and onclick to redirect to forgot password activity
         forgotPassword = findViewById(R.id.forgotten_password);
-        forgotPassword.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                finish();
-                //startActivity(new Intent(Login.this, ForgottenPassword.class));
-            }
-        });
+        forgotPassword.setOnClickListener(this);
     }
 
     private void googleSignIn()
@@ -237,5 +214,23 @@ public class Login extends AppCompatActivity
                         pDialog.dismiss();
                     }
                 });
+    }
+
+    @Override
+    public void onClick(View view)
+    {
+        if(view == signInButton)
+        {
+            signIn();
+        }
+        if(view == registration)
+        {
+            finish();
+            startActivity(new Intent(Login.this, Register.class));
+        }
+        if(view == forgotPassword)
+        {
+            startActivity(new Intent(Login.this, ForgottenPassword.class));
+        }
     }
 }

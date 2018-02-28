@@ -42,7 +42,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener
         registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener(this);
 
-        signIn = findViewById(R.id.signIn);
+        signIn = findViewById(R.id.already_registered_butt);
         signIn.setOnClickListener(this);
 
     }

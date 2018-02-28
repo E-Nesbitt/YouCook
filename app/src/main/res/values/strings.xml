@@ -18,6 +18,10 @@
     <string name="login_title">Login</string>
     <string name="register_title">Register</string>
     <string name="forgotten_password">Forgot Password?</string>
+    <string name="forgotten_password_text">Enter your email and we will send you a link to reset it.</string>
+    <string name="send_email">Send</string>
+    <string name="back_to_login">Back to login? Click Here</string>
+
 
     <!-- Search Activity Strings -->
     <string name="search_menu">Search</string>
