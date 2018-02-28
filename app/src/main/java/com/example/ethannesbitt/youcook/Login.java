@@ -45,6 +45,9 @@ public class Login extends AppCompatActivity
     //Registration Activity Link
     private TextView registration;
 
+    //ForgottenPassword Activity Link
+    private TextView forgotPassword;
+
     private static final int RC_SIGN_IN = 2;
 
     @Override
@@ -122,7 +125,7 @@ public class Login extends AppCompatActivity
             }
         });
 
-        //registration text
+        //registration text and onclick to redirect to register activity
         registration = findViewById(R.id.alreadyRegistered);
         registration.setOnClickListener(new View.OnClickListener()
         {
@@ -131,6 +134,18 @@ public class Login extends AppCompatActivity
             {
                 finish();
                 startActivity(new Intent(Login.this, Register.class));
+            }
+        });
+
+        //forgot password text and onclick to redirect to forgot password activity
+        forgotPassword = findViewById(R.id.forgotten_password);
+        forgotPassword.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                finish();
+                //startActivity(new Intent(Login.this, ForgottenPassword.class));
             }
         });
     }

@@ -17,6 +17,7 @@
     <string name="not_registered">Not Registered? Click Here</string>
     <string name="login_title">Login</string>
     <string name="register_title">Register</string>
+    <string name="forgotten_password">Forgot Password?</string>
 
     <!-- Search Activity Strings -->
     <string name="search_menu">Search</string>
@@ -60,7 +61,9 @@
     <string name="hint_name">Enter Recipe Name</string>
     <string name="hint_ingredients">Enter Ingredients</string>
     <string name="ingredients">Ingredients</string>
-    <string name="hint_method">Enter Method</string>
+    <string name="hint_method">Enter Method, for example \n
+    1. Cut peppers \n
+    2. Fry peppers in oil on a low heat</string>
     <string name="method">Method</string>
     <string name="delete">Delete Recipe</string>
     <string name="new_recipe">New Recipe</string>

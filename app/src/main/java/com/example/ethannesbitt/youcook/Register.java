@@ -50,20 +50,26 @@ public class Register extends AppCompatActivity implements View.OnClickListener
     private void registerUserAccount()
     {
         String userEmail = emailInput.getText().toString().trim();
-        String userPassword = passwordInput.getText().toString().trim();
+        final String userPassword = passwordInput.getText().toString().trim();
+
+        //password validation checks, password must contain 1 uppercase, 1 lowercase, be 7 characters and must contain a special character
+        final boolean hasCapitals = !userPassword.equals(userPassword.toLowerCase());//uppercase check
+        final boolean hasNonCapitals = !userPassword.equals(userPassword.toUpperCase());//lowercase check
+        final boolean specialChar = !userPassword.matches("[A-Za-z0-9 ]*");//special character check
 
         //error handling if email or password text boxes are empty
-        if(TextUtils.isEmpty(userEmail))
+        if(TextUtils.isEmpty(userEmail) || TextUtils.isEmpty(userPassword))
         {
-            Toast.makeText(Register.this, "You have not entered an email!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Register.this, "You have not entered an email or password!!", Toast.LENGTH_SHORT).show();
             //stopping the method from executing
             return;
         }
 
-        if(TextUtils.isEmpty(userPassword))
+        //running the password validation and display a toast if an invalid password is entered
+        if(userPassword.length() < 7 || !hasCapitals || !hasNonCapitals || !specialChar)
         {
-            Toast.makeText(Register.this, "You have not entered an password!", Toast.LENGTH_SHORT).show();
-            //stopping the method from executing
+            Toast.makeText(Register.this, "Password must be longer than 8 Characters, include 1 Upper and 1 Lowercase character and a special character", Toast.LENGTH_LONG).show();
+            //stop method and return to entering details
             return;
         }
 
@@ -88,7 +94,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener
                         pDialog.dismiss();
                     }
                 });
-
     }
 
     @Override
