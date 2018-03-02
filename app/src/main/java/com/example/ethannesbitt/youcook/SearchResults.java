@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.ethannesbitt.youcook.models.RecipeModel;
 import com.squareup.picasso.Picasso;
@@ -49,6 +50,9 @@ public class SearchResults extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
+
+        //testing setting up the back button in the app toolbar
+
 
         //initialising searching progress dialog to show user it is searching for recipes
         searchDialog = new ProgressDialog(this);

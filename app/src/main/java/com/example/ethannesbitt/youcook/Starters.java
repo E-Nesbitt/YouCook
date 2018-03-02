@@ -97,13 +97,11 @@ public class Starters extends AppCompatActivity implements NavigationView.OnNavi
     protected void onStart()
     {
         super.onStart();
-
         databaseReference.addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
-
                 //clearing the list prior to adding items, so we get a fresh list each time
                 recipeList.clear();
 

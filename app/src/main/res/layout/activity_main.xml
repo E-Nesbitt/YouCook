@@ -35,7 +35,11 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:id="@+id/searchmenuoption">
+                android:id="@+id/searchmenuoption"
+                android:innerRadius="0dp"
+                android:shape="ring"
+                app:cardCornerRadius="20dp"
+                android:thicknessRatio="2">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -78,7 +82,11 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:id="@+id/shoppinglistmenuoption">
+                android:id="@+id/shoppinglistmenuoption"
+                android:innerRadius="0dp"
+                android:shape="ring"
+                app:cardCornerRadius="20dp"
+                android:thicknessRatio="2">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -128,7 +136,11 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:id="@+id/recipesmenuoption">
+                android:id="@+id/recipesmenuoption"
+                android:innerRadius="0dp"
+                android:shape="ring"
+                app:cardCornerRadius="20dp"
+                android:thicknessRatio="2">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -171,7 +183,11 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:id="@+id/timermenuoption">
+                android:id="@+id/timermenuoption"
+                android:innerRadius="0dp"
+                android:shape="ring"
+                app:cardCornerRadius="20dp"
+                android:thicknessRatio="2">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -222,7 +238,11 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:id="@+id/convertermenuoption">
+                android:id="@+id/convertermenuoption"
+                android:innerRadius="0dp"
+                android:shape="ring"
+                app:cardCornerRadius="20dp"
+                android:thicknessRatio="2">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

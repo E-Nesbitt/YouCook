@@ -27,68 +27,104 @@
         <activity
             android:name=".Login"
             android:label="@string/login_title"
-            android:theme="@style/NoTitle" />
+            android:theme="@style/NoTitle"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <!-- Register Activity -->
         <activity
             android:name=".Register"
             android:label="@string/register_title"
-            android:theme="@style/NoTitle" />
+            android:theme="@style/NoTitle"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <!-- Forgotten Password Activity -->
         <activity
             android:name=".ForgottenPassword"
-            android:label="@string/forgotten_password"/>
+            android:label="@string/forgotten_password"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <!-- Delete Account Activity -->
         <activity
             android:name=".DisableAccount"
-            android:label="@string/delete_account"/>
+            android:label="@string/delete_account"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
-            android:label="@string/dashboard" />
+            android:label="@string/dashboard"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
 
         <!-- Shopping List Activity -->
         <activity
             android:name=".ShoppingList"
-            android:label="@string/shopping_list_menu" />
+            android:label="@string/shopping_list_menu"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <!-- Search Activity -->
         <activity
             android:name=".Search"
-            android:label="@string/search_menu" />
+            android:label="@string/search_menu"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <!-- Sub-Activity of Search -->
         <activity
             android:name=".SearchResults"
-            android:label="@string/list_recipes" />
+            android:label="@string/list_recipes"
+            android:parentActivityName=".Search"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <activity
             android:name=".ResultPage"
-            android:label="@string/recipe_menu" />
+            android:label="@string/recipe_menu"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <!-- Recipes Activity -->
         <activity
             android:name=".Recipes"
-            android:label="@string/recipe_menu" />
+            android:label="@string/recipe_menu"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <!-- Sub-Activities of Recipe -->
         <activity
             android:name=".AddRecipe"
-            android:label="@string/recipe_add" />
+            android:label="@string/recipe_add"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <activity
             android:name=".Mains"
-            android:label="@string/main" />
+            android:label="@string/main"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <activity
             android:name=".Starters"
-            android:label="@string/starter" />
+            android:label="@string/starter"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <activity
             android:name=".Desserts"
-            android:label="@string/dessert" />
+            android:label="@string/dessert"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <activity
             android:name=".RecipePage"
-            android:label="@string/recipe_menu" />
+            android:label="@string/recipe_menu"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <!-- Timer Activity -->
         <activity
             android:name=".Timer"
-            android:label="@string/timer_menu" />
+            android:label="@string/timer_menu"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
         <!-- Converter Activity -->
         <activity
             android:name=".Converter"
-            android:label="@string/converter_menu" >
+            android:label="@string/converter_menu"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden">
 
         </activity>
 
