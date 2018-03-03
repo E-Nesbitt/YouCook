@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Ingredient One"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <EditText
+            android:id="@+id/ingredient_one_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:hint="Name"
+            android:ems="5"/>
+
+        <EditText
+            android:id="@+id/ingredient_one_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal"
+            android:hint="Amount"
+            android:ems="5"/>
+
+        <Spinner
+            android:id="@+id/i_g_1_unit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/ingredient_unit">
+        </Spinner>
+
+    </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimary" />
+
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Ingredient Two"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <EditText
+                    android:id="@+id/ingredient_two_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:hint="Name"
+                    android:ems="5"/>
+
+                <EditText
+                    android:id="@+id/ingredient_two_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:inputType="numberDecimal"
+                    android:hint="Amount"
+                    android:ems="5"/>
+
+                <Spinner
+                    android:id="@+id/i_g_2_unit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:entries="@array/ingredient_unit">
+                </Spinner>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimary" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

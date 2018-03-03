@@ -75,7 +75,34 @@
     <string name="prep_input">Enter Preparation Time</string>
     <string name="cooking_time">Cooking Time</string>
     <string name="cooking_time_input">Enter Cooking Time</string>
-
+    <!-- Spinner Array for Prep and Cook Time Unit -->
+    <array name="time_unit">
+        <item>Minutes</item>
+        <item>Hours</item>
+    </array>
+    <!-- Spinner Array for Ingredient Unit -->
+    <array name="ingredient_unit">
+        <item>Grams</item>
+        <item>Kilograms</item>
+        <item>Pounds</item>
+        <item>Ounces</item>
+        <item>Cups</item>
+        <item>Tablespoon(s)</item>
+        <item>Teaspoon(s)</item>
+        <item>Litres</item>
+        <item>Millilitres</item>
+        <item>Pints</item>
+        <item>Fluid Ounces</item>
+        <item>Rashers</item>
+        <item>Slices</item>
+        <item>Zest</item>
+        <item>Juice</item>
+        <item>Cloves</item>
+        <item>Pack(s)</item>
+        <item>Bag(s)</item>
+        <item>Sachet(s)</item>
+        <item>N/A</item>
+    </array>
 
     <!-- Spinner Array for Course Type -->
     <array name="course_type">

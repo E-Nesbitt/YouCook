@@ -51,13 +51,29 @@
                 android:text="@string/prep_time"
                 android:textStyle="bold" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
             <EditText
                 android:id="@+id/prep_time_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito"
                 android:hint="@string/prep_input"
-                android:inputType="text" />
+                android:inputType="number"
+                android:ems="10"/>
+
+                <Spinner
+                    android:id="@+id/prep_time_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/time_unit">
+
+                </Spinner>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/cooking_time"
@@ -67,13 +83,29 @@
                 android:text="@string/cooking_time"
                 android:textStyle="bold" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <EditText
                 android:id="@+id/cooking_time_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito"
                 android:hint="@string/cooking_time_input"
-                android:inputType="text" />
+                android:inputType="number"
+                android:ems="10"/>
+
+            <Spinner
+                android:id="@+id/cook_time_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/time_unit">
+
+            </Spinner>
+
+        </LinearLayout>
 
             <TextView
                 android:id="@+id/recipeType"
@@ -100,6 +132,11 @@
                 android:text="@string/recipe_ingredients"
                 android:textStyle="bold" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <EditText
                 android:id="@+id/recipeIngredientsInput"
                 android:layout_width="match_parent"
@@ -108,6 +145,16 @@
                 android:fontFamily="@font/nunito"
                 android:hint="@string/hint_ingredients"
                 android:inputType="textMultiLine" />
+
+            <Spinner
+                android:id="@+id/ingredient_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/ingredient_unit">
+
+            </Spinner>
+
+        </LinearLayout>
 
             <TextView
                 android:id="@+id/recipeMethod"

@@ -1,5 +1,7 @@
 package com.example.ethannesbitt.youcook;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -8,11 +10,14 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,9 +34,12 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
 
     private Button save;
     private EditText rName, rPrepTime, rCookTime, rIngredients, rMethod;
-    private Spinner rType;
+    private Spinner rType, cookTimeUnit, prepTimeUnit;
 
     private DatabaseReference recipeDatabase;
+
+    //testing
+    private TextView ingredients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -58,7 +66,9 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
         //setting up recipe inputs
         rName = findViewById(R.id.recipeNameInput);
         rPrepTime = findViewById(R.id.prep_time_input);
+        prepTimeUnit = findViewById(R.id.prep_time_unit);
         rCookTime = findViewById(R.id.cooking_time_input);
+        cookTimeUnit = findViewById(R.id.cook_time_unit);
         rIngredients = findViewById(R.id.recipeIngredientsInput);
         rMethod = findViewById(R.id.recipeMethodInput);
         rType = findViewById(R.id.recipeTypeInput);
@@ -71,6 +81,42 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
                 saveRecipe();
             }
         });
+
+        ingredients = findViewById(R.id.recipeIngredients);
+
+        ingredients.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutInflater inflater = LayoutInflater.from(AddRecipe.this);
+                View ingredientView = inflater.inflate(R.layout.ingredient_inputs, null);
+
+                EditText ingredientOneName = ingredientView.findViewById(R.id.ingredient_one_name);
+                EditText ingredientOneAmount = ingredientView.findViewById(R.id.ingredient_one_amount);
+                Spinner ingredientOneUnit = ingredientView.findViewById(R.id.i_g_1_unit);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(AddRecipe.this);
+                builder.setTitle("Add Ingredients");
+                builder.setView(ingredientView);//passing the edit text to the alert prompt view
+                builder.setPositiveButton("Add", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i)
+                    {
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+
+            }
+        });
     }
 
     //method to save the recipe
@@ -78,8 +124,8 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
     {
         //takes inputs from user and sets them to strings
         String name = rName.getText().toString().trim();
-        String prepTime = rPrepTime.getText().toString().trim();
-        String cookTime = rCookTime.getText().toString().trim();
+        String prepTime = rPrepTime.getText().toString().trim() + " " + prepTimeUnit.getSelectedItem().toString();
+        String cookTime = rCookTime.getText().toString().trim() + " " + cookTimeUnit.getSelectedItem().toString();
         String type = rType.getSelectedItem().toString();
         String ingredients = rIngredients.getText().toString().trim();
         String method = rMethod.getText().toString().trim();
