@@ -1,8 +1,6 @@
 package com.example.ethannesbitt.youcook;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -11,11 +9,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.MultiAutoCompleteTextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+//edamam api app_id=c4896013 --- app_key=8bacbcab9d13e1f47ae0a8febb727655
+//test api https://api.edamam.com/search?q=turkey,onions&app_id=c4896013&app_key=8bacbcab9d13e1f47ae0a8febb727655
+
+//food to fork  api key = 51bc38640178924d013b85854b8d7a52
+//http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&q=chicken
 
 public class Search extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //declaring variables for drawer navigation
@@ -27,7 +32,7 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
 
     //declaring search feature variables
     private Button searchButton, trendingButton, highestRatedButton;
-    private EditText searchInput;
+    private MultiAutoCompleteTextView searchInput;
     private String userInput;
 
     @Override
@@ -56,12 +61,14 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
         trendingButton = findViewById(R.id.search_trending_button);
         highestRatedButton= findViewById(R.id.search_highestrated_button);
 
-        //edamam api app_id=c4896013 --- app_key=8bacbcab9d13e1f47ae0a8febb727655
-        //test api https://api.edamam.com/search?q=turkey,onions&app_id=c4896013&app_key=8bacbcab9d13e1f47ae0a8febb727655
+        //setting up the search suggestions, once 2 characters are entered it will make suggestions, using a comma to separate ingredients (split it into sub-strings)
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_dropdown_item, INGREDIENTS);
+        searchInput.setThreshold(2);
+        searchInput.setAdapter(adapter);
+        searchInput.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
-        //food to fork  api key = 51bc38640178924d013b85854b8d7a52
-        //http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&q=chicken
-
+        //Search button onclick, takes user input and passes it to Api to use to carry out search in next activity
         searchButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -76,32 +83,63 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
             }
         });
 
-        //
+        //replaces user input with the value needed to return trending results in the api, starts new activity showing these
         trendingButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-
                 Intent trendingResultsActivity = new Intent(Search.this, SearchResults.class);
                 trendingResultsActivity.putExtra("User Input", "&sort=t");
                 startActivity(trendingResultsActivity);
             }
         });
 
+        //replaces user input with the value needed to return highest rated results in the api, starts new activity showing these
         highestRatedButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-
                 Intent highestRatedActivity = new Intent(Search.this, SearchResults.class);
                 highestRatedActivity.putExtra("User Input", "&sort=r");
-
                 startActivity(highestRatedActivity);
             }
         });
     }
+
+    //autocomplete list of possible ingredients, other ingredients can be used but these are a guide to make it easier
+    private static final String[] INGREDIENTS = new String[] {
+            /*A*/ "Almond", "Almond Milk", "Anchovies", "Apple", "Apple Juice", "Artichoke", "Aubergine", "Avocado",
+            /*B*/ "Bacon", "Bagel", "Baguette", "Baking Powder", "Balsamic Vinegar", "Bamboo Shoots", "Banana", "Basil",
+                "Bay Leaf", "Beans", "Beef", "Beer", "Beetroot", "Blackcurrant", "Brie", "Brioche", "Brown Rice", "Butter", "Butternut Squash",
+            /*C*/ "Cabbage", "Capers", "Caramel", "Cardamom", "Carrot", "Cashew", "Caster Sugar", "Cayenne Pepper", "Celery", "Cheese", "Cherry",
+                "Chestnut", "Chicken", "Chicken Breast", "Chicken Thigh", "Chicken Leg", "Chicken Stock", "Chilli", "Chocolate", "Coconut", "Coriander",
+            /*D*/ "Dijon Mustard", "Dill", "Duck", "Double Cream",
+            /*E*/ "Edam", "Egg", "Egg White", "Egg Yolk",
+            /*F*/ "Fennel", "Fig", "Fish", "Flour", "Filo Pastry",
+            /*G*/ "Gammon", "Garlic", "Gherkin", "Gin", "Ginger", "Gingerbread", "Golden Syrup", "Grapes", "Grapefruit", "Gravy",
+            /*H*/ "Haddock", "Ham", "Hazelnut", "Herbs", "Honey", "Horseradish", "Hummus",
+            /*I*/ "Ice Cream", "Iceberg Lettuce", "Icing", "Icing Sugar",
+            /*J*/ "Jam", "Jelly",
+            /*K*/ "Kale", "Ketchup", "Kiwi", "Kumquat",
+            /*L*/ "Lager", "Lamb", "Lasagne", "Leek", "Lemon", "Lime", "Linguine", "Liver", "Lychee",
+            /*M*/ "Mango", "Maple Syrup", "Margarine", "Marrow", "Marshmallow", "Melon", "Milk", "Mince", "Mint", "Mustard", "Mushroom", "Muesli",
+            /*N*/ "Nachos", "Noodles", "Nutmeg",
+            /*O*/ "Oatmeal", "Oil", "Olive", "Onion", "Orange", "Oregano",
+            /*P*/ "Pancetta", "Paprika", "Parmesan", "Parsnip", "Pasta", "Pastry", "Peach", "Peanut Butter", "Pepper", "Pineapple", "Potato", "Prawn", "Pork",
+            /*Q*/ "Quinoa",
+            /*R*/ "Raisins", "Raspberry", "Red Onion", "Red Wine", "Rhubarb", "Rice", "Rigatoni", "Risotto", "Rosemary",
+            /*S*/ "Sage", "Salmon", "Salsa", "Salt", "Sausage", "SelfRaising Flour", "Single Cream", "Soy Sauce", "Soya Milk", "Spaghetti", "Stock", "Sugar",
+                "Spring Onion",
+            /*T*/ "Tabasco", "Tapioca", "Tea", "Thyme", "Tuna", "Tofu", "Tomato", "Tomato Puree", "Turkey", "Turnip",
+            /*U none to note */
+            /*V*/ "Vanilla", "Vinegar", "Vodka",
+            /*W*/ "Walnut", "Wasabi", "Water", "Whiskey", "Wine",
+            /*X none to note*/
+            /*Y*/ "Yeast", "Yogurt",
+            /*Z none to note*/
+    };
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
