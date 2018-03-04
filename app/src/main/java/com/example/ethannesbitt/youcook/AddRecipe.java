@@ -38,8 +38,13 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
 
     private DatabaseReference recipeDatabase;
 
+
     //testing
     private TextView ingredients;
+    private String ingredientNameOne;
+    private String ingredientAmountOne;
+    private String ingredientUnitOne;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -90,9 +95,9 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
                 LayoutInflater inflater = LayoutInflater.from(AddRecipe.this);
                 View ingredientView = inflater.inflate(R.layout.ingredient_inputs, null);
 
-                EditText ingredientOneName = ingredientView.findViewById(R.id.ingredient_one_name);
-                EditText ingredientOneAmount = ingredientView.findViewById(R.id.ingredient_one_amount);
-                Spinner ingredientOneUnit = ingredientView.findViewById(R.id.i_g_1_unit);
+                final EditText ingredientOneName = ingredientView.findViewById(R.id.ingredient_one_name);
+                final EditText ingredientOneAmount = ingredientView.findViewById(R.id.ingredient_one_amount);
+                final Spinner ingredientOneUnit = ingredientView.findViewById(R.id.i_g_1_unit);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(AddRecipe.this);
                 builder.setTitle("Add Ingredients");
@@ -102,6 +107,10 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i)
                     {
+                       ingredientNameOne = ingredientOneName.getText().toString();
+                       ingredientAmountOne = ingredientOneAmount.getText().toString();
+                       ingredientUnitOne = ingredientOneUnit.getSelectedItem().toString();
+
                     }
                 });
 
@@ -127,16 +136,18 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
         String prepTime = rPrepTime.getText().toString().trim() + " " + prepTimeUnit.getSelectedItem().toString();
         String cookTime = rCookTime.getText().toString().trim() + " " + cookTimeUnit.getSelectedItem().toString();
         String type = rType.getSelectedItem().toString();
-        String ingredients = rIngredients.getText().toString().trim();
+        String ingredientOne = ingredientNameOne + " " + ingredientAmountOne + " " + ingredientUnitOne;
         String method = rMethod.getText().toString().trim();
 
+
         //error handling to check all the inputs have data filled in
-        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(ingredients) && !TextUtils.isEmpty(method))
+        if(!TextUtils.isEmpty(name) && ingredientOne != null && !TextUtils.isEmpty(method))
         {
             //save the input data to the Firebase database, setting a new Unique id each time a save is actioned
             String id = recipeDatabase.push().getKey();
 
-            Recipe recipe = new Recipe(id, name, type, prepTime, cookTime, ingredients, method);
+            Recipe recipe = new Recipe(id, name, type, prepTime, cookTime, ingredientOne, ingredientOne, ingredientOne, ingredientOne,
+                    ingredientOne, ingredientOne, ingredientOne, ingredientOne, ingredientOne, ingredientOne, method);
 
             recipeDatabase.child(id).setValue(recipe);
 
