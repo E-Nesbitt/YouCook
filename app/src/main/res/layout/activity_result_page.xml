@@ -6,9 +6,17 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="8dp">
+
+            <WebView
+                android:id="@+id/web_view_display"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
+
+            </WebView>
 
         <ImageView
             android:id="@+id/image_result_single"
@@ -27,20 +35,20 @@
             android:fontFamily="@font/nunito_bold"
             android:textSize="30sp"/>
 
-        <TextView
-            android:id="@+id/recipe_id_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nunito_bold"
-            android:text="@string/recipe_id_text"
-            android:textSize="18sp" />
+        <!--<TextView-->
+            <!--android:id="@+id/recipe_id_title"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:fontFamily="@font/nunito_bold"-->
+            <!--android:text="@string/recipe_id_text"-->
+            <!--android:textSize="18sp" />-->
 
-        <TextView
-            android:id="@+id/recipe_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/nunito" />
+        <!--<TextView-->
+            <!--android:id="@+id/recipe_id"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:fontFamily="@font/nunito" />-->
 
         <TextView
             android:id="@+id/recipe_publisher_title"
@@ -71,7 +79,18 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/nunito"
-            android:autoLink="web"/>
+            android:textIsSelectable="true"/>
+            <!--android:autoLink="web"-->
+
+        <Button
+            android:id="@+id/view_full_recipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="View the whole recipe"
+            android:fontFamily="@font/nunito_bold"
+            android:background="@drawable/button_layout"
+            android:textColor="@color/backgroundcolour"
+            android:layout_marginBottom="8dp"/>
 
         <ImageView
             android:layout_width="wrap_content"

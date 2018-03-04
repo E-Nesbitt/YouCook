@@ -48,7 +48,7 @@
     <string name="action_clear_all">Clear All Items</string>
     <string name="recipe_id_text">Recipe ID</string>
     <string name="recipe_publisher_text">Recipe Publisher</string>
-    <string name="recipe_link_text">Recipe Link, click for the full recipe</string>
+    <string name="recipe_link_text">Recipe Link, click me if you want to copy me to forward to a friend</string>
 
 
     <!-- Recipe Activity Strings -->

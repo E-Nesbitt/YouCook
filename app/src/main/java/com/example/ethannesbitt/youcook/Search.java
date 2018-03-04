@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.MultiAutoCompleteTextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -76,10 +77,16 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
             {
                 userInput = searchInput.getText().toString();
 
-                Intent searchResultsActivity = new Intent(Search.this, SearchResults.class);
-                searchResultsActivity.putExtra("User Input", userInput);
-
-                startActivity(searchResultsActivity);
+                if(userInput.equals(""))
+                {
+                    Toast.makeText(Search.this, "Enter an ingredient before searching!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Intent searchResultsActivity = new Intent(Search.this, SearchResults.class);
+                    searchResultsActivity.putExtra("User Input", userInput);
+                    startActivity(searchResultsActivity);
+                }
             }
         });
 
