@@ -41,6 +41,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener
     //Email and Password Login Variables
     private Button signInButton;
     private EditText emailInput, passwordInput;
+    private String uid;
 
     //Registration Activity Link
     private TextView registration;
@@ -170,6 +171,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener
                         {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
+                            uid = user.getUid();
                             pDialog.dismiss();//dismiss the authenticating dialog
                         }
                         else
@@ -206,6 +208,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener
                         if (task.isSuccessful())
                         {
                             FirebaseUser user = mAuth.getCurrentUser();
+                            uid = user.getUid();
+
                         }
                         else
                         {

@@ -92,7 +92,10 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
 
             Recipe recipe = new Recipe(id, name, type, prepTime, cookTime, ingredients, method);
 
-            recipeDatabase.child(id).setValue(recipe);
+            FirebaseUser user = mAuth.getCurrentUser();
+            String uid = user.getUid();
+
+            recipeDatabase.child(uid).child(id).setValue(recipe);
 
             Toast.makeText(AddRecipe.this, "Recipe "+ name + " saved!", Toast.LENGTH_LONG).show();
 

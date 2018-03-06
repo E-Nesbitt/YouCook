@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -84,6 +85,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int index = username.indexOf("@");
         username = username.substring(0, index);
         setTitle("YouCook - " + username);
+
+        String uid = user.getUid();
+        Log.d("uid", uid);
     }
 
     @Override
