@@ -139,7 +139,6 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
         String ingredientOne = ingredientNameOne + " " + ingredientAmountOne + " " + ingredientUnitOne;
         String method = rMethod.getText().toString().trim();
 
-
         //error handling to check all the inputs have data filled in
         if(!TextUtils.isEmpty(name) && ingredientOne != null && !TextUtils.isEmpty(method))
         {

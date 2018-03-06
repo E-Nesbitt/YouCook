@@ -26,14 +26,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
 
         mAuth.addAuthStateListener(mAuthListener);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
