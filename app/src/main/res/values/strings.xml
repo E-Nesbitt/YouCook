@@ -97,7 +97,7 @@
     <!-- Timer Activity Strings -->
     <string name="timer_menu">Timer</string>
     <string name="timer_menu_desc">Set a timer so you don\'t burn the meal</string>
-    <string name="time">0:00</string>
+    <string name="time">00:00</string>
     <string name="time_start">Start</string>
     <string name="time_stop">Stop</string>
     <string name="time_input_button">Click Here to Enter Time</string>
