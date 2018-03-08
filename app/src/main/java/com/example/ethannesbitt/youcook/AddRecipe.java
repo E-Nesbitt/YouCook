@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -41,10 +43,16 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
 
     //testing
     private TextView ingredients;
-    private String ingredientNameOne;
-    private String ingredientAmountOne;
-    private String ingredientUnitOne;
+    private String ingredientOne, ingredientTwo, ingredientThree, ingredientFour, ingredientFive, ingredientSix, ingredientSeven, ingredientEight,
+            ingredientNine, ingredientTen, ingredientEleven, ingredientTwelve, ingredientThirteen, ingredientFourteen, ingredientFifteen,
+            ingredientSixteen, ingredientSeventeen, ingredientEighteen, ingredientNineteen, ingredientTwenty;
 
+
+    //testing tabs
+    private TextView rName2;
+    private SectionsPageAdapter pageAdapter;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -74,58 +82,35 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
         prepTimeUnit = findViewById(R.id.prep_time_unit);
         rCookTime = findViewById(R.id.cooking_time_input);
         cookTimeUnit = findViewById(R.id.cook_time_unit);
-        rIngredients = findViewById(R.id.recipeIngredientsInput);
         rMethod = findViewById(R.id.recipeMethodInput);
         rType = findViewById(R.id.recipeTypeInput);
-        save = findViewById(R.id.saveButton);
-        save.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                saveRecipe();
-            }
-        });
 
-        ingredients = findViewById(R.id.recipeIngredients);
+//        save = findViewById(R.id.saveButton);
+//        save.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View view)
+//            {
+//                saveRecipe();
+//            }
+//        });
 
-        ingredients.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                LayoutInflater inflater = LayoutInflater.from(AddRecipe.this);
-                View ingredientView = inflater.inflate(R.layout.ingredient_inputs, null);
+        //initialising tabs
+        viewPager = findViewById(R.id.container_add_recipe);
+        viewPagerCreate(viewPager);
+        tabLayout = findViewById(R.id.recipeTabs);
+        tabLayout.setupWithViewPager(viewPager);
+    }
 
-                final EditText ingredientOneName = ingredientView.findViewById(R.id.ingredient_one_name);
-                final EditText ingredientOneAmount = ingredientView.findViewById(R.id.ingredient_one_amount);
-                final Spinner ingredientOneUnit = ingredientView.findViewById(R.id.i_g_1_unit);
+    //method to add the tabs (fragments to the page adapter and then set the page adapter to the viewPager
+    private void viewPagerCreate(ViewPager viewPager)
+    {
+        SectionsPageAdapter sPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+        sPageAdapter.addFragment("Information", new RecipeInformationTab());
+        sPageAdapter.addFragment("Ingredients", new RecipeIngredientsTab());
+        sPageAdapter.addFragment("Method", new RecipeMethodTab());
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(AddRecipe.this);
-                builder.setTitle("Add Ingredients");
-                builder.setView(ingredientView);//passing the edit text to the alert prompt view
-                builder.setPositiveButton("Add", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i)
-                    {
-                       ingredientNameOne = ingredientOneName.getText().toString();
-                       ingredientAmountOne = ingredientOneAmount.getText().toString();
-                       ingredientUnitOne = ingredientOneUnit.getSelectedItem().toString();
-
-                    }
-                });
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-                        dialog.cancel();
-                    }
-                });
-                builder.show();
-
-            }
-        });
+        viewPager.setAdapter(sPageAdapter);
     }
 
     //method to save the recipe
@@ -136,7 +121,7 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
         String prepTime = rPrepTime.getText().toString().trim() + " " + prepTimeUnit.getSelectedItem().toString();
         String cookTime = rCookTime.getText().toString().trim() + " " + cookTimeUnit.getSelectedItem().toString();
         String type = rType.getSelectedItem().toString();
-        String ingredientOne = ingredientNameOne + " " + ingredientAmountOne + " " + ingredientUnitOne;
+        //String ingredientOne = ingredientNameOne + " " + ingredientAmountOne + " " + ingredientUnitOne;
         String method = rMethod.getText().toString().trim();
 
         //error handling to check all the inputs have data filled in
@@ -145,8 +130,9 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
             //save the input data to the Firebase database, setting a new Unique id each time a save is actioned
             String id = recipeDatabase.push().getKey();
 
-            Recipe recipe = new Recipe(id, name, type, prepTime, cookTime, ingredientOne, ingredientOne, ingredientOne, ingredientOne,
-                    ingredientOne, ingredientOne, ingredientOne, ingredientOne, ingredientOne, ingredientOne, method);
+            Recipe recipe = new Recipe(id, name, type, prepTime, cookTime, ingredientOne, ingredientOne, ingredientOne, ingredientOne, ingredientOne,
+                    ingredientOne, ingredientOne, ingredientOne, ingredientOne, ingredientOne, ingredientOne, ingredientOne, ingredientOne,
+                    ingredientOne, ingredientOne, ingredientOne, ingredientOne, ingredientOne, ingredientOne, ingredientOne, method);
 
             recipeDatabase.child(id).setValue(recipe);
 

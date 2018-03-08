@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,185 +7,49 @@
     tools:context="com.example.ethannesbitt.youcook.AddRecipe"
     android:id="@+id/add_recipes">
 
-    <ScrollView
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
-        <LinearLayout
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/activity_vertical_margin">
+            android:theme="@style/TabTheme">
 
-            <TextView
-                android:id="@+id/recipeAddTitle"
+            <android.support.design.widget.TabLayout
+                android:id="@+id/recipeTabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:gravity="center_horizontal"
-                android:text="@string/new_recipe"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/recipeName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:text="@string/recipe_name"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/recipeNameInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:hint="@string/hint_name"
-                android:inputType="text" />
-
-            <TextView
-                android:id="@+id/recipe_prep_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:fontFamily="@font/nunito"
-                android:text="@string/prep_time"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/prep_time_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:hint="@string/prep_input"
-                android:inputType="number"
-                android:ems="10"/>
-
-                <Spinner
-                    android:id="@+id/prep_time_unit"
+                <android.support.design.widget.TabItem
+                    android:id="@+id/tabItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/time_unit">
+                    android:text="test"/>
 
-                </Spinner>
+                <android.support.design.widget.TabItem
+                    android:id="@+id/tabItem2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-            </LinearLayout>
+                <android.support.design.widget.TabItem
+                    android:id="@+id/tabItem3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/cooking_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:text="@string/cooking_time"
-                android:textStyle="bold" />
+            </android.support.design.widget.TabLayout>
+        </android.support.design.widget.AppBarLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/container_add_recipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-            <EditText
-                android:id="@+id/cooking_time_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:hint="@string/cooking_time_input"
-                android:inputType="number"
-                android:ems="10"/>
-
-            <Spinner
-                android:id="@+id/cook_time_unit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/time_unit">
-
-            </Spinner>
-
-        </LinearLayout>
-
-            <TextView
-                android:id="@+id/recipeType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:text="@string/recipe_type"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/recipeTypeInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:entries="@array/course_type">
-            </Spinner>
-
-            <TextView
-                android:id="@+id/recipeIngredients"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:fontFamily="@font/nunito"
-                android:text="@string/recipe_ingredients"
-                android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/recipeIngredientsInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:fontFamily="@font/nunito"
-                android:hint="@string/hint_ingredients"
-                android:inputType="textMultiLine" />
-
-            <Spinner
-                android:id="@+id/ingredient_unit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/ingredient_unit">
-
-            </Spinner>
-
-        </LinearLayout>
-
-            <TextView
-                android:id="@+id/recipeMethod"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:text="@string/recipe_method"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/recipeMethodInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:fontFamily="@font/nunito"
-                android:hint="@string/hint_method"
-                android:inputType="textMultiLine" />
-
-            <Button
-                android:id="@+id/saveButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/save"
-                android:background="@drawable/button_layout"
-                android:textColor="@color/backgroundcolour"
-                android:layout_margin="10dp"/>
-
-        </LinearLayout>
-    </ScrollView>
+    </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/addrecipednav"
