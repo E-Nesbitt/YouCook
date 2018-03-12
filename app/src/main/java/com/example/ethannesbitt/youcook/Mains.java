@@ -46,15 +46,15 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mains);
 
-
-        //initialising database
-        databaseReference = FirebaseDatabase.getInstance().getReference("recipes");
-        listRecipes = findViewById(R.id.mainsList);
-        recipeList = new ArrayList<>();
-
         //getting user data (initialising user)
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+        String uid = user.getUid();
+
+        //initialising database
+        databaseReference = FirebaseDatabase.getInstance().getReference("recipes").child(uid);
+        listRecipes = findViewById(R.id.mainsList);
+        recipeList = new ArrayList<>();
 
         //initialising drawer menu
         drawerMenu = findViewById(R.id.mains);

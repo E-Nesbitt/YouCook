@@ -45,14 +45,15 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desserts);
 
-        //initialising database
-        databaseReference = FirebaseDatabase.getInstance().getReference("recipes");
-        listRecipes = findViewById(R.id.dessertsList);
-        recipeList = new ArrayList<>();
-
         //getting user data (initialising user)
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+        String uid = user.getUid();
+
+        //initialising database
+        databaseReference = FirebaseDatabase.getInstance().getReference("recipes").child(uid);
+        listRecipes = findViewById(R.id.dessertsList);
+        recipeList = new ArrayList<>();
 
         //initialising drawer menu
         drawerMenu = findViewById(R.id.desserts);
