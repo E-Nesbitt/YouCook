@@ -1042,6 +1042,16 @@
                 android:layout_gravity="center"
                 android:background="@color/colorPrimary" />
 
+            <Button
+                android:id="@+id/save_and_next_button_ingred"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/save_next"
+                android:background="@drawable/button_layout"
+                android:textColor="@color/backgroundcolour"
+                android:layout_margin="10dp"/>
+
         </LinearLayout>
 
     </LinearLayout>

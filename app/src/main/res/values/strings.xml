@@ -60,6 +60,8 @@
     <string name="recipe_ingredients">Ingredients</string>
     <string name="recipe_method">Method</string>
     <string name="save">Save</string>
+    <string name="save_next">Save and Move to Next Section</string>
+    <string name="save_done">Save and Add to Recipes</string>
     <string name="view_recipes_title">View Your Recipes</string>
     <string name="view_recipes">Click on the type of Recipes you would like to view</string>
     <string name="hint_name">Enter Recipe Name</string>
@@ -85,6 +87,7 @@
     </array>
     <!-- Spinner Array for Ingredient Unit -->
     <array name="ingredient_unit">
+        <item>Unit:</item>
         <item>Grams</item>
         <item>Kilograms</item>
         <item>Pounds</item>

@@ -118,6 +118,16 @@
             android:entries="@array/course_type">
         </Spinner>
 
+        <Button
+            android:id="@+id/save_and_next_button_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_bold"
+            android:text="@string/save_next"
+            android:background="@drawable/button_layout"
+            android:textColor="@color/backgroundcolour"
+            android:layout_margin="10dp"/>
+
     </LinearLayout>
 
 </ScrollView>

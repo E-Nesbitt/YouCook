@@ -1,19 +1,30 @@
 package com.example.ethannesbitt.youcook;
 
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class RecipeInformationTab extends Fragment
 {
 
     private Spinner prepTimeUnit, cookTimeUnit, course;
     private EditText name, prepTime, cookTime;
+    private Button saveAndNext;
+
+    //testing
+    private ViewPager viewPager;
 
 
     public RecipeInformationTab()
@@ -22,20 +33,72 @@ public class RecipeInformationTab extends Fragment
     }
 
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-
-        name = container.findViewById(R.id.recipeNameInput);
-        prepTime = container.findViewById(R.id.prep_time_input);
-        prepTimeUnit = container.findViewById(R.id.prep_time_unit);
-        cookTime = container.findViewById(R.id.cooking_time_input);
-        cookTimeUnit = container.findViewById(R.id.cook_time_unit);
-        course = container.findViewById(R.id.recipeTypeInput);
-
         //Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recipe_information_tab, container, false);
+        View view = inflater.inflate(R.layout.fragment_recipe_information_tab, container, false);
+
+        //initialising user inputs
+        name = view.findViewById(R.id.recipeNameInput);
+        prepTime = view.findViewById(R.id.prep_time_input);
+        prepTimeUnit = view.findViewById(R.id.prep_time_unit);
+        cookTime = view.findViewById(R.id.cooking_time_input);
+        cookTimeUnit = view.findViewById(R.id.cook_time_unit);
+        course = view.findViewById(R.id.recipeTypeInput);
+
+        //initialising button and setting up its on click
+        saveAndNext = view.findViewById(R.id.save_and_next_button_info);
+        saveAndNext.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                setSaveAndNext();
+            }
+        });
+
+        //return the view inflated
+        return view;
     }
 
+    private void setSaveAndNext()
+    {
+        //takes inputs from user and sets them to strings
+        String setName = name.getText().toString().trim();
+        String setPrepTime = prepTime.getText().toString().trim() + " " + prepTimeUnit.getSelectedItem().toString();
+        String setCookTime = cookTime.getText().toString().trim() + " " + cookTimeUnit.getSelectedItem().toString();
+        String setType = course.getSelectedItem().toString();
+
+        if(!TextUtils.isEmpty(setName) && !TextUtils.isEmpty(setPrepTime) && !TextUtils.isEmpty(setCookTime) && !TextUtils.isEmpty(setType))
+        {
+            SharedPreferences putPreferences = getActivity().getSharedPreferences("RecipeInfo", Activity.MODE_PRIVATE);
+            SharedPreferences.Editor preferenceEditor = putPreferences.edit();
+            preferenceEditor.putString("Name", setName);
+            preferenceEditor.putString("PrepTime", setPrepTime);
+            preferenceEditor.putString("CookTime", setCookTime);
+            preferenceEditor.putString("Type", setType);
+            preferenceEditor.apply();
+
+            //move the user to the next tab
+            viewPager = getActivity().findViewById(R.id.container_add_recipe);
+            viewPager.setCurrentItem(1);
+            Toast.makeText(getContext(), "Info saved, now fill in the ingredients!", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            //Error toast message to let user know more data needs entered before save can be completed
+            Toast.makeText(getContext(), "Ensure all details are entered and try again!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void reset()
+    {
+        name.setText("");
+        prepTime.setText("");
+        cookTime.setText("");
+        course.setSelection(0);
+    }
 
 }
