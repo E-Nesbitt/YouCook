@@ -113,7 +113,10 @@ public class RecipeMethodTab extends Fragment
                     ingredientFourteen, ingredientFifteen, ingredientSixteen, ingredientSeventeen, ingredientEighteen, ingredientNineteen, ingredientTwenty,
                     recipeMethod);
 
-        recipeDatabase.child(id).setValue(recipe);
+        FirebaseUser user = mAuth.getCurrentUser();
+        String uid = user.getUid();
+
+        recipeDatabase.child(uid).child(id).setValue(recipe);
 
         Toast.makeText(getContext(), "Recipe "+ name + " saved!", Toast.LENGTH_LONG).show();
 

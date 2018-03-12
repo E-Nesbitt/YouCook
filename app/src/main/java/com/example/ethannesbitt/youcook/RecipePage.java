@@ -44,15 +44,54 @@ public class RecipePage extends AppCompatActivity
             String pTime = recipePageBundle.getString("Recipe prepTime");
             String cTime = recipePageBundle.getString("Recipe cookTime");
             String type = recipePageBundle.getString("Recipe type");
-            String ingredients = recipePageBundle.getString("Recipe ingredients");
+            String ingredientOne = recipePageBundle.getString("Recipe ingredient one");
+            String ingredientTwo = recipePageBundle.getString("Recipe ingredient 1");
+            String ingredientThree = recipePageBundle.getString("Recipe ingredient 2");
+            String ingredientFour = recipePageBundle.getString("Recipe ingredient 3");
+            String ingredientFive = recipePageBundle.getString("Recipe ingredient 4");
+            String ingredientSix = recipePageBundle.getString("Recipe ingredient 5");
+            String ingredientSeven = recipePageBundle.getString("Recipe ingredient 6");
+            String ingredientEight = recipePageBundle.getString("Recipe ingredient 7");
+            String ingredientNine = recipePageBundle.getString("Recipe ingredient 8");
+            String ingredientTen = recipePageBundle.getString("Recipe ingredient 9");
+            String ingredientEleven = recipePageBundle.getString("Recipe ingredient 10");
+            String ingredientTwelve = recipePageBundle.getString("Recipe ingredient 11");
+            String ingredientThirteen = recipePageBundle.getString("Recipe ingredient 12");
+            String ingredientFourteen = recipePageBundle.getString("Recipe ingredient 13");
+            String ingredientFifteen = recipePageBundle.getString("Recipe ingredient 14");
+            String ingredientSixteen = recipePageBundle.getString("Recipe ingredient 15");
+            String ingredientSeventeen = recipePageBundle.getString("Recipe ingredient 16");
+            String ingredientEighteen = recipePageBundle.getString("Recipe ingredient 17");
+            String ingredientNineteen = recipePageBundle.getString("Recipe ingredient 18");
+            String ingredientTwenty = recipePageBundle.getString("Recipe ingredient 19");
+            String[] ingredients = new String[] {ingredientTwo, ingredientThree, ingredientFour, ingredientFive, ingredientSix, ingredientSeven, ingredientEight,
+                    ingredientNine, ingredientTen, ingredientEleven, ingredientTwelve, ingredientThirteen, ingredientFourteen, ingredientFifteen,
+                    ingredientSixteen, ingredientSeventeen, ingredientEighteen, ingredientNineteen, ingredientTwenty};
+
             String method = recipePageBundle.getString("Recipe method");
-            Log.d("listtest", id + " " + name + " " + type + " " + ingredients + " " + method);
 
             //setting text views to have the information from the selected recipe in the DB
             recipeName.setText(name);
             prepTime.setText(pTime);
             cookTime.setText(cTime);
-            ingredientsList.setText(ingredients);
+            ingredientsList.setText(ingredientOne);
+
+            //Toast.makeText(this, "testing" + ingredients[0], Toast.LENGTH_SHORT).show();
+
+            for(int i = 1; i <=18 ; i++)
+            {
+                try
+                {
+                    if (!ingredients[i].equals(""))
+                    {
+                        ingredientsList.append("\n" + ingredients[i]);
+                    }
+                }catch (NullPointerException e)
+                {
+
+                }
+
+            }
             methodList.setText(method);
 
             //setting the recipe id to String ID for delete method

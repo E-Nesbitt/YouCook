@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,14 +46,15 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desserts);
 
-        //initialising database
-        databaseReference = FirebaseDatabase.getInstance().getReference("recipes");
-        listRecipes = findViewById(R.id.dessertsList);
-        recipeList = new ArrayList<>();
-
         //getting user data (initialising user)
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+        String uid = user.getUid();
+
+        //initialising database
+        databaseReference = FirebaseDatabase.getInstance().getReference("recipes").child(uid);
+        listRecipes = findViewById(R.id.dessertsList);
+        recipeList = new ArrayList<>();
 
         //initialising drawer menu
         drawerMenu = findViewById(R.id.desserts);
@@ -75,7 +77,29 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
                 String prepTime = recipe.getRecipePrepTime();
                 String cookTime = recipe.getRecipePrepTime();
                 String type = recipe.getRecipeType();
-                //String ingredients = recipe.getRecipeIngredients();
+
+                //getting all 20 ingredients
+                String ingredientOne = recipe.getIngredientOne();
+                String ingredientTwo = recipe.getIngredientTwo();
+                String ingredientThree = recipe.getIngredientThree();
+                String ingredientFour = recipe.getIngredientFour();
+                String ingredientFive = recipe.getIngredientFive();
+                String ingredientSix = recipe.getIngredientSix();
+                String ingredientSeven = recipe.getIngredientSeven();
+                String ingredientEight = recipe.getIngredientEight();
+                String ingredientNine = recipe.getIngredientNine();
+                String ingredientTen = recipe.getIngredientTen();
+                String ingredientEleven = recipe.getIngredientEleven();
+                String ingredientTwelve = recipe.getIngredientTwelve();
+                String ingredientThirteen = recipe.getIngredientThirteen();
+                String ingredientFourteen = recipe.getIngredientFourteen();
+                String ingredientFifteen = recipe.getIngredientFifteen();
+                String ingredientSixteen = recipe.getIngredientSixteen();
+                String ingredientSeventeen = recipe.getIngredientSeventeen();
+                String ingredientEighteen = recipe.getIngredientEighteen();
+                String ingredientNineteen = recipe.getIngredientNineteen();
+                String ingredientTwenty = recipe.getIngredientTwenty();
+
                 String method = recipe.getRecipeMethod();
 
                 Intent recipePage = new Intent(Desserts.this, RecipePage.class);
@@ -84,9 +108,26 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
                 recipePage.putExtra("Recipe prepTime", prepTime);
                 recipePage.putExtra("Recipe cookTime", cookTime);
                 recipePage.putExtra("Recipe type", type);
-                //recipePage.putExtra("Recipe ingredients", ingredients);
+                recipePage.putExtra("Recipe ingredient one", ingredientOne);
                 recipePage.putExtra("Recipe method", method);
 
+                //carrying out check, if ingredient was left blank i.e. String = "  Unit:" do not pass it to next activity
+                String[] ingredients = new String[] { ingredientTwo, ingredientThree, ingredientFour, ingredientFive, ingredientSix, ingredientSeven, ingredientEight,
+                                                    ingredientNine, ingredientTen, ingredientEleven, ingredientTwelve, ingredientThirteen, ingredientFourteen, ingredientFifteen,
+                                                    ingredientSixteen, ingredientSeventeen, ingredientEighteen, ingredientNineteen, ingredientTwenty};
+
+                for(int i = 1; i <=18 ; i++)
+                {
+                    if(ingredients[i].equals("  Unit:"))
+                    {
+                        ingredients[i] = "";
+                        recipePage.putExtra("Recipe ingredient " + i, ingredients[i]);
+                    }
+                    else
+                    {
+                        recipePage.putExtra("Recipe ingredient " + i, ingredients[i]);
+                    }
+                }
                 startActivity(recipePage);
             }
         });

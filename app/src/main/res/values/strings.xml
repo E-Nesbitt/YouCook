@@ -88,6 +88,7 @@
     <!-- Spinner Array for Ingredient Unit -->
     <array name="ingredient_unit">
         <item>Unit:</item>
+        <item>of Item</item>
         <item>Grams</item>
         <item>Kilograms</item>
         <item>Pounds</item>
@@ -107,7 +108,6 @@
         <item>Pack(s)</item>
         <item>Bag(s)</item>
         <item>Sachet(s)</item>
-        <item>N/A</item>
     </array>
     <!-- Ingredient Title Values -->
     <string name="ingredient_one">Ingredient One</string>
