@@ -2,6 +2,7 @@ package com.example.ethannesbitt.youcook;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -125,8 +126,8 @@ public class RecipeMethodTab extends Fragment
         getPreferences.edit().clear().apply();
 
         reset();
-        viewPager = getActivity().findViewById(R.id.container_add_recipe);
-        viewPager.setCurrentItem(0);
+        getActivity().finish();
+        startActivity(new Intent(getContext(), Recipes.class));
     }
 
     private void reset()
