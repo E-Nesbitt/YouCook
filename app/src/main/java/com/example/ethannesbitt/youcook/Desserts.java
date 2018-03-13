@@ -75,7 +75,7 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
                 String rid = recipe.getRecipeId();
                 String name = recipe.getRecipeName();
                 String prepTime = recipe.getRecipePrepTime();
-                String cookTime = recipe.getRecipePrepTime();
+                String cookTime = recipe.getRecipeCookTime();
                 String type = recipe.getRecipeType();
 
                 //getting all 20 ingredients

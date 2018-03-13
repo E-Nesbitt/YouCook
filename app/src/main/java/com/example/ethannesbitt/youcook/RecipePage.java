@@ -45,25 +45,25 @@ public class RecipePage extends AppCompatActivity
             String cTime = recipePageBundle.getString("Recipe cookTime");
             String type = recipePageBundle.getString("Recipe type");
             String ingredientOne = recipePageBundle.getString("Recipe ingredient one");
-            String ingredientTwo = recipePageBundle.getString("Recipe ingredient 1");
-            String ingredientThree = recipePageBundle.getString("Recipe ingredient 2");
-            String ingredientFour = recipePageBundle.getString("Recipe ingredient 3");
-            String ingredientFive = recipePageBundle.getString("Recipe ingredient 4");
-            String ingredientSix = recipePageBundle.getString("Recipe ingredient 5");
-            String ingredientSeven = recipePageBundle.getString("Recipe ingredient 6");
-            String ingredientEight = recipePageBundle.getString("Recipe ingredient 7");
-            String ingredientNine = recipePageBundle.getString("Recipe ingredient 8");
-            String ingredientTen = recipePageBundle.getString("Recipe ingredient 9");
-            String ingredientEleven = recipePageBundle.getString("Recipe ingredient 10");
-            String ingredientTwelve = recipePageBundle.getString("Recipe ingredient 11");
-            String ingredientThirteen = recipePageBundle.getString("Recipe ingredient 12");
-            String ingredientFourteen = recipePageBundle.getString("Recipe ingredient 13");
-            String ingredientFifteen = recipePageBundle.getString("Recipe ingredient 14");
-            String ingredientSixteen = recipePageBundle.getString("Recipe ingredient 15");
-            String ingredientSeventeen = recipePageBundle.getString("Recipe ingredient 16");
-            String ingredientEighteen = recipePageBundle.getString("Recipe ingredient 17");
-            String ingredientNineteen = recipePageBundle.getString("Recipe ingredient 18");
-            String ingredientTwenty = recipePageBundle.getString("Recipe ingredient 19");
+            String ingredientTwo = recipePageBundle.getString("Recipe ingredient 0");
+            String ingredientThree = recipePageBundle.getString("Recipe ingredient 1");
+            String ingredientFour = recipePageBundle.getString("Recipe ingredient 2");
+            String ingredientFive = recipePageBundle.getString("Recipe ingredient 3");
+            String ingredientSix = recipePageBundle.getString("Recipe ingredient 4");
+            String ingredientSeven = recipePageBundle.getString("Recipe ingredient 5");
+            String ingredientEight = recipePageBundle.getString("Recipe ingredient 6");
+            String ingredientNine = recipePageBundle.getString("Recipe ingredient 7");
+            String ingredientTen = recipePageBundle.getString("Recipe ingredient 8");
+            String ingredientEleven = recipePageBundle.getString("Recipe ingredient 9");
+            String ingredientTwelve = recipePageBundle.getString("Recipe ingredient 10");
+            String ingredientThirteen = recipePageBundle.getString("Recipe ingredient 11");
+            String ingredientFourteen = recipePageBundle.getString("Recipe ingredient 12");
+            String ingredientFifteen = recipePageBundle.getString("Recipe ingredient 13");
+            String ingredientSixteen = recipePageBundle.getString("Recipe ingredient 14");
+            String ingredientSeventeen = recipePageBundle.getString("Recipe ingredient 15");
+            String ingredientEighteen = recipePageBundle.getString("Recipe ingredient 16");
+            String ingredientNineteen = recipePageBundle.getString("Recipe ingredient 17");
+            String ingredientTwenty = recipePageBundle.getString("Recipe ingredient 18");
             String[] ingredients = new String[] {ingredientTwo, ingredientThree, ingredientFour, ingredientFive, ingredientSix, ingredientSeven, ingredientEight,
                     ingredientNine, ingredientTen, ingredientEleven, ingredientTwelve, ingredientThirteen, ingredientFourteen, ingredientFifteen,
                     ingredientSixteen, ingredientSeventeen, ingredientEighteen, ingredientNineteen, ingredientTwenty};
@@ -76,9 +76,7 @@ public class RecipePage extends AppCompatActivity
             cookTime.setText(cTime);
             ingredientsList.setText(ingredientOne);
 
-            //Toast.makeText(this, "testing" + ingredients[0], Toast.LENGTH_SHORT).show();
-
-            for(int i = 1; i <=18 ; i++)
+            for(int i = 0; i <=18 ; i++)
             {
                 try
                 {
@@ -88,9 +86,8 @@ public class RecipePage extends AppCompatActivity
                     }
                 }catch (NullPointerException e)
                 {
-
+                    Toast.makeText(this, "ERROR LOADING INGREDIENTS!", Toast.LENGTH_SHORT).show();
                 }
-
             }
             methodList.setText(method);
 

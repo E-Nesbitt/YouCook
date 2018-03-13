@@ -75,7 +75,7 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
                 String rid = recipe.getRecipeId();
                 String name = recipe.getRecipeName();
                 String prepTime = recipe.getRecipePrepTime();
-                String cookTime = recipe.getRecipePrepTime();
+                String cookTime = recipe.getRecipeCookTime();
                 String type = recipe.getRecipeType();
 
                 //getting all 20 ingredients
@@ -116,9 +116,9 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
                         ingredientNine, ingredientTen, ingredientEleven, ingredientTwelve, ingredientThirteen, ingredientFourteen, ingredientFifteen,
                         ingredientSixteen, ingredientSeventeen, ingredientEighteen, ingredientNineteen, ingredientTwenty};
 
-                for(int i = 1; i <=18 ; i++)
+                for(int i = 0; i <=18 ; i++)
                 {
-                    if(ingredients[i].toString().equals("  Unit:"))
+                    if(ingredients[i].equals("  Unit:"))
                     {
                         ingredients[i] = "";
                         recipePage.putExtra("Recipe ingredient " + i, ingredients[i]);

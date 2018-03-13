@@ -13,12 +13,9 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class AddRecipe extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -31,10 +28,8 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
     private EditText rName, rPrepTime, rCookTime, rIngredients, rMethod;
     private Spinner rType, cookTimeUnit, prepTimeUnit;
 
-    private DatabaseReference recipeDatabase;
 
     //testing tabs
-    private TextView rName2;
     private SectionsPageAdapter pageAdapter;
     private ViewPager viewPager;
     private TabLayout tabLayout;
@@ -44,9 +39,6 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
-
-        //Initialise recipe database
-        recipeDatabase = FirebaseDatabase.getInstance().getReference("recipes");
 
         //getting user data (initialising user)
         mAuth = FirebaseAuth.getInstance();
@@ -60,15 +52,6 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = findViewById(R.id.addrecipednav);
         navigationView.setNavigationItemSelectedListener(this);
-
-        //setting up recipe inputs
-        rName = findViewById(R.id.recipeNameInput);
-        rPrepTime = findViewById(R.id.prep_time_input);
-        prepTimeUnit = findViewById(R.id.prep_time_unit);
-        rCookTime = findViewById(R.id.cooking_time_input);
-        cookTimeUnit = findViewById(R.id.cook_time_unit);
-        rMethod = findViewById(R.id.recipeMethodInput);
-        rType = findViewById(R.id.recipeTypeInput);
 
         //initialising tabs
         viewPager = findViewById(R.id.container_add_recipe);
