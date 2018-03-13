@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -20,6 +22,7 @@ public class RecipePage extends AppCompatActivity
     private TextView recipeName, ingredientsList, methodList, prepTime, cookTime;
     private Button deleteButton;
     private String recipeID;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -112,7 +115,12 @@ public class RecipePage extends AppCompatActivity
 
     private void deleteRecipe(String recipeId)
     {
-        final DatabaseReference recipeDB = FirebaseDatabase.getInstance().getReference("recipes").child(recipeId);
+        //getting user data (initialising user)
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        String uid = user.getUid();
+
+        final DatabaseReference recipeDB = FirebaseDatabase.getInstance().getReference("recipes").child(uid).child(recipeId);
 
         //Creating an alert prompt to ask user if item has been got
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
