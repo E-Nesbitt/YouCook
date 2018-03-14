@@ -76,7 +76,7 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
                 if(activeItem.trim().equals(ingredientList.get(position).trim()))
                 {
                     //call the delete method on the clicked item
-                    deleteItem(activeItem, position);
+                    deleteOrTickItem(activeItem, position);
                 }
                 else
                 {
@@ -169,7 +169,7 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-    public void deleteItem(final String activeItem, final int position)
+    public void deleteOrTickItem(final String activeItem, final int position)
     {
         //Creating an alert prompt to ask user if item has been got
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -193,6 +193,18 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
             public void onClick(DialogInterface dialog, int which)
             {
                 dialog.cancel();
+            }
+        });
+
+        builder.setNeutralButton("Remove Item", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                ingredientList.remove(position);
+                storeIngredientsList(ingredientList, getApplicationContext());
+                lView.setAdapter(aAdapter);
+                Toast.makeText(ShoppingList.this, "Item " + activeItem + " Removed", Toast.LENGTH_SHORT).show();
             }
         });
         builder.show();

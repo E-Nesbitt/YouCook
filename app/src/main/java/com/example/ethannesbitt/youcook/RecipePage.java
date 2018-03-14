@@ -134,7 +134,7 @@ public class RecipePage extends AppCompatActivity
             {
                 //Creating an alert prompt to ask user if item has been got
                 AlertDialog.Builder builder = new AlertDialog.Builder(RecipePage.this);
-                builder.setTitle("Would you like to add all ingredients to the shopping list?");
+                builder.setTitle("Add all ingredients to the shopping list?");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
                 {
                     @Override

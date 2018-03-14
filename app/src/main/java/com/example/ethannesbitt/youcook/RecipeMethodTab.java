@@ -101,30 +101,40 @@ public class RecipeMethodTab extends Fragment
 
         //get the recipe method data
         String recipeMethod = method.getText().toString();
+        if(!name.equals("") && !prepTime.equals("") && !cookTime.equals("") && !ingredientOne.equals(""))
+        {
+            if (!recipeMethod.equals("")) {
+                //store all the recipe information to the firebase database
+                // save the input data to the Firebase database, setting a new Unique id each time a save is actioned
+                String id = recipeDatabase.push().getKey();
 
-        //store all the recipe information to the firebase database
-        // save the input data to the Firebase database, setting a new Unique id each time a save is actioned
-        String id = recipeDatabase.push().getKey();
+                Recipe recipe = new Recipe(id, name, type, prepTime, cookTime, ingredientOne, ingredientTwo, ingredientThree, ingredientFour, ingredientFive,
+                        ingredientSix, ingredientSeven, ingredientEight, ingredientNine, ingredientTen, ingredientEleven, ingredientTwelve, ingredientThirteen,
+                        ingredientFourteen, ingredientFifteen, ingredientSixteen, ingredientSeventeen, ingredientEighteen, ingredientNineteen, ingredientTwenty,
+                        recipeMethod);
 
-        Recipe recipe = new Recipe(id, name, type, prepTime, cookTime, ingredientOne, ingredientTwo, ingredientThree, ingredientFour, ingredientFive,
-                ingredientSix, ingredientSeven, ingredientEight, ingredientNine, ingredientTen, ingredientEleven, ingredientTwelve, ingredientThirteen,
-                ingredientFourteen, ingredientFifteen, ingredientSixteen, ingredientSeventeen, ingredientEighteen, ingredientNineteen, ingredientTwenty,
-                recipeMethod);
+                FirebaseUser user = mAuth.getCurrentUser();
+                String uid = user.getUid();
 
-        FirebaseUser user = mAuth.getCurrentUser();
-        String uid = user.getUid();
+                recipeDatabase.child(uid).child(id).setValue(recipe);
 
-        recipeDatabase.child(uid).child(id).setValue(recipe);
+                Toast.makeText(getContext(), "Recipe " + name + " saved!", Toast.LENGTH_LONG).show();
 
-        Toast.makeText(getContext(), "Recipe "+ name + " saved!", Toast.LENGTH_LONG).show();
+                //clear the shared preferences
+                getPreferencesInfo.edit().clear().apply();
+                getPreferences.edit().clear().apply();
 
-        //clear the shared preferences
-        getPreferencesInfo.edit().clear().apply();
-        getPreferences.edit().clear().apply();
-
-        reset();
-        getActivity().finish();
-        startActivity(new Intent(getContext(), Recipes.class));
+                reset();
+                getActivity().finish();
+                startActivity(new Intent(getContext(), Recipes.class));
+            } else {
+                Toast.makeText(getContext(), "Add a method first before saving!", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else
+        {
+            Toast.makeText(getContext(), "Some information is missing go back and enter details again!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void reset()
