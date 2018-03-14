@@ -186,7 +186,7 @@ public class RecipeIngredientsTab extends Fragment
             //move the user to the next tab
             viewPager = getActivity().findViewById(R.id.container_add_recipe);
             viewPager.setCurrentItem(2);
-            Toast.makeText(getContext(), "Info saved, now fill in the method!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Ingredients saved, now fill in the method!", Toast.LENGTH_SHORT).show();
         }
         else
         {

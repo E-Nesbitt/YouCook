@@ -11,7 +11,8 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:focusableInTouchMode="true">
 
         <TextView
             android:id="@+id/fluidsTitle"
