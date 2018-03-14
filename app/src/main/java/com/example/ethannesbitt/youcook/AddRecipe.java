@@ -3,22 +3,16 @@ package com.example.ethannesbitt.youcook;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class AddRecipe extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -27,20 +21,16 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
 
     private FirebaseAuth mAuth;
 
-    private Button save;
-    private EditText rName, rPrepTime, rCookTime, rIngredients, rMethod;
-    private Spinner rType;
-
-    private DatabaseReference recipeDatabase;
+    //testing tabs
+    private SectionsPageAdapter pageAdapter;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
-
-        //Initialise recipe database
-        recipeDatabase = FirebaseDatabase.getInstance().getReference("recipes");
 
         //getting user data (initialising user)
         mAuth = FirebaseAuth.getInstance();
@@ -55,68 +45,22 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
         NavigationView navigationView = findViewById(R.id.addrecipednav);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //setting up recipe inputs
-        rName = findViewById(R.id.recipeNameInput);
-        rPrepTime = findViewById(R.id.prep_time_input);
-        rCookTime = findViewById(R.id.cooking_time_input);
-        rIngredients = findViewById(R.id.recipeIngredientsInput);
-        rMethod = findViewById(R.id.recipeMethodInput);
-        rType = findViewById(R.id.recipeTypeInput);
-        save = findViewById(R.id.saveButton);
-        save.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                saveRecipe();
-            }
-        });
+        //initialising tabs
+        viewPager = findViewById(R.id.container_add_recipe);
+        viewPagerCreate(viewPager);
+        tabLayout = findViewById(R.id.recipeTabs);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
-    //method to save the recipe
-    private void saveRecipe()
+    //method to add the tabs (fragments to the page adapter and then set the page adapter to the viewPager
+    private void viewPagerCreate(ViewPager viewPager)
     {
-        //takes inputs from user and sets them to strings
-        String name = rName.getText().toString().trim();
-        String prepTime = rPrepTime.getText().toString().trim();
-        String cookTime = rCookTime.getText().toString().trim();
-        String type = rType.getSelectedItem().toString();
-        String ingredients = rIngredients.getText().toString().trim();
-        String method = rMethod.getText().toString().trim();
+        SectionsPageAdapter sPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+        sPageAdapter.addFragment("Information", new RecipeInformationTab());
+        sPageAdapter.addFragment("Ingredients", new RecipeIngredientsTab());
+        sPageAdapter.addFragment("Method", new RecipeMethodTab());
 
-        //error handling to check all the inputs have data filled in
-        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(ingredients) && !TextUtils.isEmpty(method))
-        {
-            //save the input data to the Firebase database, setting a new Unique id each time a save is actioned
-            String id = recipeDatabase.push().getKey();
-
-            Recipe recipe = new Recipe(id, name, type, prepTime, cookTime, ingredients, method);
-
-            FirebaseUser user = mAuth.getCurrentUser();
-            String uid = user.getUid();
-
-            recipeDatabase.child(uid).child(id).setValue(recipe);
-
-            Toast.makeText(AddRecipe.this, "Recipe "+ name + " saved!", Toast.LENGTH_LONG).show();
-
-            reset();
-        }
-        else
-        {
-            //Error toast message to let user know more data needs entered before save can be completed
-            Toast.makeText(AddRecipe.this, "Ensure all details are entered and try again!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    //empty the input text areas so that the next recipe is ready to be entered i.e. reset activity to default
-    private void reset()
-    {
-        rName.setText("");
-        rPrepTime.setText("");
-        rCookTime.setText("");
-        rType.setSelection(0);
-        rIngredients.setText("");
-        rMethod.setText("");
+        viewPager.setAdapter(sPageAdapter);
     }
 
     @Override

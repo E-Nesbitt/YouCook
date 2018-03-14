@@ -60,6 +60,8 @@
     <string name="recipe_ingredients">Ingredients</string>
     <string name="recipe_method">Method</string>
     <string name="save">Save</string>
+    <string name="save_next">Save and Move to Next Section</string>
+    <string name="save_done">Save and Add to Recipes</string>
     <string name="view_recipes_title">View Your Recipes</string>
     <string name="view_recipes">Click on the type of Recipes you would like to view</string>
     <string name="hint_name">Enter Recipe Name</string>
@@ -75,7 +77,59 @@
     <string name="prep_input">Enter Preparation Time</string>
     <string name="cooking_time">Cooking Time</string>
     <string name="cooking_time_input">Enter Cooking Time</string>
-
+    <string name="amount">Amount</string>
+    <string name="name">Name</string>
+    <string name="ingredient_help">Add the ingredients you need, you can leave areas blank if they are not required</string>
+    <!-- Spinner Array for Prep and Cook Time Unit -->
+    <array name="time_unit">
+        <item>Minutes</item>
+        <item>Hours</item>
+    </array>
+    <!-- Spinner Array for Ingredient Unit -->
+    <array name="ingredient_unit">
+        <item>Unit:</item>
+        <item>of Item</item>
+        <item>Grams</item>
+        <item>Kilograms</item>
+        <item>Pounds</item>
+        <item>Ounces</item>
+        <item>Cups</item>
+        <item>Tablespoon(s)</item>
+        <item>Teaspoon(s)</item>
+        <item>Litres</item>
+        <item>Millilitres</item>
+        <item>Pints</item>
+        <item>Fluid Ounces</item>
+        <item>Rashers</item>
+        <item>Slices</item>
+        <item>Zest</item>
+        <item>Juice</item>
+        <item>Cloves</item>
+        <item>Pack(s)</item>
+        <item>Bag(s)</item>
+        <item>Sachet(s)</item>
+    </array>
+    <!-- Ingredient Title Values -->
+    <string name="ingredient_one">Ingredient One</string>
+    <string name="ingredient_two">Ingredient Two</string>
+    <string name="ingredient_three">Ingredient Three</string>
+    <string name="ingredient_four">Ingredient Four</string>
+    <string name="ingredient_five">Ingredient Five</string>
+    <string name="ingredient_six">Ingredient Six</string>
+    <string name="ingredient_seven">Ingredient Seven</string>
+    <string name="ingredient_eight">Ingredient Eight</string>
+    <string name="ingredient_nine">Ingredient Nine</string>
+    <string name="ingredient_ten">Ingredient Ten</string>
+    <string name="ingredient_eleven">Ingredient Eleven</string>
+    <string name="ingredient_twelve">Ingredient Twelve</string>
+    <string name="ingredient_thirteen">Ingredient Thirteen</string>
+    <string name="ingredient_fourteen">Ingredient Fourteen</string>
+    <string name="ingredient_fifteen">Ingredient Fifteen</string>
+    <string name="ingredient_sixteen">Ingredient Sixteen</string>
+    <string name="ingredient_seventeen">Ingredient Seventeen</string>
+    <string name="ingredient_eighteen">Ingredient Eighteen</string>
+    <string name="ingredient_nineteen">Ingredient Nineteen</string>
+    <string name="ingredient_twenty">Ingredient Twenty</string>
 
     <!-- Spinner Array for Course Type -->
     <array name="course_type">
@@ -142,6 +196,5 @@
     <!-- Delete Account Strings -->
     <string name="delete_account">Delete Account</string>
     <string name="delete_account_text">Delete Your YouCook Account?</string>
-
 
 </resources>

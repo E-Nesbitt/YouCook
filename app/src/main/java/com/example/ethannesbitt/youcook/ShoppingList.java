@@ -202,18 +202,18 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
     public static void storeIngredientsList(ArrayList currentList, Context context)
     {
         Set writeList = new HashSet(currentList);
-        SharedPreferences putPreferences = context.getSharedPreferences("theArrayValues", Activity.MODE_PRIVATE);
+        SharedPreferences putPreferences = context.getSharedPreferences("shoppingListValues", Activity.MODE_PRIVATE);
         SharedPreferences.Editor preferenceEditor = putPreferences.edit();
-        preferenceEditor.putStringSet("theArrayList", writeList);
+        preferenceEditor.putStringSet("theShoppingList", writeList);
         preferenceEditor.apply();//was using commit before try using apply method and see if it still works
     }
 
     //opens the shopping list stored in shared preferences when app is opened
     public static ArrayList getIngredientsList(Context stored)
     {
-        SharedPreferences getPreferences = stored.getSharedPreferences("theArrayValues", Activity.MODE_PRIVATE);
+        SharedPreferences getPreferences = stored.getSharedPreferences("shoppingListValues", Activity.MODE_PRIVATE);
         Set temporarySet = new HashSet();
-        temporarySet = getPreferences.getStringSet("theArrayList", temporarySet);
+        temporarySet = getPreferences.getStringSet("theShoppingList", temporarySet);
         return new ArrayList<>(temporarySet);
     }
 

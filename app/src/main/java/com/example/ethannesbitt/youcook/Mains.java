@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -75,9 +74,31 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
                 String rid = recipe.getRecipeId();
                 String name = recipe.getRecipeName();
                 String prepTime = recipe.getRecipePrepTime();
-                String cookTime = recipe.getRecipePrepTime();
+                String cookTime = recipe.getRecipeCookTime();
                 String type = recipe.getRecipeType();
-                String ingredients = recipe.getRecipeIngredients();
+
+                //getting all 20 ingredients
+                String ingredientOne = recipe.getIngredientOne();
+                String ingredientTwo = recipe.getIngredientTwo();
+                String ingredientThree = recipe.getIngredientThree();
+                String ingredientFour = recipe.getIngredientFour();
+                String ingredientFive = recipe.getIngredientFive();
+                String ingredientSix = recipe.getIngredientSix();
+                String ingredientSeven = recipe.getIngredientSeven();
+                String ingredientEight = recipe.getIngredientEight();
+                String ingredientNine = recipe.getIngredientNine();
+                String ingredientTen = recipe.getIngredientTen();
+                String ingredientEleven = recipe.getIngredientEleven();
+                String ingredientTwelve = recipe.getIngredientTwelve();
+                String ingredientThirteen = recipe.getIngredientThirteen();
+                String ingredientFourteen = recipe.getIngredientFourteen();
+                String ingredientFifteen = recipe.getIngredientFifteen();
+                String ingredientSixteen = recipe.getIngredientSixteen();
+                String ingredientSeventeen = recipe.getIngredientSeventeen();
+                String ingredientEighteen = recipe.getIngredientEighteen();
+                String ingredientNineteen = recipe.getIngredientNineteen();
+                String ingredientTwenty = recipe.getIngredientTwenty();
+
                 String method = recipe.getRecipeMethod();
 
                 Intent recipePage = new Intent(Mains.this, RecipePage.class);
@@ -86,9 +107,26 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
                 recipePage.putExtra("Recipe prepTime", prepTime);
                 recipePage.putExtra("Recipe cookTime", cookTime);
                 recipePage.putExtra("Recipe type", type);
-                recipePage.putExtra("Recipe ingredients", ingredients);
+                recipePage.putExtra("Recipe ingredient one", ingredientOne);
                 recipePage.putExtra("Recipe method", method);
 
+                //carrying out check, if ingredient was left blank i.e. String = "  Unit:" do not pass it to next activity
+                String[] ingredients = new String[] {ingredientTwo, ingredientThree, ingredientFour, ingredientFive, ingredientSix, ingredientSeven, ingredientEight,
+                        ingredientNine, ingredientTen, ingredientEleven, ingredientTwelve, ingredientThirteen, ingredientFourteen, ingredientFifteen,
+                        ingredientSixteen, ingredientSeventeen, ingredientEighteen, ingredientNineteen, ingredientTwenty};
+
+                for(int i = 0; i <=18 ; i++)
+                {
+                    if(ingredients[i].equals("  Unit:"))
+                    {
+                        ingredients[i] = "";
+                        recipePage.putExtra("Recipe ingredient " + i, ingredients[i]);
+                    }
+                    else
+                    {
+                        recipePage.putExtra("Recipe ingredient " + i, ingredients[i]);
+                    }
+                }
                 startActivity(recipePage);
             }
         });
