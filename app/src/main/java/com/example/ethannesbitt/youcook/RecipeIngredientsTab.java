@@ -19,7 +19,7 @@ import android.widget.Toast;
 public class RecipeIngredientsTab extends Fragment
 {
 
-    //declaring variavbes for each of the ingredient items, these will be concatenated into one string per ingredient.
+    //declaring variables for each of the ingredient items, these will be concatenated into one string per ingredient.
     private Spinner ingredientOneUnit, ingredientTwoUnit, ingredientThreeUnit, ingredientFourUnit, ingredientFiveUnit,
             ingredientSixUnit, ingredientSevenUnit, ingredientEightUnit, ingredientNineUnit, ingredientTenUnit,
             ingredientElevenUnit, ingredientTwelveUnit, ingredientThirteenUnit, ingredientFourteenUnit, ingredientFifteenUnit,
@@ -119,6 +119,7 @@ public class RecipeIngredientsTab extends Fragment
         ingredientNineteenUnit = view.findViewById(R.id.ingredient_nineteen_unit);
         ingredientTwentyUnit = view.findViewById(R.id.ingredient_twenty_unit);
 
+        //button initialisation and on click method to call save method
         saveAndNext = view.findViewById(R.id.save_and_next_button_ingred);
         saveAndNext.setOnClickListener(new View.OnClickListener()
         {
@@ -193,10 +194,5 @@ public class RecipeIngredientsTab extends Fragment
             //Error toast message to let user know more data needs entered before save can be completed
             Toast.makeText(getContext(), "Ensure at least one ingredient has been added!", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void reset()
-    {
-        //rName.setText("");
     }
 }
