@@ -89,7 +89,8 @@
             android:layout_gravity="center"
             android:fontFamily="@font/nunito_bold"
             android:text="@string/delete"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/button_layout"/>
 
     </LinearLayout>
 
