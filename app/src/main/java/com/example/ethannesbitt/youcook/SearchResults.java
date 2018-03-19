@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.ethannesbitt.youcook.models.RecipeModel;
 import com.squareup.picasso.Picasso;
@@ -202,8 +201,6 @@ public class SearchResults extends AppCompatActivity
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
                 {
-
-
                     RecipeModel recipeModel = result.get(i);
                     //getting the clicked recipes details and setting them to be strings
                     String title = recipeModel.getRecipeTitle();

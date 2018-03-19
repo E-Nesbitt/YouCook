@@ -1,8 +1,12 @@
 package com.example.ethannesbitt.youcook;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +30,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ResultPage extends AppCompatActivity
 {
@@ -33,7 +40,7 @@ public class ResultPage extends AppCompatActivity
     private ImageView image;
     private Button viewRecipe;
     private WebView webView;
-    private String returnedIngredients;
+    private ArrayList<String> ingredientList = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,6 +58,9 @@ public class ResultPage extends AppCompatActivity
         ingredientsList = findViewById(R.id.recipe_ingredient_list);
 
         viewRecipe = findViewById(R.id.view_full_recipe);
+
+        //initialising shopping list
+        ingredientList = getIngredientsList(getApplicationContext());
 
         Bundle resultBundle = getIntent().getExtras();
 
@@ -118,6 +128,64 @@ public class ResultPage extends AppCompatActivity
                 Toast.makeText(ResultPage.this, "Link has been copied!", Toast.LENGTH_SHORT).show();
             }
         });
+
+        ingredientsList.setOnClickListener(new View.OnClickListener()
+        {
+
+            public void onClick(View view)
+            {
+                //Creating an alert prompt to ask user if item has been got
+                AlertDialog.Builder builder = new AlertDialog.Builder(ResultPage.this);
+                builder.setTitle("Add all ingredients to the shopping list?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i)
+                    {
+                        String itemsList = ingredientsList.getText().toString();
+                        String[] items = itemsList.split("\n");
+
+                        for(int j = 0; j < items.length ; j++)
+                        {
+                            ingredientList.add(items[j]);
+                        }
+
+                        storeIngredientsList(ingredientList, getApplicationContext());
+
+                        Toast.makeText(ResultPage.this, "Ingredients Added Successfully to your Shopping List!", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+            }
+        });
+    }
+
+    //stores the shopping list in shared preferences so it can be accessed when app is reopened
+    public static void storeIngredientsList (ArrayList currentList, Context context)
+    {
+        Set writeList = new HashSet(currentList);
+        SharedPreferences putPreferences=context.getSharedPreferences("shoppingListValues", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor preferenceEditor=putPreferences.edit();
+        preferenceEditor.putStringSet("theShoppingList", writeList);
+        preferenceEditor.apply();
+    }
+
+    //opens the shopping list stored in shared preferences when app is opened
+    public static ArrayList getIngredientsList(Context stored)
+    {
+        SharedPreferences getPreferences = stored.getSharedPreferences("shoppingListValues", Activity.MODE_PRIVATE);
+        Set temporarySet = new HashSet();
+        temporarySet = getPreferences.getStringSet("theShoppingList", temporarySet);
+        return new ArrayList<>(temporarySet);
     }
 
     @Override
