@@ -66,6 +66,21 @@
             android:fontFamily="@font/nunito" />
 
         <TextView
+            android:id="@+id/ingredient_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_bold"
+            android:textSize="18sp"
+            android:text="@string/recipe_ingredients"/>
+
+        <TextView
+            android:id="@+id/recipe_ingredient_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/nunito" />
+
+        <TextView
             android:id="@+id/recipe_link_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

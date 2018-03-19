@@ -44,15 +44,17 @@ public class SearchResults extends AppCompatActivity
     private ProgressDialog searchDialog;
     private ListView searchResults;
 
+    //trending api call
+    //http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&sort=t
+
+    //highest rating api call
+    //http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&sort=r
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
-
-        //testing setting up the back button in the app toolbar
-
 
         //initialising searching progress dialog to show user it is searching for recipes
         searchDialog = new ProgressDialog(this);
@@ -101,12 +103,6 @@ public class SearchResults extends AppCompatActivity
         //running the JSONSearch using the food to fork api with users input placed into search query
         new SearchResults.JSONSearch().execute("http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&q=" + userInput + "");
     }
-
-    //trending api call
-    //http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&sort=t
-
-    //highest rating api call
-    //http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&sort=r
 
     public class JSONSearch extends AsyncTask<String, String, List<RecipeModel>> {
 
@@ -206,15 +202,18 @@ public class SearchResults extends AppCompatActivity
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
                 {
-                    RecipeModel recipeModel = result.get(i);
-                    Intent recipePage = new Intent(SearchResults.this, ResultPage.class);
 
+
+                    RecipeModel recipeModel = result.get(i);
                     //getting the clicked recipes details and setting them to be strings
-                    String title = recipeModel.getRecipeTitle().toString();
-                    String id = recipeModel.getRecipeId().toString();
-                    String publisher = recipeModel.getPublisher().toString();
-                    String source = recipeModel.getSourceUrl().toString();
-                    String image = recipeModel.getImageUrl().toString();
+                    String title = recipeModel.getRecipeTitle();
+                    String id = recipeModel.getRecipeId();
+                    String publisher = recipeModel.getPublisher();
+                    String source = recipeModel.getSourceUrl();
+                    String image = recipeModel.getImageUrl();
+
+
+                    Intent recipePage = new Intent(SearchResults.this, ResultPage.class);
 
                     //taking the string data for the recipe and passing it to the next activity using the bundle
                     recipePage.putExtra("title", title);
@@ -222,6 +221,7 @@ public class SearchResults extends AppCompatActivity
                     recipePage.putExtra("publisher", publisher);
                     recipePage.putExtra("source", source);
                     recipePage.putExtra("image", image);
+                    //recipePage.putExtra("ingredients", returnedIngredients);
 
                     //start the activity with all recipe details added
                     startActivity(recipePage);
@@ -243,7 +243,6 @@ public class SearchResults extends AppCompatActivity
             recipeModelList = objects;
             this.resource = resource;
             lInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-
         }
 
         @NonNull
@@ -258,13 +257,11 @@ public class SearchResults extends AppCompatActivity
             TextView recipeId;
             TextView publisher;
             TextView recipeTitle;
-            //TextView sourceUrl;
             ImageView imageUrl;
 
             recipeId = convertView.findViewById(R.id.result_id);
             publisher = convertView.findViewById(R.id.result_publisher);
             recipeTitle = convertView.findViewById(R.id.result_title);
-            //sourceUrl = convertView.findViewById(R.id.result_source);
             imageUrl = convertView.findViewById(R.id.result_image);
 
             //get the image url
@@ -277,10 +274,8 @@ public class SearchResults extends AppCompatActivity
             recipeId.setText("Recipe ID: " + recipeModelList.get(position).getRecipeId());
             publisher.setText("Publisher: " + recipeModelList.get(position).getPublisher());
             recipeTitle.setText(recipeModelList.get(position).getRecipeTitle());
-            //sourceUrl.setText("Source: " + recipeModelList.get(position).getSourceUrl());
 
             return convertView;
         }
     }
-
 }

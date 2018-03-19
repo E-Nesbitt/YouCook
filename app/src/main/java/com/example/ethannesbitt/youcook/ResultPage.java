@@ -3,6 +3,7 @@ package com.example.ethannesbitt.youcook;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,12 +16,24 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class ResultPage extends AppCompatActivity
 {
-    private TextView title, publisher, link;
+    private TextView title, publisher, link, ingredientsList;
     private ImageView image;
     private Button viewRecipe;
     private WebView webView;
+    private String returnedIngredients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,6 +48,7 @@ public class ResultPage extends AppCompatActivity
         publisher = findViewById(R.id.recipe_publisher);
         link = findViewById(R.id.recipe_link);
         image = findViewById(R.id.image_result_single);
+        ingredientsList = findViewById(R.id.recipe_ingredient_list);
 
         viewRecipe = findViewById(R.id.view_full_recipe);
 
@@ -47,6 +61,8 @@ public class ResultPage extends AppCompatActivity
             String thePublisher = resultBundle.getString("publisher");
             String theLink = resultBundle.getString("source");
             String imageUrl = resultBundle.getString("image");
+            String id = resultBundle.getString("id");
+            new ResultPage.IngredientRetrieval().execute("http://food2fork.com/api/get?key=51bc38640178924d013b85854b8d7a52&rId=" + id);
 
             //using a check to make the publisher a bit more human readable, splits the string to only return the name of the source rather than the whole website link
             if(thePublisher.contains("www."))
@@ -114,6 +130,100 @@ public class ResultPage extends AppCompatActivity
         else
         {
             super.onBackPressed();
+        }
+    }
+
+    public class IngredientRetrieval extends AsyncTask<String, Void, String>
+    {
+        @Override
+        protected String doInBackground(String... url)
+        {
+            String ingredients = null;
+
+            HttpURLConnection apiGetConnection = null;
+            BufferedReader dataGetReader = null;
+            try
+            {
+                URL apiGetUrl = new URL(url[0]);
+                apiGetConnection = (HttpURLConnection) apiGetUrl.openConnection();
+                apiGetConnection.connect();
+
+                InputStream jsonGetStream = apiGetConnection.getInputStream();
+
+                dataGetReader = new BufferedReader(new InputStreamReader(jsonGetStream));
+                StringBuilder builder = new StringBuilder();
+
+
+                String line = "";
+                while ((line = dataGetReader.readLine()) != null) {
+                    builder.append((line));
+                }
+
+                String returnedJson = builder.toString();
+
+                JSONObject recipe = new JSONObject(returnedJson).getJSONObject("recipe");
+                ingredients = recipe.getString("ingredients");
+
+                return ingredients;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } finally {
+                if (apiGetConnection != null) {
+                    apiGetConnection.disconnect();
+                }
+                try {
+                    if (dataGetReader != null) {
+                        dataGetReader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return ingredients;
+            }
+        }
+
+        @Override
+        protected void onPostExecute (String result)
+        {
+            super.onPostExecute(result);
+            if (result == null)
+            {
+                result = "Error getting ingredients";
+            }
+            ingredientsList.setText("");
+
+            String[] ingredientsArray;
+            try
+            {
+                result = result.replaceAll("\"", "\"");
+                result = result.replace(",", "");
+                result = result.replaceAll("\\[", "");
+                result = result.replaceAll("\\]", "");
+                result = result.replaceAll("(?m)^\\s", "");
+
+                ingredientsArray = result.split("\"");
+
+                for(int i = 0; i< ingredientsArray.length; i++)
+                {
+                    if(ingredientsArray[i].equals(""))
+                    {
+                        //removes the blank lines from the returned json
+                    }
+                    else
+                    {
+                        ingredientsList.append(ingredientsArray[i] + "\n");
+                    }
+                }
+
+            }catch (NullPointerException e)
+            {
+                Toast.makeText(ResultPage.this, "null pointer", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
