@@ -147,7 +147,6 @@
     <!-- Desserts Activity Strings -->
     <string name="dessert">Desserts</string>
 
-
     <!-- Timer Activity Strings -->
     <string name="timer_menu">Timer</string>
     <string name="timer_menu_desc">Set a timer so you don\'t burn the meal</string>
@@ -196,5 +195,8 @@
     <!-- Delete Account Strings -->
     <string name="delete_account">Delete Account</string>
     <string name="delete_account_text">Delete Your YouCook Account?</string>
+    <string name="export">Export Recipes</string>
+    <string name="export_text">Want your recipes exported before deletion? Use the button below to save all your recipes to Recipes.txt and you can use your phone connected to your pc via usb to get it!</string>
+
 
 </resources>
