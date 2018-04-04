@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,6 +39,8 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
     private ListView listRecipes;
     private List<Recipe> recipeList;
 
+    //declaring text view to be displayed if no recipes exist
+    private TextView noRecipes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -63,6 +66,9 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = findViewById(R.id.mainsdnav);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //initialising text to be displayed if no recipes exist
+        noRecipes = findViewById(R.id.no_recipes_m);
 
         listRecipes.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
@@ -153,6 +159,12 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
 
                 RecipeList adapter = new RecipeList(Mains.this, recipeList);
                 listRecipes.setAdapter(adapter);
+
+                //checking to see if the list is empty, if so set text to let the user know
+                if(adapter.getCount() == 0)
+                {
+                    noRecipes.setText(R.string.no_recipes);
+                }
             }
 
             @Override

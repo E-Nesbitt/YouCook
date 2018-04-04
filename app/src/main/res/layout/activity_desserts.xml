@@ -22,6 +22,15 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/dessertsList" />
         </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/no_recipes_d"
+            android:gravity="center"
+            android:textSize="40sp"
+            android:layout_margin="5dp"/>
+
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView

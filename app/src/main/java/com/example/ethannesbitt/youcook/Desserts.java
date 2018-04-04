@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,6 +39,9 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
     private ListView listRecipes;
     private List<Recipe> recipeList;
 
+    //declaring text view to be displayed if no recipes exist
+    private TextView noRecipes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -53,6 +57,9 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
         databaseReference = FirebaseDatabase.getInstance().getReference("recipes").child(uid);
         listRecipes = findViewById(R.id.dessertsList);
         recipeList = new ArrayList<>();
+
+        //initialising text to be displayed if no recipes exist
+        noRecipes = findViewById(R.id.no_recipes_d);
 
         //initialising drawer menu
         drawerMenu = findViewById(R.id.desserts);
@@ -152,6 +159,12 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
 
                 RecipeList adapter = new RecipeList(Desserts.this, recipeList);
                 listRecipes.setAdapter(adapter);
+
+                //checking to see if the list is empty, if so set text to let the user know
+                if(adapter.getCount() == 0)
+                {
+                    noRecipes.setText(R.string.no_recipes);
+                }
             }
 
             @Override

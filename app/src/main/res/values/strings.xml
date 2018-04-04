@@ -40,6 +40,7 @@
     4. Recipes with those ingredients will be retrieved!
     </string>
     <string name="list_recipes">List of Recipes</string>
+    <string name="no_results">No Results, please go back and try a different search!</string>
 
     <!-- Shopping List Activity Strings -->
     <string name="shopping_list_menu">Shopping List</string>
@@ -80,6 +81,7 @@
     <string name="amount">Amount</string>
     <string name="name">Name</string>
     <string name="ingredient_help">Add the ingredients you need, you can leave areas blank if they are not required</string>
+    <string name="no_recipes">No Recipes, please go back and try a different course type or add a recipe!</string>
     <!-- Spinner Array for Prep and Cook Time Unit -->
     <array name="time_unit">
         <item>Minutes</item>

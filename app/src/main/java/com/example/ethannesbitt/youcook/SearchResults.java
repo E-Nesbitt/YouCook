@@ -43,6 +43,9 @@ public class SearchResults extends AppCompatActivity
     private ProgressDialog searchDialog;
     private ListView searchResults;
 
+    //testing
+    private TextView noResults;
+
     //trending api call
     //http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&sort=t
 
@@ -72,6 +75,9 @@ public class SearchResults extends AppCompatActivity
 
         //initialising list view for the results
         searchResults = findViewById(R.id.search_results);
+
+        //testing
+        noResults = findViewById(R.id.no_results);
 
         Bundle searchResultsBundle = getIntent().getExtras();
 
@@ -193,6 +199,10 @@ public class SearchResults extends AppCompatActivity
             super.onPostExecute(result);
             RecipeAdapter recipeAdapter = new RecipeAdapter(getApplicationContext(), R.layout.search_list_row, result);
             searchResults.setAdapter(recipeAdapter);
+            if(recipeAdapter.getCount() == 0)
+            {
+                noResults.setText(R.string.no_results);
+            }
             //setting the json recipe data received from search to the custom list
 
             //code for setting up on click for list items
