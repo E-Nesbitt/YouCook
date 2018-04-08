@@ -60,22 +60,24 @@ public class ForgottenPassword extends AppCompatActivity implements View.OnClick
 
     private void sendResetEmail(String emailAddress)
     {
-        mAuth.sendPasswordResetEmail(emailAddress)
-                .addOnCompleteListener(this, new OnCompleteListener<Void>()
-                {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task)
-                    {
-                        if(task.isSuccessful())
-                        {
-                            Toast.makeText(ForgottenPassword.this, "Email Successfully Sent!", Toast.LENGTH_SHORT).show();
-                            forgotInput.setText("");
+        if(emailAddress != null)
+        {
+            mAuth.sendPasswordResetEmail(emailAddress)
+                    .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(ForgottenPassword.this, "Email Successfully Sent!", Toast.LENGTH_SHORT).show();
+                                forgotInput.setText("");
+                            } else {
+                                Toast.makeText(ForgottenPassword.this, "Error sending reset email!", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                        else
-                        {
-                            Toast.makeText(ForgottenPassword.this, "Error sending reset email!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                    });
+        }
+        else
+        {
+            Toast.makeText(ForgottenPassword.this, "Enter a Valid Email Address!", Toast.LENGTH_SHORT).show();
+        }
     }
 }
