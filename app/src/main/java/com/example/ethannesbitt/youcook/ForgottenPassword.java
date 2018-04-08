@@ -60,7 +60,7 @@ public class ForgottenPassword extends AppCompatActivity implements View.OnClick
 
     private void sendResetEmail(String emailAddress)
     {
-        if(emailAddress != null)
+        if(!emailAddress.isEmpty())
         {
             mAuth.sendPasswordResetEmail(emailAddress)
                     .addOnCompleteListener(this, new OnCompleteListener<Void>() {
@@ -70,7 +70,7 @@ public class ForgottenPassword extends AppCompatActivity implements View.OnClick
                                 Toast.makeText(ForgottenPassword.this, "Email Successfully Sent!", Toast.LENGTH_SHORT).show();
                                 forgotInput.setText("");
                             } else {
-                                Toast.makeText(ForgottenPassword.this, "Error sending reset email!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ForgottenPassword.this, "Error sending reset email, check the email is valid!", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
