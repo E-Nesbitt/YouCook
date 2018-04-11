@@ -26,12 +26,10 @@ public class RecipeInformationTab extends Fragment
     //testing
     private ViewPager viewPager;
 
-
     public RecipeInformationTab()
     {
         // Required empty public constructor
     }
-
 
     @Nullable
     @Override
@@ -71,7 +69,7 @@ public class RecipeInformationTab extends Fragment
         String setCookTime = cookTime.getText().toString().trim() + " " + cookTimeUnit.getSelectedItem().toString();
         String setType = course.getSelectedItem().toString();
 
-        if(!TextUtils.isEmpty(setName) && !TextUtils.isEmpty(setPrepTime) && !TextUtils.isEmpty(setCookTime) && !TextUtils.isEmpty(setType))
+        if(!TextUtils.isEmpty(setName) && !prepTime.getText().toString().isEmpty() && !cookTime.getText().toString().isEmpty() && !TextUtils.isEmpty(setType))
         {
             SharedPreferences putPreferences = getActivity().getSharedPreferences("RecipeInfo", Activity.MODE_PRIVATE);
             SharedPreferences.Editor preferenceEditor = putPreferences.edit();
@@ -90,6 +88,18 @@ public class RecipeInformationTab extends Fragment
         else
         {
             //Error toast message to let user know more data needs entered before save can be completed
+            if(name.getText().toString().isEmpty())
+            {
+                name.setError("Enter a Recipe Name!");
+            }
+            if(prepTime.getText().toString().isEmpty())
+            {
+                prepTime.setError("Enter Prep Time!");
+            }
+            if(cookTime.getText().toString().isEmpty())
+            {
+                cookTime.setError("Enter a Recipe Name!");
+            }
             Toast.makeText(getContext(), "Ensure all details are entered and try again!", Toast.LENGTH_SHORT).show();
         }
     }

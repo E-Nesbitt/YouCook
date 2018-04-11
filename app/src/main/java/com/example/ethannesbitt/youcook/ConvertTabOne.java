@@ -139,7 +139,11 @@ public class ConvertTabOne extends Fragment
                 }
                 catch (NumberFormatException e)
                 {
-                    Toast.makeText(getActivity(), "Enter a value first!", Toast.LENGTH_LONG).show();
+                    if(inputValue.getText().toString().isEmpty())
+                    {
+                        inputValue.setError("Enter a value");
+                        Toast.makeText(getActivity(), "Enter a value first!", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });

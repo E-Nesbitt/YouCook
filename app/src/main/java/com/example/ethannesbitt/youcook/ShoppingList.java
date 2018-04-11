@@ -117,9 +117,16 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i)
                 {
-                    ingredientList.add(standardCase(newItem.getText().toString()));
-                    lView.setAdapter(aAdapter);
-                    storeIngredientsList(ingredientList, getApplicationContext());
+                    if(!newItem.getText().toString().isEmpty())
+                    {
+                        ingredientList.add(standardCase(newItem.getText().toString()));
+                        lView.setAdapter(aAdapter);
+                        storeIngredientsList(ingredientList, getApplicationContext());
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Enter an Item first!", Toast.LENGTH_LONG).show();
+                    }
                 }
             });
 

@@ -127,9 +127,12 @@ public class RecipeMethodTab extends Fragment
                 reset();
                 getActivity().finish();
                 startActivity(new Intent(getContext(), Recipes.class));
-            } else {
-                Toast.makeText(getContext(), "Add a method first before saving!", Toast.LENGTH_SHORT).show();
             }
+            else
+                {
+                    method.setError("Enter the Method!");
+                    Toast.makeText(getContext(), "Add a method first before saving!", Toast.LENGTH_SHORT).show();
+                }
         }
         else
         {

@@ -192,6 +192,8 @@ public class RecipeIngredientsTab extends Fragment
         else
         {
             //Error toast message to let user know more data needs entered before save can be completed
+            ingredientOneName.setError("Enter Name");
+            ingredientOneAmount.setError("Enter Amount");
             Toast.makeText(getContext(), "Ensure at least one ingredient has been added!", Toast.LENGTH_SHORT).show();
         }
     }

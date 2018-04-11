@@ -68,7 +68,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener
         //running the password validation and display a toast if an invalid password is entered
         if(userPassword.length() < 7 || !hasCapitals || !hasNonCapitals || !specialChar)
         {
-            Toast.makeText(Register.this, "Password must be longer than 8 Characters, include 1 Upper and 1 Lowercase character and a special character", Toast.LENGTH_LONG).show();
+            Toast.makeText(Register.this, "Password must be minimum 7 Characters, include 1 Upper and 1 Lowercase character and a special character", Toast.LENGTH_LONG).show();
             //stop method and return to entering details
             return;
         }
