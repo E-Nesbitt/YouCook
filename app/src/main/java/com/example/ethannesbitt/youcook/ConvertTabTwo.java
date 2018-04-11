@@ -262,7 +262,7 @@ public class ConvertTabTwo extends Fragment {
     {
         double result = m * 0.03519508;
         String finalResult = decimalFormat.format(result);
-        outputValue.setText(String.valueOf(finalResult + " Fluid Ounce"));
+        outputValue.setText(String.valueOf(finalResult + " Fluid Ounces"));
         return finalResult;
     }
 
