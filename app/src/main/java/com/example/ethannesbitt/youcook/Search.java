@@ -80,7 +80,6 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
                 if(userInput.equals(""))
                 {
                     searchInput.setError("Enter an Ingredient!");
-                    //Toast.makeText(Search.this, "Enter an ingredient before searching!", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

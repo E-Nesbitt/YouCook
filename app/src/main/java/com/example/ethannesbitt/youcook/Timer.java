@@ -67,15 +67,16 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         NavigationView navigationView = findViewById(R.id.timerdnav);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //setting countdown time
+        //initialising countdown time text view
         countDownTime = findViewById(R.id.timecount);
 
-        //setting toggle button to have onclick
+        //initialising toggle button and setting it to have onclick
         startStopToggle = findViewById(R.id.startstop);
         startStopToggle.setOnCheckedChangeListener(this);
 
         //setting up the time
         timeHandler = new Handler();
+        time = 0;
 
         //user input button with alert dialogue to prompt user to enter time
         userInputButton = findViewById(R.id.userinputbutton);
@@ -138,6 +139,83 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         return super.onOptionsItemSelected(item);
     }
 
+    @Override //on click for toggle so that it knows what to do when checked or unchecked i.e. start or stop
+    public void onCheckedChanged(CompoundButton compoundButton, boolean checked)
+    {
+        if(checked)
+        {
+            //if user has input a time take user input and start the running of the task
+            if(time > 0)
+            {
+                //timer task to reduce time entered by 1 second each second and stop once it reaches 0
+                final Runnable timerTask = new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        time = time - 1000;
+                        if(time >= 0)
+                        {
+                            long minutes = TimeUnit.MILLISECONDS.toMinutes(time);
+                            long seconds = TimeUnit.MILLISECONDS.toSeconds(time)%60;
+                            String mins = Long.valueOf(minutes).toString();
+                            String secs = Long.valueOf(seconds).toString();
+                            Log.d("Timermin", mins + " Minutes, " +  secs + " Seconds");
+                            if(seconds >= 10)
+                            {
+                                countDownTime.setText(mins + ":" + secs);
+
+                            }
+                            else
+                            {
+                                countDownTime.setText(mins + ":0" + secs);
+                            }
+                            timeHandler.postDelayed(this, 1000);
+                        }
+                        else
+                        {
+                            startStopToggle.toggle();
+                            countDownTime.setText("00:00");
+                            Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
+
+                            //new notification attempt, my code and working
+                            Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+                            Intent intent = new Intent(Timer.this, Timer.class);
+                            PendingIntent pendingIntent = PendingIntent.getActivity(Timer.this, 0, intent, 0);
+
+                            Notification notification = new Notification.Builder(Timer.this)
+                                    .setSound(sound)
+                                    .setSmallIcon(R.mipmap.youcookic_launcher)
+                                    .setContentTitle("Timer Complete!")
+                                    .setContentText("Check your food!")
+                                    .addAction(R.mipmap.youcookic_launcher, "Open", pendingIntent)
+                                    .addAction(0, "Stop", pendingIntent).build();
+
+                            NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+                            notificationManager.notify(0, notification);
+                        }
+                    }
+                };
+                timeHandler.postDelayed(timerTask, 1000);
+                Toast.makeText(getApplicationContext(), "Timer Started!", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                startStopToggle.toggle();
+                if(time == 0)
+                {
+                    Toast.makeText(getApplicationContext(), "No Time Value Entered", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+        else
+        {
+            //stop task and revert timer value back to zero
+            time = 0;
+            countDownTime.setText("00:00");
+        }
+    }
+
     @Override //on clicks for the different items in the navigation drawer menu
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
@@ -188,82 +266,6 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                 break;
         }
         return false;
-    }
-
-
-    @Override //on click for toggle so that it knows what to do when checked or unchecked i.e. start or stop
-    public void onCheckedChanged(CompoundButton compoundButton, boolean checked)
-    {
-        if(checked)
-        {
-            //if user has input a time take user input and start the running of the task
-            if(time > 0)
-            {
-                //timer task to reduce time entered by 1 second each second and stop once it reaches 0
-                final Runnable timerTask = new Runnable()
-                {
-                    @Override
-                    public void run()
-                    {
-                        time = time - 1000;
-                        if(time >= 0)
-                        {
-                            long minutes = TimeUnit.MILLISECONDS.toMinutes(time);
-                            long seconds = TimeUnit.MILLISECONDS.toSeconds(time)%60;
-                            String mins = Long.valueOf(minutes).toString();
-                            String secs = Long.valueOf(seconds).toString();
-                            Log.d("Timermin", mins + " Minutes, " +  secs + " Seconds");
-                            if(seconds >= 10)
-                            {
-                                countDownTime.setText(mins + ":" + secs);
-
-                            }
-                            else
-                            {
-                                countDownTime.setText(mins + ":0" + secs);
-                            }
-                            timeHandler.postDelayed(this, 1000);
-                        }
-                        else
-                        {
-                            startStopToggle.toggle();
-                            countDownTime.setText("0:00");
-                            Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
-
-                            //new notification attempt, my code and working
-                            Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-                            Intent intent = new Intent(Timer.this, Timer.class);
-                            PendingIntent pendingIntent = PendingIntent.getActivity(Timer.this, 0, intent, 0);
-
-                            Notification notification = new Notification.Builder(Timer.this)
-                                    .setSound(sound)
-                                    .setSmallIcon(R.mipmap.youcookic_launcher)
-                                    .setContentTitle("Timer Complete!")
-                                    .setContentText("Check your food!")
-                                    .addAction(R.mipmap.youcookic_launcher, "Open", pendingIntent)
-                                    .addAction(0, "Stop", pendingIntent).build();
-
-                            NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-                            notificationManager.notify(0, notification);
-
-                        }
-                    }
-                };
-                timeHandler.postDelayed(timerTask, 1000);
-                Toast.makeText(getApplicationContext(), "Timer Started!", Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                startStopToggle.toggle();
-                Toast.makeText(getApplicationContext(), "No time value entered yet!", Toast.LENGTH_SHORT).show();
-            }
-        }
-        else if(!checked)
-        {
-            //stop task and revert timer value back to zero
-                time = 0;
-                countDownTime.setText("0:00");
-        }
     }
 
     private void signOut()
