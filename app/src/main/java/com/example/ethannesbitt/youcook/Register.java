@@ -58,9 +58,17 @@ public class Register extends AppCompatActivity implements View.OnClickListener
         final boolean specialChar = !userPassword.matches("[A-Za-z0-9 ]*");//special character check
 
         //error handling if email or password text boxes are empty
-        if(TextUtils.isEmpty(userEmail) || TextUtils.isEmpty(userPassword))
+        if(TextUtils.isEmpty(userEmail))
         {
-            Toast.makeText(Register.this, "You have not entered an email or password!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Register.this, "You have not entered an email!", Toast.LENGTH_SHORT).show();
+            emailInput.setError("Enter an email");
+            //stopping the method from executing
+            return;
+        }
+        if(TextUtils.isEmpty(userPassword))
+        {
+            Toast.makeText(Register.this, "You have not entered a password!", Toast.LENGTH_SHORT).show();
+            passwordInput.setError("Enter a password");
             //stopping the method from executing
             return;
         }

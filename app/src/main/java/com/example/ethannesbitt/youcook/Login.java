@@ -191,7 +191,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener
 
         if(TextUtils.isEmpty(userEmail) || TextUtils.isEmpty(userPassword))
         {
-            Toast.makeText(Login.this, "You have not entered an email or password!", Toast.LENGTH_SHORT).show();
+            if(TextUtils.isEmpty(userEmail))
+            {
+                emailInput.setError("Enter your email");
+            }
+            if(TextUtils.isEmpty(userPassword))
+            {
+                passwordInput.setError("Enter your password");
+            }
             //stopping the method from executing
             return;
         }
