@@ -18,12 +18,12 @@ import android.widget.Toast;
 
 public class RecipeInformationTab extends Fragment
 {
-
+    //declaring variables needed for recipe information
     private Spinner prepTimeUnit, cookTimeUnit, course;
     private EditText name, prepTime, cookTime;
     private Button saveAndNext;
 
-    //testing
+    //pager variable required for changing tabs on button click
     private ViewPager viewPager;
 
     public RecipeInformationTab()
@@ -61,6 +61,7 @@ public class RecipeInformationTab extends Fragment
         return view;
     }
 
+    //method to save all the entered information to shared preferences and move the user to the next tab
     private void setSaveAndNext()
     {
         //takes inputs from user and sets them to strings
@@ -69,6 +70,7 @@ public class RecipeInformationTab extends Fragment
         String setCookTime = cookTime.getText().toString().trim() + " " + cookTimeUnit.getSelectedItem().toString();
         String setType = course.getSelectedItem().toString();
 
+        //checks to ensure all input fields have been filled in correctly
         if(!TextUtils.isEmpty(setName) && !prepTime.getText().toString().isEmpty() && !cookTime.getText().toString().isEmpty() && !TextUtils.isEmpty(setType))
         {
             SharedPreferences putPreferences = getActivity().getSharedPreferences("RecipeInfo", Activity.MODE_PRIVATE);
@@ -104,6 +106,7 @@ public class RecipeInformationTab extends Fragment
         }
     }
 
+    //method to reset all the input fields on moving to next tab
     private void reset()
     {
         name.setText("");

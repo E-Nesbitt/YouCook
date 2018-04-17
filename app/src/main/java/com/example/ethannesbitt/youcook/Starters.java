@@ -143,6 +143,8 @@ public class Starters extends AppCompatActivity implements NavigationView.OnNavi
     protected void onStart()
     {
         super.onStart();
+        //checking to see if the recipe database contains recipes that are starters
+        //if any exist they will be added to the list
         databaseReference.addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -241,9 +243,9 @@ public class Starters extends AppCompatActivity implements NavigationView.OnNavi
         return false;
     }
 
+    //sign out method to allow user to sign out of account/app
     private void signOut()
     {
         mAuth.signOut();
     }
-
 }

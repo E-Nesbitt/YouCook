@@ -37,7 +37,7 @@ public class DisableAccount extends AppCompatActivity
     //delete button variable
     private Button deleteButton, exportButton;
 
-    //declaring variables for database
+    //variables for database
     private DatabaseReference databaseReference;
     private static final String RECIPES_FILE = "Recipes.txt";
 
@@ -98,6 +98,7 @@ public class DisableAccount extends AppCompatActivity
         });
     }
 
+    //method to delete account from the application, displays toast message on success or failure
     public void deleteAccount()
     {
         if(user != null)

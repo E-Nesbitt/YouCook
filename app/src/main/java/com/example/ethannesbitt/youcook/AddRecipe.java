@@ -16,12 +16,14 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class AddRecipe extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
+    //variables for navigation drawer
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
 
+    //variables for user data
     private FirebaseAuth mAuth;
 
-    //testing tabs
+    //variables for tabs
     private SectionsPageAdapter pageAdapter;
     private ViewPager viewPager;
     private TabLayout tabLayout;
@@ -32,11 +34,11 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
 
-        //getting user data (initialising user)
+        //initialising user data
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
-        //setting up drawer menu
+        //initialising drawer menu
         drawerMenu = findViewById(R.id.add_recipes);
         menuToggle = new ActionBarDrawerToggle(this, drawerMenu, R.string.open, R.string.close);
         drawerMenu.addDrawerListener(menuToggle);
@@ -52,7 +54,7 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    //method to add the tabs (fragments to the page adapter and then set the page adapter to the viewPager
+    //method to add the tabs (fragments to the page adapter and then set the page adapter to the viewPager)
     private void viewPagerCreate(ViewPager viewPager)
     {
         SectionsPageAdapter sPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
@@ -74,6 +76,7 @@ public class AddRecipe extends AppCompatActivity implements NavigationView.OnNav
         return super.onOptionsItemSelected(item);
     }
 
+    //setting the on clicks for each menu in the navigation drawer menu
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {

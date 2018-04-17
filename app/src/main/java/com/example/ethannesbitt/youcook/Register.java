@@ -19,11 +19,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Register extends AppCompatActivity implements View.OnClickListener
 {
+    //Email and Password Login Variables
     private EditText emailInput, passwordInput;
     private Button registerButton;
     private TextView signIn;
     private ProgressDialog pDialog;
 
+    //firebase user variable
     private FirebaseAuth mAuth;
 
     @Override
@@ -32,21 +34,27 @@ public class Register extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //initialise the current firebase authentication
         mAuth = FirebaseAuth.getInstance();
 
+        //initialise the progress dialog
         pDialog = new ProgressDialog(this);
 
+        //initialise input fie;ds
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
 
+        //initialise register button and set its on click
         registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener(this);
 
+        //initialise already signed in text and set an on click
         signIn = findViewById(R.id.already_registered_butt);
         signIn.setOnClickListener(this);
 
     }
 
+    //method to register the user with the YouCook System via Firebase
     private void registerUserAccount()
     {
         String userEmail = emailInput.getText().toString().trim();

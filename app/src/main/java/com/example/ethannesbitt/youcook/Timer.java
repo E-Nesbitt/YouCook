@@ -37,6 +37,7 @@ import java.util.concurrent.TimeUnit;
 public class Timer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, CompoundButton.OnCheckedChangeListener
 {
 
+    //declaring variables for the timer
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
     private Handler timeHandler;
@@ -268,9 +269,9 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
         return false;
     }
 
+    //sign out method to allow user to sign out of account/app
     private void signOut()
     {
         mAuth.signOut();
     }
-
 }

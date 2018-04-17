@@ -1,18 +1,21 @@
 package com.example.ethannesbitt.youcook;
 
+// class to be used for recipes saved in the database
 public class Recipe
 {
+    //fields to populate with the recipe information
     private String recipeId, recipeName, recipePrepTime, recipeCookTime, ingredientOne, ingredientTwo, ingredientThree, ingredientFour,
             ingredientFive, ingredientSix, ingredientSeven, ingredientEight, ingredientNine, ingredientTen, ingredientEleven, ingredientTwelve, ingredientThirteen,
             ingredientFourteen, ingredientFifteen, ingredientSixteen, ingredientSeventeen, ingredientEighteen, ingredientNineteen, ingredientTwenty, recipeMethod;
     String recipeType;
 
-
+    //empty constructor required for firebase database
     public Recipe()
     {
 
     }
 
+    //constructor required for adding recipes to the database
     public Recipe(String recipeId, String recipeName, String recipeType, String recipePrepTime, String recipeCookTime, String ingredientOne,  String ingredientTwo,
                   String ingredientThree, String ingredientFour, String ingredientFive, String ingredientSix, String ingredientSeven, String ingredientEight,
                   String ingredientNine, String ingredientTen, String ingredientEleven, String ingredientTwelve, String ingredientThirteen,
@@ -47,6 +50,7 @@ public class Recipe
         this.recipeMethod = recipeMethod;
     }
 
+    //getters for all the possible recipe information saved in the database
     public String getRecipeId()
     {
         return recipeId;

@@ -1,13 +1,16 @@
 package com.example.ethannesbitt.youcook.models;
 
+//model class to be used for returned search results from the API
 public class RecipeModel
 {
+    //fields to populate with the information returned from the API Search
     private String recipeId;
     private String publisher;
     private String recipeTitle;
     private String sourceUrl;
     private String imageUrl;
 
+    //getters and setters for the recipe information
     public String getRecipeId() {
         return recipeId;
     }

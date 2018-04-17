@@ -43,7 +43,7 @@ public class SearchResults extends AppCompatActivity
     private ProgressDialog searchDialog;
     private ListView searchResults;
 
-    //testing
+    //no results text variable
     private TextView noResults;
 
     //trending api call
@@ -76,7 +76,7 @@ public class SearchResults extends AppCompatActivity
         //initialising list view for the results
         searchResults = findViewById(R.id.search_results);
 
-        //testing
+        //initialising no results text view
         noResults = findViewById(R.id.no_results);
 
         Bundle searchResultsBundle = getIntent().getExtras();
@@ -109,6 +109,7 @@ public class SearchResults extends AppCompatActivity
         new SearchResults.JSONSearch().execute("http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&q=" + userInput + "");
     }
 
+    //nested class to complete the search for recipes using the entered ingredients
     public class JSONSearch extends AsyncTask<String, String, List<RecipeModel>> {
 
         @Override
@@ -218,7 +219,6 @@ public class SearchResults extends AppCompatActivity
                     String publisher = recipeModel.getPublisher();
                     String source = recipeModel.getSourceUrl();
                     String image = recipeModel.getImageUrl();
-
 
                     Intent recipePage = new Intent(SearchResults.this, ResultPage.class);
 

@@ -10,6 +10,8 @@ import android.os.Bundle;
  */
 public class SplashScreen extends AppCompatActivity {
 
+    //simple method that will display the splash screen on app start and then redirect the user to the
+    //login screen after 3 seconds
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,5 @@ public class SplashScreen extends AppCompatActivity {
             }
         };
         splashThread.start();
-
     }
 }

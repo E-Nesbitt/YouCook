@@ -17,12 +17,6 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-//edamam api app_id=c4896013 --- app_key=8bacbcab9d13e1f47ae0a8febb727655
-//test api https://api.edamam.com/search?q=turkey,onions&app_id=c4896013&app_key=8bacbcab9d13e1f47ae0a8febb727655
-
-//food to fork  api key = 51bc38640178924d013b85854b8d7a52
-//http://food2fork.com/api/search?key=51bc38640178924d013b85854b8d7a52&q=chicken
-
 public class Search extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //declaring variables for drawer navigation
     private DrawerLayout drawerMenu;
@@ -157,6 +151,7 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
         return super.onOptionsItemSelected(item);
     }
 
+    //drawer menu navigation, on clicks for each item in the menu, finishes current activity and starts the new activity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent mOptions;
@@ -213,6 +208,7 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
         return false;
     }
 
+    //sign out method to allow user to sign out of account/app
     private void signOut() {
         mAuth.signOut();
     }

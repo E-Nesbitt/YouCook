@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
+//custom recipe list to hold the name and type of a recipe, to then be displayed in a listview to the user
 public class RecipeList extends ArrayAdapter<Recipe>
 {
+    //vairables for list
     private Activity context;
     private List<Recipe> recipeList;
 
@@ -30,11 +32,13 @@ public class RecipeList extends ArrayAdapter<Recipe>
 
         View recipeItem = inflater.inflate(R.layout.recipe_list, null, true);
 
+        //retrieving name and type of recipe from the database
         TextView name = recipeItem.findViewById(R.id.name);
         TextView type = recipeItem.findViewById(R.id.type);
 
         Recipe recipe = recipeList.get(position);
 
+        //setting the name and type to the recipe retrieved from the database
         name.setText(recipe.getRecipeName());
         type.setText(recipe.getRecipeType());
 

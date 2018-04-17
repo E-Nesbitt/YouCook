@@ -142,6 +142,8 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
     protected void onStart() {
         super.onStart();
 
+        //checking to see if the recipe database contains recipes that are mains
+        //if any exist they will be added to the list
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -238,6 +240,7 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
         return false;
     }
 
+    //sign out method to allow user to sign out of account/app
     private void signOut()
     {
         mAuth.signOut();

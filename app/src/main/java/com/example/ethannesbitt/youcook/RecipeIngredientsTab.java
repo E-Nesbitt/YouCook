@@ -45,7 +45,6 @@ public class RecipeIngredientsTab extends Fragment
         // Required empty public constructor
     }
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -158,6 +157,7 @@ public class RecipeIngredientsTab extends Fragment
         String ingredientNineteen = ingredientNineName.getText().toString().trim() + " " + ingredientNineteenAmount.getText().toString().trim() + " " + ingredientNineteenUnit.getSelectedItem().toString();
         String ingredientTwenty = ingredientTwentyName.getText().toString().trim() + " " + ingredientTwentyAmount.getText().toString().trim() + " " + ingredientTwentyUnit.getSelectedItem().toString();
 
+        //check to ensure at least one ingredient has been filled out, then get all data and put it into shared preferences
         if(!TextUtils.isEmpty(ingredientOneName.getText().toString()))
         {
             SharedPreferences putPreferences = getActivity().getSharedPreferences("RecipeIngred", Activity.MODE_PRIVATE);

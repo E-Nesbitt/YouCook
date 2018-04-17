@@ -26,7 +26,6 @@ public class RecipeMethodTab extends Fragment
     private DatabaseReference recipeDatabase;
 
     private EditText method;
-
     private Button saveButton;
 
     private ViewPager viewPager;
@@ -51,6 +50,7 @@ public class RecipeMethodTab extends Fragment
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
+        //Initialise method text area and save button
         method = view.findViewById(R.id.recipeMethodInput);
         saveButton = view.findViewById(R.id.save_all_button);
 
@@ -69,14 +69,14 @@ public class RecipeMethodTab extends Fragment
 
     private void saveRecipe()
     {
-        //get all the recipe info data
+        //get all the recipe info data from shared preferences
         SharedPreferences getPreferencesInfo = getActivity().getSharedPreferences("RecipeInfo", Activity.MODE_PRIVATE);
         String name = getPreferencesInfo.getString("Name", "");
         String prepTime = getPreferencesInfo.getString("PrepTime", "");
         String cookTime = getPreferencesInfo.getString("CookTime", "");
         String type = getPreferencesInfo.getString("Type", "");
 
-        //get all the recipe ingredients data
+        //get all the recipe ingredients data from shared preferences
         SharedPreferences getPreferences = getActivity().getSharedPreferences("RecipeIngred", Activity.MODE_PRIVATE);
         String ingredientOne = getPreferences.getString("IngredientOne", "");
         String ingredientTwo = getPreferences.getString("IngredientTwo", "");
@@ -130,16 +130,19 @@ public class RecipeMethodTab extends Fragment
             }
             else
                 {
+                    //error message to be displayed to user if no method is input
                     method.setError("Enter the Method!");
                     Toast.makeText(getContext(), "Add a method first before saving!", Toast.LENGTH_SHORT).show();
                 }
         }
         else
         {
+            //error message to be displayed to user if ingredients or information is missing from the recipe
             Toast.makeText(getContext(), "Some information is missing go back and enter details again!", Toast.LENGTH_SHORT).show();
         }
     }
 
+    //reset method used to reset the method text area
     private void reset()
     {
         method.setText("");

@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FirebaseUser user = mAuth.getCurrentUser();
 
 
-        //state listener for Firebase
+        //state listener for Firebase, so that user can be redirected to login screen on logout
         mAuthListener = new FirebaseAuth.AuthStateListener()
         {
             @Override
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d("uid", uid);
     }
 
+    // on clicks for each item in the menu, starts the new activity
     @Override
     public void onClick(View view)
     {
@@ -122,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    //drawer menu navigation, on clicks for each item in the menu, finishes current activity and starts the new activity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent mOptions;
@@ -183,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
+    //sign out method to allow user to sign out of account/app
     private void signOut()
     {
         mAuth.signOut();

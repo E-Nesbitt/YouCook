@@ -32,11 +32,14 @@ import java.util.Set;
 
 public class ShoppingList extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
+    //navigation drawer menu variables
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
 
+    //variable to get the user
     private FirebaseAuth mAuth;
 
+    //variables for the shopping list itself
     ArrayList<String> ingredientList = null;
     ArrayAdapter<String> aAdapter = null;
     ListView lView = null;
@@ -94,6 +97,7 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    //setting what to do for options clicked in the action bar
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -104,6 +108,7 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
 
         int id = item.getItemId();
 
+        //if the add item is selected
         if(id == R.id.action_add)
         {
             final EditText newItem = new EditText(this);
@@ -143,6 +148,7 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
             return true;
         }
 
+        //if the clear all option is slected
         if(id == R.id.action_clear_all)
         {
             //creating an alert prompt to ask user if shopping list can be cleared or not
@@ -176,6 +182,7 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
+    //method used to either remove an item from the list completely or just add a tick beside it to let the user know it has been purchased
     public void deleteOrTickItem(final String activeItem, final int position)
     {
         //Creating an alert prompt to ask user if item has been got
@@ -302,9 +309,9 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
+    //sign out method to allow user to sign out of account/app
     private void signOut()
     {
         mAuth.signOut();
     }
-
 }

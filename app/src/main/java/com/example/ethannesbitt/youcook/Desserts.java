@@ -26,7 +26,6 @@ import java.util.List;
 
 public class Desserts extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-
     //declaring variables for drawer menu
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
@@ -77,6 +76,7 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
             {
                 Recipe recipe = recipeList.get(position);
 
+                //get recipe information
                 String rid = recipe.getRecipeId();
                 String name = recipe.getRecipeName();
                 String prepTime = recipe.getRecipePrepTime();
@@ -105,6 +105,7 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
                 String ingredientNineteen = recipe.getIngredientNineteen();
                 String ingredientTwenty = recipe.getIngredientTwenty();
 
+                //get recipe method
                 String method = recipe.getRecipeMethod();
 
                 Intent recipePage = new Intent(Desserts.this, RecipePage.class);
@@ -121,6 +122,8 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
                         ingredientNine, ingredientTen, ingredientEleven, ingredientTwelve, ingredientThirteen, ingredientFourteen, ingredientFifteen,
                         ingredientSixteen, ingredientSeventeen, ingredientEighteen, ingredientNineteen, ingredientTwenty};
 
+                //loop to go through ingredients and check if they're filled in ingredients or not
+                //and only return the ones with good data
                 for(int i = 0; i <=18 ; i++)
                 {
                     if(ingredients[i].equals("  Unit:"))
@@ -142,6 +145,8 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
     protected void onStart() {
         super.onStart();
 
+        //checking to see if the recipe database contains recipes that are desserts
+        //if any exist they will be added to the list
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -238,6 +243,7 @@ public class Desserts extends AppCompatActivity implements NavigationView.OnNavi
         return false;
     }
 
+    //sign out method to allow user to sign out of account/app
     private void signOut()
     {
         mAuth.signOut();

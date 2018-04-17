@@ -16,6 +16,7 @@ import java.text.DecimalFormat;
 
 public class ConvertTabOne extends Fragment
 {
+    //variables for conversions
     private EditText inputValue, outputValue;
     private Button convertButton, resetButton;
     private Spinner inputType, outputType;
@@ -163,6 +164,7 @@ public class ConvertTabOne extends Fragment
         return view;
     }
 
+    //set the output format to be two decimal places
     DecimalFormat decimalFormat = new DecimalFormat("##.00");
 
     //conversion methods 'to Grams'
@@ -211,8 +213,6 @@ public class ConvertTabOne extends Fragment
         return finalResult;
     }
 
-
-
     //conversion methods 'to Kilos'
     private String gramToKilo (double g)
     {
@@ -260,8 +260,6 @@ public class ConvertTabOne extends Fragment
         return finalResult;
     }
 
-
-
     //conversion methods 'to Pounds'
     private String kiloToPound (double k)
     {
@@ -307,8 +305,6 @@ public class ConvertTabOne extends Fragment
         }
         return finalResult;
     }
-
-
 
     //conversion methods 'to Ounces'
     private String kiloToOunce (double k)
@@ -365,4 +361,3 @@ public class ConvertTabOne extends Fragment
         outputType.setSelection(0);
     }
 }
-

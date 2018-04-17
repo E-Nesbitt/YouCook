@@ -16,12 +16,14 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Recipes extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-
+    //navigation drawer menu variables
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
 
+    //variable to get the user
     private FirebaseAuth mAuth;
 
+    //buttons being declared
     private Button startersButton, mainsButton, dessertsButton, newRecipe;
 
 
@@ -98,6 +100,7 @@ public class Recipes extends AppCompatActivity implements NavigationView.OnNavig
         return super.onOptionsItemSelected(item);
     }
 
+    //drawer menu navigation, on clicks for each item in the menu, finishes current activity and starts the new activity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {

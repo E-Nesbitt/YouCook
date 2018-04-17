@@ -14,7 +14,9 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
-public class ConvertTabTwo extends Fragment {
+public class ConvertTabTwo extends Fragment
+{
+    //variables for conversions
     private EditText inputValue, outputValue;
     private Button convertButton, resetButton;
     private Spinner inputType, outputType;

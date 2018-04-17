@@ -25,7 +25,6 @@ public class ForgottenPassword extends AppCompatActivity implements View.OnClick
     //Firebase variables
     private FirebaseAuth mAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -58,6 +57,7 @@ public class ForgottenPassword extends AppCompatActivity implements View.OnClick
         }
     }
 
+    //send an email to the user with a link to reset their password
     private void sendResetEmail(String emailAddress)
     {
         if(!emailAddress.isEmpty())

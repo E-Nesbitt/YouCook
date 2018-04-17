@@ -64,6 +64,7 @@ public class ResultPage extends AppCompatActivity
 
         Bundle resultBundle = getIntent().getExtras();
 
+        //retrieving information for the selected recipe
         if(resultBundle != null)
         {
             //getting all recipe details passed over from the previous activity on the list item click
@@ -129,12 +130,13 @@ public class ResultPage extends AppCompatActivity
             }
         });
 
+        //making the ingredients clickable so that they can be added to the shopping list
         ingredientsList.setOnClickListener(new View.OnClickListener()
         {
 
             public void onClick(View view)
             {
-                //Creating an alert prompt to ask user if item has been got
+                //Creating an alert prompt to ask user if they want ingredients added to the shopping list
                 AlertDialog.Builder builder = new AlertDialog.Builder(ResultPage.this);
                 builder.setTitle("Add all ingredients to the shopping list?");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
@@ -188,6 +190,7 @@ public class ResultPage extends AppCompatActivity
         return new ArrayList<>(temporarySet);
     }
 
+    //enabling the back button to take user back to the current activity after viewing full recipe in webview
     @Override
     public void onBackPressed()
     {
@@ -201,6 +204,7 @@ public class ResultPage extends AppCompatActivity
         }
     }
 
+    //nested class for retrieving the ingredients for the given recipe
     public class IngredientRetrieval extends AsyncTask<String, Void, String>
     {
         @Override
@@ -212,6 +216,7 @@ public class ResultPage extends AppCompatActivity
             BufferedReader dataGetReader = null;
             try
             {
+                //running the api call to get the recipe ingredients, then reading them in one by one
                 URL apiGetUrl = new URL(url[0]);
                 apiGetConnection = (HttpURLConnection) apiGetUrl.openConnection();
                 apiGetConnection.connect();
@@ -255,6 +260,7 @@ public class ResultPage extends AppCompatActivity
             }
         }
 
+        //method run to add the ingredients to the page
         @Override
         protected void onPostExecute (String result)
         {
@@ -268,6 +274,7 @@ public class ResultPage extends AppCompatActivity
             String[] ingredientsArray;
             try
             {
+                //carrying out cleaning on the ingredients returned as they are returned in JSON fomat not readable by the user
                 result = result.replaceAll("\"", "\"");
                 result = result.replace(",", "");
                 result = result.replaceAll("\\[", "");

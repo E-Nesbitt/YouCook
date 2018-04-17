@@ -49,6 +49,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener
     //ForgottenPassword Activity Link
     private TextView forgotPassword;
 
+    //sign in constant
     private static final int RC_SIGN_IN = 2;
 
     @Override
@@ -56,6 +57,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener
     {
         super.onStart();
 
+        //listener for firebase authentication so that it can redirect user to main menu on authorisation of user
         mAuth.addAuthStateListener(mAuthListener);
     }
 
@@ -189,6 +191,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener
         String userEmail = emailInput.getText().toString().trim();
         String userPassword = passwordInput.getText().toString().trim();
 
+        //checking to ensure the text areas for email and password have been filled in, sets errors if not
         if(TextUtils.isEmpty(userEmail) || TextUtils.isEmpty(userPassword))
         {
             if(TextUtils.isEmpty(userEmail))
@@ -203,9 +206,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener
             return;
         }
 
+        //creats a dialog to represent the authentication process
         pDialog.setMessage("Authenticating User..");
         pDialog.show();
 
+        //method to sign the user in with the entered email and password
         mAuth.signInWithEmailAndPassword(userEmail, userPassword)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>()
                 {
@@ -216,17 +221,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener
                         {
                             FirebaseUser user = mAuth.getCurrentUser();
                             uid = user.getUid();
-
                         }
                         else
                         {
+                            //message displayed if user is not yet registered with the system
                             Toast.makeText(Login.this, "You are not yet registered, please register and try again!", Toast.LENGTH_LONG).show();
                         }
+                        //closes the authentication dialog
                         pDialog.dismiss();
                     }
                 });
     }
 
+    //on clicks for all options on the login screen
     @Override
     public void onClick(View view)
     {

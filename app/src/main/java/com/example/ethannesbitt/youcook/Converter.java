@@ -29,12 +29,14 @@ import java.util.List;
 
 public class Converter extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-
+    //variables for navigation drawer
     private DrawerLayout drawerMenu;
     private ActionBarDrawerToggle menuToggle;
 
+    //variables for user data
     private FirebaseAuth mAuth;
 
+    //variables for tabs
     private SectionsPageAdapter pageAdapter;
     private ViewPager viewPager;
     private TabLayout tabLayout;
@@ -45,7 +47,7 @@ public class Converter extends AppCompatActivity implements NavigationView.OnNav
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_converter);
 
-        //getting user data (initialising user)
+        //initialising user data
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -66,7 +68,7 @@ public class Converter extends AppCompatActivity implements NavigationView.OnNav
 
     }
 
-    //method to add the tabs (fragments to the page adapter and then set the page adapter to the viewPager
+    //method to add the tabs (fragments to the page adapter and then set the page adapter to the viewPager)
     private void viewPagerCreate(ViewPager viewPager)
     {
         SectionsPageAdapter sPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
@@ -87,7 +89,7 @@ public class Converter extends AppCompatActivity implements NavigationView.OnNav
         return super.onOptionsItemSelected(item);
     }
 
-    //drawer menu navigation, on clicks for each item in the menu, finishes current activity and starts the new activity
+    //setting the on clicks for each menu in the navigation drawer menu
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {

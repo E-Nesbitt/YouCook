@@ -24,14 +24,16 @@ import java.util.Set;
 
 public class RecipePage extends AppCompatActivity
 {
-
+    //declaring variables required for viewing an individual recipe
     private TextView recipeName, ingredientsList, methodList, prepTime, cookTime;
     private Button deleteButton;
     private String recipeID;
     private FirebaseAuth mAuth;
 
+    //declaring array list so that ingredients can be added to the shopping list
     private ArrayList<String> ingredientList = null;
 
+    //all string variables required for the recipe
     private String id, name, pTime, cTime, type, ingredientOne, ingredientTwo, ingredientThree, ingredientFour, ingredientFive, ingredientSix, ingredientSeven, ingredientEight,
             ingredientNine, ingredientTen, ingredientEleven, ingredientTwelve, ingredientThirteen, ingredientFourteen, ingredientFifteen, ingredientSixteen,
             ingredientSeventeen, ingredientEighteen, ingredientNineteen, ingredientTwenty;
@@ -54,6 +56,7 @@ public class RecipePage extends AppCompatActivity
         methodList = findViewById(R.id.list_method);
         deleteButton = findViewById(R.id.delete_recipe);
 
+        //retrieve all the recipe information from the selected item in the list of recipes
         if(recipePageBundle != null)
         {
             //getting all recipe details passed over from the previous activity on the list item click
@@ -94,6 +97,7 @@ public class RecipePage extends AppCompatActivity
             cookTime.setText(cTime);
             ingredientsList.setText(ingredientOne);
 
+            //loop to only retrieve valid ingredients
             for(int i = 0; i <=18 ; i++)
             {
                 try
@@ -114,6 +118,7 @@ public class RecipePage extends AppCompatActivity
         }
         else
         {
+            //error message to be displayed to user if no recipe can be retrieved
             recipeName.setText("Error Loading Recipe!");
             Toast.makeText(this, "LOADING ERROR!", Toast.LENGTH_SHORT).show();
         }
@@ -123,16 +128,18 @@ public class RecipePage extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+                //deleting the recipe that is currently being viewed
                 deleteRecipe(recipeID);
             }
         });
 
+        //on click for the ingredients so that they can be added to the users shopping list
         ingredientsList.setOnClickListener(new View.OnClickListener()
         {
 
             public void onClick(View view)
             {
-                //Creating an alert prompt to ask user if item has been got
+                //Creating an alert prompt to ask user if they want to add the ingredients to the shopping list
                 AlertDialog.Builder builder = new AlertDialog.Builder(RecipePage.this);
                 builder.setTitle("Add all ingredients to the shopping list?");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
@@ -167,6 +174,7 @@ public class RecipePage extends AppCompatActivity
         });
     }
 
+    //method used to delete the recipe from the firebase database
     private void deleteRecipe(String recipeId)
     {
         //getting user data (initialising user)
@@ -174,9 +182,10 @@ public class RecipePage extends AppCompatActivity
         FirebaseUser user = mAuth.getCurrentUser();
         String uid = user.getUid();
 
+        //getting the specific recipe that the user is viewing
         final DatabaseReference recipeDB = FirebaseDatabase.getInstance().getReference("recipes").child(uid).child(recipeId);
 
-        //Creating an alert prompt to ask user if item has been got
+        //Creating an alert prompt to ask user if recipe is to be deleted or not
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Are you sure you want to delete the recipe?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
@@ -184,7 +193,7 @@ public class RecipePage extends AppCompatActivity
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
             {
-                //Removes the item and re-adds it with a tick beside it to show its been got
+                //Removes the recipe from the database
                 recipeDB.removeValue();
                 Toast.makeText(RecipePage.this, "Recipe Deleted Successfully!", Toast.LENGTH_LONG).show();
                 finish();
