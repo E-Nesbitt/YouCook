@@ -206,7 +206,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener
             return;
         }
 
-        //creats a dialog to represent the authentication process
+        //creates a dialog to represent the authentication process
         pDialog.setMessage("Authenticating User..");
         pDialog.show();
 
@@ -225,7 +225,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener
                         else
                         {
                             //message displayed if user is not yet registered with the system
-                            Toast.makeText(Login.this, "You are not yet registered, please register and try again!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Login.this, "You are not yet registered, " +
+                                    "please register and try again!", Toast.LENGTH_LONG).show();
                         }
                         //closes the authentication dialog
                         pDialog.dismiss();
