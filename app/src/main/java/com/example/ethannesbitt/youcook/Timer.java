@@ -179,7 +179,7 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
                             countDownTime.setText("00:00");
                             Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
 
-                            //new notification attempt, my code and working
+                            //new notification, sets off the sound notification and adds a notification to the notification bar with a stop button attached
                             Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
                             Intent intent = new Intent(Timer.this, Timer.class);
                             PendingIntent pendingIntent = PendingIntent.getActivity(Timer.this, 0, intent, 0);

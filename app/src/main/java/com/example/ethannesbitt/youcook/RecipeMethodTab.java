@@ -108,14 +108,15 @@ public class RecipeMethodTab extends Fragment
                 // save the input data to the Firebase database, setting a new Unique id each time a save is actioned
                 String id = recipeDatabase.push().getKey();
 
-                Recipe recipe = new Recipe(id, name, type, prepTime, cookTime, ingredientOne, ingredientTwo, ingredientThree, ingredientFour, ingredientFive,
-                        ingredientSix, ingredientSeven, ingredientEight, ingredientNine, ingredientTen, ingredientEleven, ingredientTwelve, ingredientThirteen,
-                        ingredientFourteen, ingredientFifteen, ingredientSixteen, ingredientSeventeen, ingredientEighteen, ingredientNineteen, ingredientTwenty,
-                        recipeMethod);
+                Recipe recipe = new Recipe(id, name, type, prepTime, cookTime, ingredientOne,
+                        ingredientTwo, ingredientThree, ingredientFour, ingredientFive,
+                        ingredientSix, ingredientSeven, ingredientEight, ingredientNine,
+                        ingredientTen, ingredientEleven, ingredientTwelve, ingredientThirteen,
+                        ingredientFourteen, ingredientFifteen, ingredientSixteen, ingredientSeventeen,
+                        ingredientEighteen, ingredientNineteen, ingredientTwenty, recipeMethod);
 
                 FirebaseUser user = mAuth.getCurrentUser();
                 String uid = user.getUid();
-
                 recipeDatabase.child(uid).child(id).setValue(recipe);
 
                 Toast.makeText(getContext(), "Recipe " + name + " saved!", Toast.LENGTH_LONG).show();
