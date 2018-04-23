@@ -27,7 +27,7 @@ public class ConvertTabOne extends Fragment
     {
         View view =  inflater.inflate(R.layout.fragment_convert_tab_one, container,false);
 
-        //conversion editTexts and Buttons set up
+        //initialising conversion editTexts and Buttons
         inputValue = view.findViewById(R.id.conversionInput);
         outputValue = view.findViewById(R.id.conversionOutput);
         inputType = view.findViewById(R.id.conversionInputType);

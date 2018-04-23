@@ -231,7 +231,7 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
         SharedPreferences putPreferences = context.getSharedPreferences("shoppingListValues", Activity.MODE_PRIVATE);
         SharedPreferences.Editor preferenceEditor = putPreferences.edit();
         preferenceEditor.putStringSet("theShoppingList", writeList);
-        preferenceEditor.apply();//was using commit before try using apply method and see if it still works
+        preferenceEditor.apply();
     }
 
     //opens the shopping list stored in shared preferences when app is opened
