@@ -194,10 +194,16 @@ public class ShoppingList extends AppCompatActivity implements NavigationView.On
             public void onClick(DialogInterface dialogInterface, int i)
             {
                 //Removes the item and re-adds it with a tick beside it to show its been got
-                ingredientList.remove(position);
-                ingredientList.add(activeItem + " \u2714");
-                storeIngredientsList(ingredientList, getApplicationContext());
-                lView.setAdapter(aAdapter);
+                if(!activeItem.contains("\u2714")) {
+                    ingredientList.remove(position);
+                    ingredientList.add(activeItem + " \u2714");
+                    storeIngredientsList(ingredientList, getApplicationContext());
+                    lView.setAdapter(aAdapter);
+                }
+                else
+                {
+                    Toast.makeText(ShoppingList.this, "Item is already checked off!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
