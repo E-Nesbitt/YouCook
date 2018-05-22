@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -79,7 +80,7 @@ public class ResultPage extends AppCompatActivity
             if(thePublisher.contains("www."))
             {
                 int index = thePublisher.indexOf("w.") + 2;
-                int index2 = thePublisher.indexOf(".co");
+                int index2 = thePublisher.lastIndexOf(".co");
                 thePublisher = thePublisher.substring(index, index2);
                 thePublisher = thePublisher.substring(0, 1).toUpperCase() + thePublisher.substring(1);
             }
