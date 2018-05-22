@@ -186,10 +186,9 @@ public class Timer extends AppCompatActivity implements NavigationView.OnNavigat
 
                             Notification notification = new Notification.Builder(Timer.this)
                                     .setSound(sound)
-                                    .setSmallIcon(R.mipmap.youcookic_launcher)
+                                    .setSmallIcon(R.mipmap.youcook_notification)
                                     .setContentTitle("Timer Complete!")
                                     .setContentText("Check your food!")
-                                    .addAction(R.mipmap.youcookic_launcher, "Open", pendingIntent)
                                     .addAction(0, "Stop", pendingIntent).build();
 
                             NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
