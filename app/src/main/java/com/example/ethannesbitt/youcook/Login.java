@@ -225,8 +225,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener
                         else
                         {
                             //message displayed if user is not yet registered with the system
-                            Toast.makeText(Login.this, "You are not yet registered, " +
-                                    "please register and try again!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Login.this, "Invalid Credentials: Check your email and password and try again!", Toast.LENGTH_LONG).show();
                         }
                         //closes the authentication dialog
                         pDialog.dismiss();
