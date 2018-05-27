@@ -70,6 +70,7 @@ public class Mains extends AppCompatActivity implements NavigationView.OnNavigat
         //initialising text to be displayed if no recipes exist
         noRecipes = findViewById(R.id.no_recipes_m);
 
+        //onclick for the individual recipes so that all details can be passed across to the specific activity
         listRecipes.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
